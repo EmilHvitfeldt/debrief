@@ -92,12 +92,18 @@ cat_section <- function(text, width = 70) {
   cat("\n--- ", text, " ", strrep("-", dashes), "\n", sep = "")
 }
 
-fmt_time <- function(time_ms, pct) {
-  sprintf("%6.0f ms (%5.1f%%)", time_ms, pct)
+# Format time with percentage - used throughout package for consistent output
+fmt_time <- function(time_ms, pct, time_width = 6, pct_width = 5) {
+  sprintf(
+    paste0("%", time_width, ".0f ms (%", pct_width, ".1f%%)"),
+    time_ms,
+    pct
+  )
 }
 
-fmt_memory <- function(mem_mb) {
-  sprintf("%8.2f MB", mem_mb)
+# Format memory in MB - used throughout package for consistent output
+fmt_memory <- function(mem_mb, width = 8) {
+  sprintf(paste0("%", width, ".2f MB"), mem_mb)
 }
 
 truncate_string <- function(s, max_len = 60) {

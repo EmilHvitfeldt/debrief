@@ -75,3 +75,9 @@ reference:
   - pv_suggestions
   - pv_print_suggestions
 
+- title: Export
+  desc: Export results for programmatic access and AI agents
+  contents:
+  - pv_to_json
+  - pv_to_list
+

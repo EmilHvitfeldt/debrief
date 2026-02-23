@@ -152,7 +152,7 @@ print_memory_df <- function(df) {
     return(invisible())
   }
   for (i in seq_len(nrow(df))) {
-    cat(sprintf("%8.2f MB  %s\n", df$mem_mb[i], df$label[i]))
+    cat(fmt_memory(df$mem_mb[i]), " ", df$label[i], "\n", sep = "")
   }
 }
 
@@ -162,7 +162,7 @@ print_memory_lines_df <- function(df, file_contents) {
     return(invisible())
   }
   for (i in seq_len(nrow(df))) {
-    cat(sprintf("%8.2f MB  %s\n", df$mem_mb[i], df$location[i]))
+    cat(fmt_memory(df$mem_mb[i]), " ", df$location[i], "\n", sep = "")
     src_line <- get_source_line(df$filename[i], df$linenum[i], file_contents)
     if (!is.null(src_line) && nchar(src_line) > 0) {
       cat(sprintf("            %s\n", truncate_string(src_line, 58)))

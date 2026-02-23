@@ -14,7 +14,7 @@ pv_flame_condense(x, n = 10, width = 50)
 \item{width}{Width of bars.}
 }
 \value{
-Invisibly returns NULL.
+Invisibly returns a data frame with path, samples, and pct columns.
 }
 \description{
 Shows a simplified, condensed view of the flame graph focusing on the

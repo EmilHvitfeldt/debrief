@@ -52,16 +52,16 @@
         → inner (R/main.R:15)
       
       --- MEMORY ALLOCATION (by function) ----------------------------------
-        150.00 MB  inner
-        100.00 MB  deep
-         50.00 MB  helper
+        150.00 MB inner
+        100.00 MB deep
+         50.00 MB helper
       
       --- MEMORY ALLOCATION (by line) --------------------------------------
-        150.00 MB  R/main.R:15
+        150.00 MB R/main.R:15
                   z <- heavy_computation()
-        100.00 MB  R/utils.R:5
+        100.00 MB R/utils.R:5
                   x <- rnorm(1000)
-         50.00 MB  R/helper.R:20
+         50.00 MB R/helper.R:20
                   do_work()
       ---------------------------------------------------------------------- 
 
@@ -102,7 +102,7 @@
         → baz
       
       --- MEMORY ALLOCATION (by function) ----------------------------------
-         50.00 MB  bar
-         50.00 MB  baz
+         50.00 MB bar
+         50.00 MB baz
       ---------------------------------------------------------------------- 
 

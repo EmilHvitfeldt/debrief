@@ -127,7 +127,7 @@ print_flame_tree <- function(tree, width, min_pct, total_samples, max_depth) {
 #' @param n Number of hot paths to show.
 #' @param width Width of bars.
 #'
-#' @return Invisibly returns NULL.
+#' @return Invisibly returns a data frame with path, samples, and pct columns.
 #' @export
 pv_flame_condense <- function(x, n = 10, width = 50) {
   check_profvis(x)
@@ -179,5 +179,6 @@ pv_flame_condense <- function(x, n = 10, width = 50) {
     }
   }
 
-  invisible(NULL)
+
+  invisible(paths_df)
 }

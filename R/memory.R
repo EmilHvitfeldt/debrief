@@ -138,7 +138,7 @@ pv_print_memory <- function(x, n = 10, by = c("function", "line")) {
     cat("\n")
 
     for (i in seq_len(nrow(mem_df))) {
-      cat(sprintf("%8.2f MB  %s\n", mem_df$mem_mb[i], mem_df$label[i]))
+      cat(fmt_memory(mem_df$mem_mb[i]), " ", mem_df$label[i], "\n", sep = "")
     }
   } else {
     mem_df <- pv_memory_lines(x, n = n)
@@ -157,7 +157,7 @@ pv_print_memory <- function(x, n = 10, by = c("function", "line")) {
 
     for (i in seq_len(nrow(mem_df))) {
       row <- mem_df[i, ]
-      cat(sprintf("%8.2f MB  %s\n", row$mem_mb, row$location))
+      cat(fmt_memory(row$mem_mb), " ", row$location, "\n", sep = "")
       src_line <- get_source_line(row$filename, row$linenum, file_contents)
       if (!is.null(src_line) && nchar(src_line) > 0) {
         cat(sprintf("            %s\n", truncate_string(src_line, 58)))

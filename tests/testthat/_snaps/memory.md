@@ -7,9 +7,9 @@
                           MEMORY ALLOCATION BY FUNCTION
       ====================================================================== 
       
-        150.00 MB  inner
-        100.00 MB  deep
-         50.00 MB  helper
+        150.00 MB inner
+        100.00 MB deep
+         50.00 MB helper
 
 # pv_print_memory by line snapshot
 
@@ -20,11 +20,11 @@
                             MEMORY ALLOCATION BY LINE
       ====================================================================== 
       
-        150.00 MB  R/main.R:15
+        150.00 MB R/main.R:15
                   z <- heavy_computation()
-        100.00 MB  R/utils.R:5
+        100.00 MB R/utils.R:5
                   x <- rnorm(1000)
-         50.00 MB  R/helper.R:20
+         50.00 MB R/helper.R:20
                   do_work()
 
 # pv_print_memory handles no source refs for line mode

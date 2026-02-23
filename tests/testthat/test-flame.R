@@ -48,6 +48,16 @@ test_that("pv_flame_condense respects width parameter", {
   expect_snapshot(pv_flame_condense(p, n = 2, width = 30))
 })
 
+test_that("pv_flame_condense returns data frame", {
+  p <- mock_profvis()
+
+  result <- expect_invisible(pv_flame_condense(p))
+  expect_s3_class(result, "data.frame")
+  expect_true("path" %in% names(result))
+  expect_true("samples" %in% names(result))
+  expect_true("pct" %in% names(result))
+})
+
 test_that("flame functions reject non-profvis input", {
   expect_error(pv_flame(list()), "must be a profvis object")
   expect_error(pv_flame_condense("bad"), "must be a profvis object")
