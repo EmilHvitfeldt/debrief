@@ -68,10 +68,10 @@ reference:
   - pv_print_compare
 
 - title: Diagnostics
-  desc: Detect anti-patterns and get optimization suggestions
+  desc: Detect GC pressure and get optimization suggestions
   contents:
-  - pv_antipatterns
-  - pv_print_antipatterns
+  - pv_gc_pressure
+  - pv_print_gc_pressure
   - pv_suggestions
   - pv_print_suggestions
 

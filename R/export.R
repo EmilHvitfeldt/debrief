@@ -9,7 +9,7 @@
 #' @param pretty If `TRUE`, formats JSON with indentation for readability.
 #' @param include Character vector specifying which analyses to include.
 #'   Options: "summary", "self_time", "total_time", "hot_lines", "memory",
-#'   "callers", "antipatterns", "suggestions", "recursive". Default includes all.
+#'   "callers", "gc_pressure", "suggestions", "recursive". Default includes all.
 #'
 #' @return If `file` is `NULL`, returns a JSON string. Otherwise writes to file
 #'   and returns the file path invisibly.
@@ -33,7 +33,7 @@ pv_to_json <- function(
       "total_time",
       "hot_lines",
       "memory",
-      "antipatterns",
+      "gc_pressure",
       "suggestions",
       "recursive"
     )
@@ -48,7 +48,7 @@ pv_to_json <- function(
       "total_time",
       "hot_lines",
       "memory",
-      "antipatterns",
+      "gc_pressure",
       "suggestions",
       "recursive"
     ),
@@ -102,12 +102,12 @@ pv_to_json <- function(
     )
   }
 
-  if ("antipatterns" %in% include) {
-    patterns <- pv_antipatterns(x)
+  if ("gc_pressure" %in% include) {
+    patterns <- pv_gc_pressure(x)
     if (nrow(patterns) > 0) {
-      result$antipatterns <- df_to_list(patterns)
+      result$gc_pressure <- df_to_list(patterns)
     } else {
-      result$antipatterns <- list()
+      result$gc_pressure <- list()
     }
   }
 
@@ -166,7 +166,7 @@ pv_to_list <- function(
       "total_time",
       "hot_lines",
       "memory",
-      "antipatterns",
+      "gc_pressure",
       "suggestions",
       "recursive"
     )
@@ -181,7 +181,7 @@ pv_to_list <- function(
       "total_time",
       "hot_lines",
       "memory",
-      "antipatterns",
+      "gc_pressure",
       "suggestions",
       "recursive"
     ),
@@ -228,8 +228,8 @@ pv_to_list <- function(
     )
   }
 
-  if ("antipatterns" %in% include) {
-    result$antipatterns <- pv_antipatterns(x)
+  if ("gc_pressure" %in% include) {
+    result$gc_pressure <- pv_gc_pressure(x)
   }
 
   if ("suggestions" %in% include) {

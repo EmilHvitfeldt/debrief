@@ -6,8 +6,8 @@
 \usage{
 pv_to_list(
   x,
-  include = c("summary", "self_time", "total_time", "hot_lines", "memory",
-    "antipatterns", "suggestions", "recursive")
+  include = c("summary", "self_time", "total_time", "hot_lines", "memory", "gc_pressure",
+    "suggestions", "recursive")
 )
 }
 \arguments{

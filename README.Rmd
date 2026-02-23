@@ -185,22 +185,22 @@ pv_print_compare(p1, p2)
 
 ### Diagnostics
 
-Detect anti-patterns and get optimization suggestions:
+Detect GC pressure and get optimization suggestions:
 
 ```{r diagnostics, eval = FALSE}
-# Detect common performance anti-patterns
-pv_print_antipatterns(p)
-#> [!!!] df_subset_in_recursion (250 ms, 45.0%)
-#>     Location: my_func + [.data.frame
-#>     Data frame subsetting inside recursive function...
+# Detect GC pressure (indicates memory allocation issues)
+pv_print_gc_pressure(p)
+#> [!!!] GC consuming 35.0% of time (350 ms)
+#> High garbage collection overhead. Look for growing vectors,
+#> repeated data frame operations, or unnecessary copies.
 
 # Get actionable optimization suggestions
 pv_print_suggestions(p)
 #> === Priority 1 ===
 #>
-#> [data structure] [.data.frame / [[.data.frame
-#>     Replace data frame row subsetting with vector indexing...
-#>     Potential impact: Up to 200 ms (40%)
+#> [hot line] R/analysis.R:42
+#>     Line 'result <- rbind(result, row)' consumes 25% of time.
+#>     Potential impact: 250 ms (25%)
 ```
 
 ## Available Functions
@@ -216,4 +216,5 @@ pv_print_suggestions(p)
 | Source Context | `pv_source_context()`, `pv_file_summary()` |
 | Visualization | `pv_flame()`, `pv_flame_condense()` |
 | Comparison | `pv_compare()`, `pv_print_compare()` |
-| Diagnostics | `pv_antipatterns()`, `pv_suggestions()` |
+| Diagnostics | `pv_gc_pressure()`, `pv_suggestions()` |
+| Export | `pv_to_json()`, `pv_to_list()` |

@@ -8,8 +8,8 @@ pv_to_json(
   x,
   file = NULL,
   pretty = TRUE,
-  include = c("summary", "self_time", "total_time", "hot_lines", "memory",
-    "antipatterns", "suggestions", "recursive")
+  include = c("summary", "self_time", "total_time", "hot_lines", "memory", "gc_pressure",
+    "suggestions", "recursive")
 )
 }
 \arguments{
@@ -22,7 +22,7 @@ JSON string.}
 
 \item{include}{Character vector specifying which analyses to include.
 Options: "summary", "self_time", "total_time", "hot_lines", "memory",
-"callers", "antipatterns", "suggestions", "recursive". Default includes all.}
+"callers", "gc_pressure", "suggestions", "recursive". Default includes all.}
 }
 \value{
 If \code{file} is \code{NULL}, returns a JSON string. Otherwise writes to file

@@ -1,30 +1,26 @@
-# pv_print_antipatterns snapshot with GC pressure
+# pv_print_gc_pressure snapshot with high GC
 
     Code
-      pv_print_antipatterns(p)
+      pv_print_gc_pressure(p)
     Output
       ====================================================================== 
-                            PERFORMANCE ANTI-PATTERNS
+                                   GC PRESSURE
       ====================================================================== 
       
-      [!!!] gc_pressure (40 ms, 40.0%)
-          Location: <GC>
-          High garbage collection overhead (40.0% of time). Indicates excessive memory allocation. Look for growing vectors, repeated data frame operations, or unnecessary copies.
+      [!!!] GC consuming 40.0% of time (40 ms)
       
+      High garbage collection overhead (40.0% of time). Indicates excessive memory allocation. Look for growing vectors, repeated data frame operations, or unnecessary copies. 
 
-# pv_print_antipatterns snapshot with df operations
+# pv_print_gc_pressure snapshot with no GC
 
     Code
-      pv_print_antipatterns(p)
+      pv_print_gc_pressure(p)
     Output
       ====================================================================== 
-                            PERFORMANCE ANTI-PATTERNS
+                                   GC PRESSURE
       ====================================================================== 
       
-      [!!!] df_ops_heavy (100 ms, 100.0%)
-          Location: data.frame operations
-          Data frame operations consume 100.0% of time. Consider using data.table, vectors, or matrices for performance-critical code.
-      
+      No significant GC pressure detected (<10% of time).
 
 # pv_print_suggestions snapshot with GC pressure
 
