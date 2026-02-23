@@ -39,14 +39,8 @@ pv_focus <- function(x, func, context = 5) {
   func_total_time <- length(func_times) * interval_ms
   func_total_pct <- round(100 * length(func_times) / total_samples, 1)
 
-  # Calculate self-time
-  max_depths <- tapply(prof$depth, prof$time, max)
-  max_depth_df <- data.frame(
-    time = as.integer(names(max_depths)),
-    max_depth = as.integer(max_depths)
-  )
-  prof_merged <- merge(prof, max_depth_df, by = "time")
-  top_of_stack <- prof_merged[prof_merged$depth == prof_merged$max_depth, ]
+  # Calculate self-time (deepest frame for each time point)
+  top_of_stack <- extract_top_of_stack(prof)
   self_samples <- sum(top_of_stack$label == func)
   self_time <- self_samples * interval_ms
   self_pct <- round(100 * self_samples / total_samples, 1)

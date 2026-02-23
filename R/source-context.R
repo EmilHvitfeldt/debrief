@@ -47,14 +47,11 @@ pv_source_context <- function(x, filename, linenum = NULL, context = 10) {
 
   # If no linenum specified, find the hottest line
   if (is.null(linenum)) {
-    # Self-time: top of stack
-    max_depths <- tapply(prof$depth, prof$time, max)
-    max_depth_df <- data.frame(
-      time = as.integer(names(max_depths)),
-      max_depth = as.integer(max_depths)
-    )
-    prof_merged <- merge(file_prof, max_depth_df, by = "time")
-    top_of_stack <- prof_merged[prof_merged$depth == prof_merged$max_depth, ]
+    # Self-time: top of stack (filter to this file)
+    top_of_stack <- extract_top_of_stack(prof)
+    top_of_stack <- top_of_stack[
+      !is.na(top_of_stack$filename) & top_of_stack$filename == filename,
+    ]
 
     if (nrow(top_of_stack) > 0) {
       line_counts <- table(top_of_stack$linenum)

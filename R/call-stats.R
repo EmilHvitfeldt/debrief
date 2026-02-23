@@ -31,6 +31,10 @@ pv_call_stats <- function(x, n = NULL) {
   # Get unique functions
   all_funcs <- unique(prof$label)
 
+  # Pre-calculate top of stack (self-time) once for efficiency
+  top_of_stack <- extract_top_of_stack(prof)
+  top_of_stack_times <- split(top_of_stack$label, top_of_stack$time)
+
   # Calculate stats for each function
   stats <- lapply(all_funcs, function(func) {
     func_rows <- prof[prof$label == func, ]
@@ -41,13 +45,9 @@ pv_call_stats <- function(x, n = NULL) {
     total_ms <- total_samples_func * interval_ms
 
     # Self time: times when function is at top of stack
-    max_depths <- tapply(prof$depth, prof$time, max)
     self_samples <- sum(vapply(
-      total_times,
-      function(t) {
-        max_d <- max_depths[as.character(t)]
-        any(func_rows$time == t & func_rows$depth == max_d)
-      },
+      as.character(total_times),
+      function(t) func %in% top_of_stack_times[[t]],
       logical(1)
     ))
     self_ms <- self_samples * interval_ms

@@ -21,6 +21,17 @@ extract_files <- function(x) {
 extract_total_samples <- function(x) {
   max(extract_prof(x)$time)
 }
+# Extract rows where each function is at the top of the call stack (self-time)
+# This is used for self-time calculations throughout the package
+extract_top_of_stack <- function(prof) {
+  max_depths <- tapply(prof$depth, prof$time, max)
+  max_depth_df <- data.frame(
+    time = as.integer(names(max_depths)),
+    max_depth = as.integer(max_depths)
+  )
+  prof_merged <- merge(prof, max_depth_df, by = "time")
+  prof_merged[prof_merged$depth == prof_merged$max_depth, ]
+}
 
 has_source_refs <- function(x) {
   prof <- extract_prof(x)

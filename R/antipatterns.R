@@ -1,3 +1,18 @@
+# Detection thresholds (percentage of total profiling time)
+#
+# These thresholds determine when patterns are reported and their severity.
+# They are calibrated based on typical R profiling sessions:
+#
+# - 5% minimum: Below this, patterns are noise and not actionable
+# - 10-15% medium: Worth investigating but may not be critical
+# - 20-25% high: Significant performance impact, should address
+# - 40%+ critical: Major bottleneck requiring immediate attention
+#
+# Stack depth thresholds:
+# - 30: R functions typically nest 10-20 deep; 30+ indicates recursion
+# - 50: Warning threshold for potential stack issues
+# - 100: Indicates very deep recursion that may cause stack overflow
+
 #' Detect common performance anti-patterns
 #'
 #' Analyzes the profile to identify known performance anti-patterns in R code,
@@ -103,8 +118,8 @@ detect_df_subsetting_in_recursion <- function(
       df_times <- unique(prof$time[prof$label == df_op])
       overlap <- intersect(func_times, df_times)
 
+      # Require at least 10 samples to avoid false positives from noise
       if (length(overlap) > 10) {
-        # Threshold
         time_ms <- length(overlap) * interval_ms
         pct <- round(100 * length(overlap) / total_samples, 1)
 

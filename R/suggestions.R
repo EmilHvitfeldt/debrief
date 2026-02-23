@@ -290,14 +290,8 @@ suggest_top_function_optimization <- function(
   total_samples,
   total_time
 ) {
-  # Get self-time
-  max_depths <- tapply(prof$depth, prof$time, max)
-  max_depth_df <- data.frame(
-    time = as.integer(names(max_depths)),
-    max_depth = as.integer(max_depths)
-  )
-  prof_merged <- merge(prof, max_depth_df, by = "time")
-  top_of_stack <- prof_merged[prof_merged$depth == prof_merged$max_depth, ]
+  # Get self-time (deepest frame for each time point)
+  top_of_stack <- extract_top_of_stack(prof)
 
   counts <- table(top_of_stack$label)
   top_func <- names(sort(counts, decreasing = TRUE))[1]
