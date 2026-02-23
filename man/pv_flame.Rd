@@ -23,8 +23,6 @@ Generates an ASCII representation of a flame graph showing the hierarchical
 breakdown of time spent in the call tree.
 }
 \examples{
-\dontrun{
-p <- profvis::profvis(some_function())
+p <- pv_example()
 pv_flame(p)
-}
 }

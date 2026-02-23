@@ -14,12 +14,9 @@
 #'   - `regressed`: Functions that got slower
 #'
 #' @examples
-#' \dontrun{
-#' p1 <- profvis::profvis(slow_function())
-#' # ... make optimizations ...
-#' p2 <- profvis::profvis(fast_function())
+#' p1 <- pv_example()
+#' p2 <- pv_example()
 #' pv_compare(p1, p2)
-#' }
 #' @export
 pv_compare <- function(before, after, n = 20) {
   check_profvis(before)

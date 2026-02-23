@@ -23,8 +23,6 @@ Aggregates profiling time by source file. Requires source references
 (use \code{devtools::load_all()} for best results).
 }
 \examples{
-\dontrun{
-p <- profvis::profvis(Reduce(`+`, 1:1e5, accumulate = TRUE))
+p <- pv_example()
 pv_file_summary(p)
-}
 }

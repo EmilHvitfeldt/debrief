@@ -26,8 +26,6 @@ such as data frame operations in loops, growing vectors, and string
 operations in hot paths.
 }
 \examples{
-\dontrun{
-p <- profvis::profvis(some_function())
+p <- pv_example("gc")
 pv_antipatterns(p)
-}
 }

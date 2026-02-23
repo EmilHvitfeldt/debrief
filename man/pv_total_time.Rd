@@ -23,8 +23,6 @@ Returns the time spent in each function including all its callees. This
 shows which functions are on the call stack when time is being spent.
 }
 \examples{
-\dontrun{
-p <- profvis::profvis(Reduce(`+`, 1:1e5, accumulate = TRUE))
+p <- pv_example()
 pv_total_time(p)
-}
 }

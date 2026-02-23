@@ -15,10 +15,8 @@
 #'   - `pct`: Percentage of total time
 #'
 #' @examples
-#' \dontrun{
-#' p <- profvis::profvis(Reduce(`+`, 1:1e5, accumulate = TRUE))
+#' p <- pv_example()
 #' pv_hot_paths(p)
-#' }
 #' @export
 pv_hot_paths <- function(x, n = NULL, include_source = TRUE) {
   check_profvis(x)

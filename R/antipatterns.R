@@ -15,10 +15,8 @@
 #'   - `pct`: Percentage of total time
 #'
 #' @examples
-#' \dontrun{
-#' p <- profvis::profvis(some_function())
+#' p <- pv_example("gc")
 #' pv_antipatterns(p)
-#' }
 #' @export
 pv_antipatterns <- function(x) {
   check_profvis(x)

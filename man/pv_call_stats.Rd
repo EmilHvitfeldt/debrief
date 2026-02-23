@@ -30,8 +30,6 @@ called many times (where per-call optimization or reducing call count
 would help).
 }
 \examples{
-\dontrun{
-p <- profvis::profvis(some_function())
+p <- pv_example()
 pv_call_stats(p)
-}
 }

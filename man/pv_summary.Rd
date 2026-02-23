@@ -25,12 +25,6 @@ Produces a comprehensive text summary of profiling data suitable for
 terminal output or AI agent consumption.
 }
 \examples{
-\dontrun{
-library(profvis)
-p <- profvis({
-  x <- rep(1, 1e6)
-  y <- cumsum(x)
-})
+p <- pv_example()
 pv_summary(p)
-}
 }

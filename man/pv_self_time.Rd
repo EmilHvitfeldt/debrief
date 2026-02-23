@@ -23,8 +23,6 @@ Returns the time spent directly in each function (at the top of the call
 stack). This shows where CPU cycles are actually being consumed.
 }
 \examples{
-\dontrun{
-p <- profvis::profvis(Reduce(`+`, 1:1e5, accumulate = TRUE))
+p <- pv_example()
 pv_self_time(p)
-}
 }

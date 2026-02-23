@@ -24,8 +24,6 @@ Analyzes the profile and generates specific, actionable optimization
 suggestions based on detected patterns and hotspots.
 }
 \examples{
-\dontrun{
-p <- profvis::profvis(some_function())
+p <- pv_example("gc")
 pv_suggestions(p)
-}
 }

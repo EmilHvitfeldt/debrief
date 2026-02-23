@@ -27,10 +27,7 @@ Compares two profiling runs to show what changed. Useful for measuring
 the impact of optimizations.
 }
 \examples{
-\dontrun{
-p1 <- profvis::profvis(slow_function())
-# ... make optimizations ...
-p2 <- profvis::profvis(fast_function())
+p1 <- pv_example()
+p2 <- pv_example()
 pv_compare(p1, p2)
-}
 }

@@ -12,14 +12,8 @@
 #' @return Invisibly returns a list containing all computed summaries.
 #'
 #' @examples
-#' \dontrun{
-#' library(profvis)
-#' p <- profvis({
-#'   x <- rep(1, 1e6)
-#'   y <- cumsum(x)
-#' })
+#' p <- pv_example()
 #' pv_summary(p)
-#' }
 #' @export
 pv_summary <- function(
   x,

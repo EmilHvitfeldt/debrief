@@ -18,10 +18,8 @@
 #'   - `pct`: Percentage of total profile time
 #'
 #' @examples
-#' \dontrun{
-#' p <- profvis::profvis(some_function())
+#' p <- pv_example()
 #' pv_call_stats(p)
-#' }
 #' @export
 pv_call_stats <- function(x, n = NULL) {
   check_profvis(x)

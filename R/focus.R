@@ -10,10 +10,8 @@
 #' @return Invisibly returns a list with all analysis components.
 #'
 #' @examples
-#' \dontrun{
-#' p <- profvis::profvis(some_function())
-#' pv_focus(p, "target_func")
-#' }
+#' p <- pv_example()
+#' pv_focus(p, "inner")
 #' @export
 pv_focus <- function(x, func, context = 5) {
   check_profvis(x)

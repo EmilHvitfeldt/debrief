@@ -24,8 +24,6 @@ Displays source code around a specific file and line number with profiling
 information for each line.
 }
 \examples{
-\dontrun{
-p <- profvis::profvis(some_function())
-pv_source_context(p, "/R/my-file.R", linenum = 42)
-}
+p <- pv_example()
+pv_source_context(p, "R/main.R", linenum = 10)
 }

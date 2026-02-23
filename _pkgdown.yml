@@ -7,6 +7,7 @@ reference:
   desc: Comprehensive profiling summaries
   contents:
   - pv_summary
+  - pv_example
 
 - title: Time Analysis
   desc: Analyze where time is spent by function

@@ -16,10 +16,8 @@
 #'   - `pct`: Percentage of total time
 #'
 #' @examples
-#' \dontrun{
-#' p <- profvis::profvis(Reduce(`+`, 1:1e5, accumulate = TRUE))
+#' p <- pv_example()
 #' pv_hot_lines(p)
-#' }
 #' @export
 pv_hot_lines <- function(x, n = NULL) {
   check_profvis(x)
@@ -94,10 +92,8 @@ pv_hot_lines <- function(x, n = NULL) {
 #' @return Invisibly returns the hot lines data frame.
 #'
 #' @examples
-#' \dontrun{
-#' p <- profvis::profvis(Reduce(`+`, 1:1e5, accumulate = TRUE))
+#' p <- pv_example()
 #' pv_print_hot_lines(p, n = 5, context = 3)
-#' }
 #' @export
 pv_print_hot_lines <- function(x, n = 5, context = 3) {
   check_profvis(x)

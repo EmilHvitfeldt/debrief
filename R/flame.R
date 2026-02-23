@@ -11,10 +11,8 @@
 #' @return Invisibly returns the flame data structure.
 #'
 #' @examples
-#' \dontrun{
-#' p <- profvis::profvis(some_function())
+#' p <- pv_example()
 #' pv_flame(p)
-#' }
 #' @export
 pv_flame <- function(x, width = 70, min_pct = 2, max_depth = 15) {
   check_profvis(x)

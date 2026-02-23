@@ -28,8 +28,6 @@ Returns the source lines where the most CPU time is spent. Requires source
 references (use \code{devtools::load_all()} for best results).
 }
 \examples{
-\dontrun{
-p <- profvis::profvis(Reduce(`+`, 1:1e5, accumulate = TRUE))
+p <- pv_example()
 pv_hot_lines(p)
-}
 }

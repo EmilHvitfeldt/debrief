@@ -12,10 +12,8 @@
 #' @return Invisibly returns a data frame with line-by-line profiling data.
 #'
 #' @examples
-#' \dontrun{
-#' p <- profvis::profvis(some_function())
-#' pv_source_context(p, "/R/my-file.R", linenum = 42)
-#' }
+#' p <- pv_example()
+#' pv_source_context(p, "R/main.R", linenum = 10)
 #' @export
 pv_source_context <- function(x, filename, linenum = NULL, context = 10) {
   check_profvis(x)

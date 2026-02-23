@@ -24,8 +24,6 @@ Returns the functions that call a specified function, based on profiling
 data. Shows who invokes the target function.
 }
 \examples{
-\dontrun{
-p <- profvis::profvis(some_function())
-pv_callers(p, "target_func")
-}
+p <- pv_example()
+pv_callers(p, "inner")
 }

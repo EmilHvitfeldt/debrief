@@ -19,10 +19,8 @@
 #'   - `pct_time`: Percentage of total profile time
 #'
 #' @examples
-#' \dontrun{
-#' p <- profvis::profvis(some_recursive_function())
+#' p <- pv_example("recursive")
 #' pv_recursive(p)
-#' }
 #' @export
 pv_recursive <- function(x) {
   check_profvis(x)

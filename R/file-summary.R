@@ -12,10 +12,8 @@
 #'   - `pct`: Percentage of total time
 #'
 #' @examples
-#' \dontrun{
-#' p <- profvis::profvis(Reduce(`+`, 1:1e5, accumulate = TRUE))
+#' p <- pv_example()
 #' pv_file_summary(p)
-#' }
 #' @export
 pv_file_summary <- function(x) {
   check_profvis(x)

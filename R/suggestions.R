@@ -13,10 +13,8 @@
 #'   - `potential_impact`: Estimated time that could be saved
 #'
 #' @examples
-#' \dontrun{
-#' p <- profvis::profvis(some_function())
+#' p <- pv_example("gc")
 #' pv_suggestions(p)
-#' }
 #' @export
 pv_suggestions <- function(x) {
   check_profvis(x)

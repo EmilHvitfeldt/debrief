@@ -28,8 +28,6 @@ multiple times in the same call stack. Recursive functions in hot paths
 are often optimization targets.
 }
 \examples{
-\dontrun{
-p <- profvis::profvis(some_recursive_function())
+p <- pv_example("recursive")
 pv_recursive(p)
-}
 }

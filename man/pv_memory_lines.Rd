@@ -26,8 +26,6 @@ Returns memory allocation aggregated by source location. Requires source
 references (use \code{devtools::load_all()} for best results).
 }
 \examples{
-\dontrun{
-p <- profvis::profvis(x <- rep(1, 1e7))
+p <- pv_example()
 pv_memory_lines(p)
-}
 }

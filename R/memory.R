@@ -10,10 +10,8 @@
 #'   - `mem_mb`: Memory allocated in megabytes
 #'
 #' @examples
-#' \dontrun{
-#' p <- profvis::profvis(x <- rep(1, 1e7))
+#' p <- pv_example()
 #' pv_memory(p)
-#' }
 #' @export
 pv_memory <- function(x, n = NULL) {
   check_profvis(x)
@@ -62,10 +60,8 @@ pv_memory <- function(x, n = NULL) {
 #'   - `mem_mb`: Memory allocated in megabytes
 #'
 #' @examples
-#' \dontrun{
-#' p <- profvis::profvis(x <- rep(1, 1e7))
+#' p <- pv_example()
 #' pv_memory_lines(p)
-#' }
 #' @export
 pv_memory_lines <- function(x, n = NULL) {
   check_profvis(x)

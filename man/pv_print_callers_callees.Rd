@@ -21,8 +21,6 @@ Shows both callers (who calls this function) and callees (what this function
 calls) in a single view.
 }
 \examples{
-\dontrun{
-p <- profvis::profvis(some_function())
-pv_print_callers_callees(p, "target_func")
-}
+p <- pv_example()
+pv_print_callers_callees(p, "inner")
 }

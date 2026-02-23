@@ -13,10 +13,8 @@
 #'   - `top_funcs`: Most common functions at this depth
 #'
 #' @examples
-#' \dontrun{
-#' p <- profvis::profvis(some_function())
+#' p <- pv_example()
 #' pv_call_depth(p)
-#' }
 #' @export
 pv_call_depth <- function(x) {
   check_profvis(x)

@@ -22,8 +22,6 @@ A data frame with columns:
 Returns memory allocation aggregated by function name.
 }
 \examples{
-\dontrun{
-p <- profvis::profvis(x <- rep(1, 1e7))
+p <- pv_example()
 pv_memory(p)
-}
 }

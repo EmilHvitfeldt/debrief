@@ -20,8 +20,6 @@ Invisibly returns the hot lines data frame.
 Prints the hot source lines along with surrounding code context.
 }
 \examples{
-\dontrun{
-p <- profvis::profvis(Reduce(`+`, 1:1e5, accumulate = TRUE))
+p <- pv_example()
 pv_print_hot_lines(p, n = 5, context = 3)
-}
 }

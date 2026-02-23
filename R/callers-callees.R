@@ -12,10 +12,8 @@
 #'   - `pct`: Percentage of calls from this caller
 #'
 #' @examples
-#' \dontrun{
-#' p <- profvis::profvis(some_function())
-#' pv_callers(p, "target_func")
-#' }
+#' p <- pv_example()
+#' pv_callers(p, "inner")
 #' @export
 pv_callers <- function(x, func) {
   check_profvis(x)
@@ -92,10 +90,8 @@ pv_callers <- function(x, func) {
 #'   - `pct`: Percentage of calls to this callee
 #'
 #' @examples
-#' \dontrun{
-#' p <- profvis::profvis(some_function())
-#' pv_callees(p, "target_func")
-#' }
+#' p <- pv_example()
+#' pv_callees(p, "outer")
 #' @export
 pv_callees <- function(x, func) {
   check_profvis(x)
@@ -170,10 +166,8 @@ pv_callees <- function(x, func) {
 #' @return Invisibly returns a list with `callers` and `callees` data frames.
 #'
 #' @examples
-#' \dontrun{
-#' p <- profvis::profvis(some_function())
-#' pv_print_callers_callees(p, "target_func")
-#' }
+#' p <- pv_example()
+#' pv_print_callers_callees(p, "inner")
 #' @export
 pv_print_callers_callees <- function(x, func, n = 10) {
   check_profvis(x)

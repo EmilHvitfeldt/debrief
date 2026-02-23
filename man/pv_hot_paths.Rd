@@ -28,8 +28,6 @@ Returns the most common complete call stacks. This shows which execution
 paths through the code consume the most time.
 }
 \examples{
-\dontrun{
-p <- profvis::profvis(Reduce(`+`, 1:1e5, accumulate = TRUE))
+p <- pv_example()
 pv_hot_paths(p)
-}
 }

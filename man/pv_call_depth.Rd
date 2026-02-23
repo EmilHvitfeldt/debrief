@@ -24,8 +24,6 @@ Shows time distribution across different call stack depths. Useful for
 understanding how deeply nested the hot code paths are.
 }
 \examples{
-\dontrun{
-p <- profvis::profvis(some_function())
+p <- pv_example()
 pv_call_depth(p)
-}
 }

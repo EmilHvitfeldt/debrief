@@ -21,8 +21,6 @@ Provides a comprehensive analysis of a single function including time
 breakdown, callers, callees, and source context if available.
 }
 \examples{
-\dontrun{
-p <- profvis::profvis(some_function())
-pv_focus(p, "target_func")
-}
+p <- pv_example()
+pv_focus(p, "inner")
 }
