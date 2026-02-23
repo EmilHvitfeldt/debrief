@@ -50,14 +50,14 @@ example_default <- function() {
       "R/main.R", "R/main.R", "R/utils.R",
       "R/main.R"
     ),
-    linenum = c(
-      10L, 15L,
-      10L, 15L, 5L,
-      10L, 20L,
-      10L, 15L, 5L,
-      10L
-    ),
-    filenum = c(1L, 1L, 1L, 1L, 2L, 1L, 3L, 1L, 1L, 2L, 1L),
+    linenum = as.double(c(
+      10, 15,
+      10, 15, 5,
+      10, 20,
+      10, 15, 5,
+      10
+    )),
+    filenum = as.double(c(1, 1, 1, 1, 2, 1, 3, 1, 1, 2, 1)),
     memalloc = c(100, 150, 150, 200, 250, 250, 300, 300, 350, 400, 400),
     meminc = c(0, 50, 0, 50, 50, 0, 50, 0, 50, 50, 0),
     stringsAsFactors = FALSE
@@ -150,8 +150,8 @@ example_no_source <- function() {
     depth = c(1L, 2L, 1L, 2L, 1L),
     label = c("foo", "bar", "foo", "baz", "foo"),
     filename = rep(NA_character_, 5),
-    linenum = rep(NA_integer_, 5),
-    filenum = rep(NA_integer_, 5),
+    linenum = rep(NA_real_, 5),
+    filenum = rep(NA_real_, 5),
     memalloc = c(100, 150, 150, 200, 200),
     meminc = c(0, 50, 0, 50, 0),
     stringsAsFactors = FALSE
@@ -177,8 +177,8 @@ example_recursive <- function() {
     depth = c(1L, 2L, 3L, 1L, 2L, 3L, 4L, 1L, 2L, 3L, 4L, 5L),
     label = rep("recurse", 12),
     filename = rep("R/recursive.R", 12),
-    linenum = rep(5L, 12),
-    filenum = rep(1L, 12),
+    linenum = rep(5, 12),
+    filenum = rep(1, 12),
     memalloc = seq(100, 1200, by = 100),
     meminc = rep(100, 12),
     stringsAsFactors = FALSE
@@ -219,8 +219,8 @@ example_gc <- function() {
     depth = rep(1L, 10),
     label = c("work", "work", "<GC>", "work", "<GC>", "<GC>", "work", "<GC>", "work", "work"),
     filename = c(rep("R/work.R", 2), NA, "R/work.R", NA, NA, "R/work.R", NA, rep("R/work.R", 2)),
-    linenum = c(rep(5L, 2), NA, 5L, NA, NA, 5L, NA, rep(5L, 2)),
-    filenum = c(rep(1L, 2), NA, 1L, NA, NA, 1L, NA, rep(1L, 2)),
+    linenum = as.double(c(5, 5, NA, 5, NA, NA, 5, NA, 5, 5)),
+    filenum = as.double(c(1, 1, NA, 1, NA, NA, 1, NA, 1, 1)),
     memalloc = c(100, 200, 200, 300, 300, 300, 400, 400, 500, 600),
     meminc = c(0, 100, 0, 100, 0, 0, 100, 0, 100, 100),
     stringsAsFactors = FALSE
