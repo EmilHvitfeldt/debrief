@@ -17,3 +17,8 @@ Invisibly returns the call stats data frame.
 \description{
 Print call statistics
 }
+\examples{
+p <- pv_example()
+pv_print_call_stats(p)
+
+}

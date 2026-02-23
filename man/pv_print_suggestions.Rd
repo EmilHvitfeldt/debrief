@@ -15,3 +15,8 @@ Invisibly returns the suggestions data frame.
 \description{
 Print optimization suggestions
 }
+\examples{
+p <- pv_example("gc")
+pv_print_suggestions(p)
+
+}

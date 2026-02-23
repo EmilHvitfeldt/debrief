@@ -53,6 +53,11 @@ pv_call_depth <- function(x) {
 #' @param x A profvis object.
 #'
 #' @return Invisibly returns the call depth data frame.
+#'
+#' @examples
+#' p <- pv_example()
+#' pv_print_call_depth(p)
+#'
 #' @export
 pv_print_call_depth <- function(x) {
   check_profvis(x)

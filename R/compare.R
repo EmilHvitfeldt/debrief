@@ -107,6 +107,12 @@ pv_compare <- function(before, after, n = 20) {
 #' @param n Number of functions to show in detailed comparison.
 #'
 #' @return Invisibly returns the comparison list.
+#'
+#' @examples
+#' p1 <- pv_example()
+#' p2 <- pv_example()
+#' pv_print_compare(p1, p2)
+#'
 #' @export
 pv_print_compare <- function(before, after, n = 15) {
   check_profvis(before)

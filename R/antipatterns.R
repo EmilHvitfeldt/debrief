@@ -291,6 +291,11 @@ detect_df_ops_in_hot_path <- function(prof, interval_ms, total_samples) {
 #' @param x A profvis object.
 #'
 #' @return Invisibly returns the anti-patterns data frame.
+#'
+#' @examples
+#' p <- pv_example("gc")
+#' pv_print_antipatterns(p)
+#'
 #' @export
 pv_print_antipatterns <- function(x) {
   check_profvis(x)

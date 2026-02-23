@@ -84,6 +84,11 @@ pv_hot_paths <- function(x, n = NULL, include_source = TRUE) {
 #' @param include_source Include source references in output.
 #'
 #' @return Invisibly returns the hot paths data frame.
+#'
+#' @examples
+#' p <- pv_example()
+#' pv_print_hot_paths(p, n = 3)
+#'
 #' @export
 pv_print_hot_paths <- function(x, n = 10, include_source = TRUE) {
   check_profvis(x)

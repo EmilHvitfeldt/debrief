@@ -15,3 +15,8 @@ Invisibly returns the file summary data frame.
 \description{
 Print file summary
 }
+\examples{
+p <- pv_example()
+pv_print_file_summary(p)
+
+}

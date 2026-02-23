@@ -19,3 +19,9 @@ Invisibly returns the memory data frame.
 \description{
 Print memory allocation summary
 }
+\examples{
+p <- pv_example()
+pv_print_memory(p, by = "function")
+pv_print_memory(p, by = "line")
+
+}

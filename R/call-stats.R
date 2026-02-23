@@ -126,6 +126,11 @@ estimate_call_count <- function(func, prof) {
 #' @param n Number of functions to show.
 #'
 #' @return Invisibly returns the call stats data frame.
+#'
+#' @examples
+#' p <- pv_example()
+#' pv_print_call_stats(p)
+#'
 #' @export
 pv_print_call_stats <- function(x, n = 20) {
   check_profvis(x)

@@ -115,6 +115,12 @@ pv_memory_lines <- function(x, n = NULL) {
 #' @param by Either "function" or "line".
 #'
 #' @return Invisibly returns the memory data frame.
+#'
+#' @examples
+#' p <- pv_example()
+#' pv_print_memory(p, by = "function")
+#' pv_print_memory(p, by = "line")
+#'
 #' @export
 pv_print_memory <- function(x, n = 10, by = c("function", "line")) {
   check_profvis(x)

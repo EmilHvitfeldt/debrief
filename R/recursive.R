@@ -104,6 +104,11 @@ pv_recursive <- function(x) {
 #' @param x A profvis object.
 #'
 #' @return Invisibly returns the recursive functions data frame.
+#'
+#' @examples
+#' p <- pv_example("recursive")
+#' pv_print_recursive(p)
+#'
 #' @export
 pv_print_recursive <- function(x) {
   check_profvis(x)

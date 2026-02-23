@@ -55,6 +55,11 @@ pv_file_summary <- function(x) {
 #' @param x A profvis object.
 #'
 #' @return Invisibly returns the file summary data frame.
+#'
+#' @examples
+#' p <- pv_example()
+#' pv_print_file_summary(p)
+#'
 #' @export
 pv_print_file_summary <- function(x) {
   check_profvis(x)

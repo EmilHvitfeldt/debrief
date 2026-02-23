@@ -15,3 +15,8 @@ Invisibly returns the call depth data frame.
 \description{
 Print call depth breakdown
 }
+\examples{
+p <- pv_example()
+pv_print_call_depth(p)
+
+}

@@ -15,3 +15,8 @@ Invisibly returns the recursive functions data frame.
 \description{
 Print recursive functions analysis
 }
+\examples{
+p <- pv_example("recursive")
+pv_print_recursive(p)
+
+}

@@ -19,3 +19,8 @@ Invisibly returns the hot paths data frame.
 \description{
 Print hot paths in readable format
 }
+\examples{
+p <- pv_example()
+pv_print_hot_paths(p, n = 3)
+
+}

@@ -15,3 +15,8 @@ Invisibly returns the anti-patterns data frame.
 \description{
 Print anti-patterns analysis
 }
+\examples{
+p <- pv_example("gc")
+pv_print_antipatterns(p)
+
+}

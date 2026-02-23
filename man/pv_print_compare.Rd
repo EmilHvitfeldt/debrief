@@ -19,3 +19,9 @@ Invisibly returns the comparison list.
 \description{
 Print profile comparison
 }
+\examples{
+p1 <- pv_example()
+p2 <- pv_example()
+pv_print_compare(p1, p2)
+
+}

@@ -328,6 +328,11 @@ suggest_top_function_optimization <- function(
 #' @param x A profvis object.
 #'
 #' @return Invisibly returns the suggestions data frame.
+#'
+#' @examples
+#' p <- pv_example("gc")
+#' pv_print_suggestions(p)
+#'
 #' @export
 pv_print_suggestions <- function(x) {
   check_profvis(x)
