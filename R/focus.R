@@ -173,7 +173,7 @@ pv_focus <- function(x, func, context = 5) {
       fn <- paste(parts[-length(parts)], collapse = ":")
       ln <- as.integer(parts[length(parts)])
 
-      cat(sprintf("\n--- Source Context: %s ", fn, strrep("-", 30)))
+      cat(sprintf("\n--- Source Context: %s ", fn))
       cat(strrep("-", max(0, 70 - nchar(fn) - 21)), "\n", sep = "")
 
       start_line <- max(1L, ln - context)
