@@ -1,2 +1,5 @@
 .Rproj.user
 docs
+
+/.quarto/
+**/*.quarto_ipynb
