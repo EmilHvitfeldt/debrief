@@ -1,0 +1,152 @@
+#' Detect recursive functions
+#'
+#' Identifies functions that call themselves (directly recursive) or appear
+#' multiple times in the same call stack. Recursive functions in hot paths
+#' are often optimization targets.
+#'
+#' @param x A profvis object.
+#'
+#' @return A data frame with columns:
+#'   - `label`: Function name
+#'   - `max_depth`: Maximum recursion depth observed
+#'   - `avg_depth`: Average recursion depth when recursive
+#'
+#'   - `recursive_samples`: Number of samples where function appears multiple times
+#'   - `total_samples`: Total samples where function appears
+#'
+#'   - `pct_recursive`: Percentage of appearances that are recursive
+#'   - `total_ms`: Total time on call stack
+#'   - `pct_time`: Percentage of total profile time
+#'
+#' @examples
+#' \dontrun{
+#' p <- profvis::profvis(some_recursive_function())
+#' pv_recursive(p)
+#' }
+#' @export
+pv_recursive <- function(x) {
+  check_profvis(x)
+
+  prof <- extract_prof(x)
+  interval_ms <- extract_interval(x)
+  total_samples <- extract_total_samples(x)
+
+  # For each time point, find functions that appear multiple times
+  times <- unique(prof$time)
+
+  recursive_info <- lapply(times, function(t) {
+    stack <- prof[prof$time == t, ]
+    func_counts <- table(stack$label)
+    recursive_funcs <- names(func_counts[func_counts > 1])
+
+    if (length(recursive_funcs) == 0) {
+      return(NULL)
+    }
+
+    lapply(recursive_funcs, function(func) {
+      depths <- stack$depth[stack$label == func]
+      data.frame(
+        label = func,
+        time = t,
+        count = length(depths),
+        min_depth = min(depths),
+        max_depth = max(depths),
+        stringsAsFactors = FALSE
+      )
+    })
+  })
+
+  recursive_info <- unlist(recursive_info, recursive = FALSE)
+  if (length(recursive_info) == 0) {
+    return(data.frame(
+      label = character(),
+      max_depth = integer(),
+      avg_depth = numeric(),
+      recursive_samples = integer(),
+      total_samples = integer(),
+      pct_recursive = numeric(),
+      total_ms = numeric(),
+      pct_time = numeric(),
+      stringsAsFactors = FALSE
+    ))
+  }
+
+  recursive_df <- do.call(rbind, recursive_info)
+
+  # Aggregate by function
+  funcs <- unique(recursive_df$label)
+  result <- lapply(funcs, function(func) {
+    func_recursive <- recursive_df[recursive_df$label == func, ]
+    func_all <- prof[prof$label == func, ]
+
+    recursive_samples <- nrow(func_recursive)
+    total_func_samples <- length(unique(func_all$time))
+
+    data.frame(
+      label = func,
+      max_depth = max(func_recursive$count),
+      avg_depth = round(mean(func_recursive$count), 1),
+      recursive_samples = recursive_samples,
+      total_samples = total_func_samples,
+      pct_recursive = round(100 * recursive_samples / total_func_samples, 1),
+      total_ms = total_func_samples * interval_ms,
+      pct_time = round(100 * total_func_samples / total_samples, 1),
+      stringsAsFactors = FALSE
+    )
+  })
+
+  result <- do.call(rbind, result)
+  result <- result[order(-result$total_ms), ]
+  rownames(result) <- NULL
+  result
+}
+
+#' Print recursive functions analysis
+#'
+#' @param x A profvis object.
+#'
+#' @return Invisibly returns the recursive functions data frame.
+#' @export
+pv_print_recursive <- function(x) {
+  check_profvis(x)
+
+  recursive <- pv_recursive(x)
+
+  if (nrow(recursive) == 0) {
+    cat("No recursive functions detected in the profile.\n")
+    return(invisible(recursive))
+  }
+
+  cat_header("RECURSIVE FUNCTIONS")
+  cat("\n")
+  cat("Functions that appear multiple times in the same call stack.\n")
+  cat("High recursion depth + high time = optimization opportunity.\n\n")
+
+  cat(sprintf(
+    "%-30s %8s %8s %10s %8s\n",
+    "Function",
+    "MaxDepth",
+    "AvgDepth",
+    "Total ms",
+    "Pct"
+  ))
+  cat(strrep("-", 70), "\n")
+
+  for (i in seq_len(nrow(recursive))) {
+    row <- recursive[i, ]
+    label <- truncate_string(row$label, 30)
+    cat(sprintf(
+      "%-30s %8d %8.1f %10.0f %7.1f%%\n",
+      label,
+      row$max_depth,
+      row$avg_depth,
+      row$total_ms,
+      row$pct_time
+    ))
+  }
+
+  cat("\n")
+  cat("Note: MaxDepth = max times function appears in single stack\n")
+
+  invisible(recursive)
+}

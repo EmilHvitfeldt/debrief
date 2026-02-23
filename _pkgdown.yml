@@ -1,0 +1,76 @@
+url: ~
+template:
+  bootstrap: 5
+
+reference:
+- title: Overview
+  desc: Comprehensive profiling summaries
+  contents:
+  - pv_summary
+
+- title: Time Analysis
+  desc: Analyze where time is spent by function
+  contents:
+  - pv_self_time
+  - pv_total_time
+
+- title: Hot Spots
+  desc: Find the hottest lines and call paths
+  contents:
+  - pv_hot_lines
+  - pv_print_hot_lines
+  - pv_hot_paths
+  - pv_print_hot_paths
+
+- title: Memory Analysis
+  desc: Track memory allocation by function and source line
+  contents:
+  - pv_memory
+  - pv_memory_lines
+  - pv_print_memory
+
+- title: Call Analysis
+  desc: Analyze call relationships, depth, and statistics
+  contents:
+  - pv_call_depth
+  - pv_print_call_depth
+  - pv_callers
+  - pv_callees
+  - pv_print_callers_callees
+  - pv_call_stats
+  - pv_print_call_stats
+
+- title: Function Analysis
+  desc: Deep dive into specific functions
+  contents:
+  - pv_focus
+  - pv_recursive
+  - pv_print_recursive
+
+- title: Source Context
+  desc: View source code with profiling annotations
+  contents:
+  - pv_source_context
+  - pv_file_summary
+  - pv_print_file_summary
+
+- title: Visualization
+  desc: Text-based flame graphs
+  contents:
+  - pv_flame
+  - pv_flame_condense
+
+- title: Comparison
+  desc: Compare before/after optimization profiles
+  contents:
+  - pv_compare
+  - pv_print_compare
+
+- title: Diagnostics
+  desc: Detect anti-patterns and get optimization suggestions
+  contents:
+  - pv_antipatterns
+  - pv_print_antipatterns
+  - pv_suggestions
+  - pv_print_suggestions
+

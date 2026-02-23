@@ -1,0 +1,219 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# profvis.txt
+
+<!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![CRAN status](https://www.r-pkg.org/badges/version/profvis.txt)](https://CRAN.R-project.org/package=profvis.txt)
+<!-- badges: end -->
+
+profvis.txt provides text-based summaries and analysis tools for [profvis](https://rstudio.github.io/profvis/) profiling output. It's designed for terminal workflows and AI agent consumption, offering views including hotspot analysis, call trees, source context, caller/callee relationships, and memory allocation breakdowns.
+
+## Installation
+
+You can install the development version of profvis.txt from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("pak")
+pak::pak("emilhvitfeldt/profvis.txt")
+```
+
+## Example
+
+First, create a profvis profile of some code:
+
+```{r example, eval = FALSE}
+library(profvis)
+library(profvis.txt)
+
+# Profile some code
+p <- profvis({
+ x <- rep(1, 1e6)
+ y <- cumsum(x)
+ z <- paste(1:1000, collapse = ", ")
+})
+```
+
+### Quick Summary
+
+Get a comprehensive overview with `pv_summary()`:
+
+```{r summary, eval = FALSE}
+pv_summary(p)
+#> ======================================================================
+#> PROFILING SUMMARY
+#> ======================================================================
+#>
+#> Total time: 120 ms (12 samples @ 10 ms interval)
+#> Source references: available
+#>
+#> --- TOP FUNCTIONS BY SELF-TIME ---
+#>    40 ms ( 33.3%)  paste
+#>    30 ms ( 25.0%)  cumsum
+#>    20 ms ( 16.7%)  rep
+#> ...
+```
+
+### Time Analysis
+
+Analyze where time is spent:
+
+```{r time, eval = FALSE}
+# Self-time: time spent directly in each function
+pv_self_time(p)
+
+# Total time: time spent in function + all its callees
+pv_total_time(p)
+```
+
+### Hot Spots
+
+Find the hottest lines and call paths:
+
+```{r hotspots, eval = FALSE}
+# Hot source lines with context
+pv_print_hot_lines(p, n = 5, context = 3)
+
+# Hot call paths
+pv_print_hot_paths(p, n = 10)
+```
+
+### Function Analysis
+
+Deep dive into a specific function:
+
+```{r focus, eval = FALSE}
+pv_focus(p, "paste")
+#> ======================================================================
+#> FOCUS: paste
+#> ======================================================================
+#>
+#> --- Time Analysis ---
+#>   Total time:      40 ms ( 33.3%)  - time on call stack
+#>   Self time:       40 ms ( 33.3%)  - time at top of stack
+#>   Child time:       0 ms (  0.0%)  - time in callees
+#>
+#> --- Called By ---
+#>     12 calls (100.0%)  (top-level)
+#> ...
+```
+
+### Call Relationships
+
+Understand who calls what:
+
+```{r calls, eval = FALSE}
+# Who calls this function?
+pv_callers(p, "cumsum")
+
+# What does this function call?
+pv_callees(p, "my_function")
+
+# Full caller/callee analysis
+pv_print_callers_callees(p, "target_func")
+```
+
+### Memory Analysis
+
+Track memory allocations:
+
+```{r memory, eval = FALSE}
+# Memory by function
+pv_print_memory(p, n = 10, by = "function")
+
+# Memory by source line
+pv_print_memory(p, n = 10, by = "line")
+```
+
+### Text-based Flame Graph
+
+Visualize the call tree:
+
+```{r flame, eval = FALSE}
+pv_flame(p, width = 70, min_pct = 2)
+#> ======================================================================
+#> FLAME GRAPH (text)
+#> ======================================================================
+#>
+#> Total time: 120 ms | Width: 70 chars | Min: 2%
+#>
+#> [======================================================================] (root) 100%
+#>   [=======================] paste (33.3%)
+#>   [=================] cumsum (25.0%)
+#>   [===========] rep (16.7%)
+```
+
+### Compare Profiles
+
+Measure optimization impact:
+
+```{r compare, eval = FALSE}
+# Before optimization
+p1 <- profvis(slow_function())
+
+# After optimization
+p2 <- profvis(fast_function())
+
+# Compare
+pv_print_compare(p1, p2)
+#> ======================================================================
+#> PROFILE COMPARISON
+#> ======================================================================
+#>
+#> --- Overall ---
+#> IMPROVED: 500 ms -> 120 ms (4.2x faster, saved 380 ms)
+#>
+#> --- Biggest Changes ---
+#> Function                          Before      After       Diff   Change
+#> ------------------------------------------------------------------------
+#> slow_helper                          300         50       -250    -83%
+#> ...
+```
+
+### Diagnostics
+
+Detect anti-patterns and get optimization suggestions:
+
+```{r diagnostics, eval = FALSE}
+# Detect common performance anti-patterns
+pv_print_antipatterns(p)
+#> [!!!] df_subset_in_recursion (250 ms, 45.0%)
+#>     Location: my_func + [.data.frame
+#>     Data frame subsetting inside recursive function...
+
+# Get actionable optimization suggestions
+pv_print_suggestions(p)
+#> === Priority 1 ===
+#>
+#> [data structure] [.data.frame / [[.data.frame
+#>     Replace data frame row subsetting with vector indexing...
+#>     Potential impact: Up to 200 ms (40%)
+```
+
+## Available Functions
+
+| Category | Functions |
+|----------|-----------|
+| Overview | `pv_summary()` |
+| Time Analysis | `pv_self_time()`, `pv_total_time()` |
+| Hot Spots | `pv_hot_lines()`, `pv_hot_paths()`, `pv_print_hot_lines()`, `pv_print_hot_paths()` |
+| Memory | `pv_memory()`, `pv_memory_lines()`, `pv_print_memory()` |
+| Call Analysis | `pv_callers()`, `pv_callees()`, `pv_call_depth()`, `pv_call_stats()` |
+| Function Analysis | `pv_focus()`, `pv_recursive()` |
+| Source Context | `pv_source_context()`, `pv_file_summary()` |
+| Visualization | `pv_flame()`, `pv_flame_condense()` |
+| Comparison | `pv_compare()`, `pv_print_compare()` |
+| Diagnostics | `pv_antipatterns()`, `pv_suggestions()` |

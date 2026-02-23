@@ -1,0 +1,86 @@
+#' Call depth breakdown
+#'
+#' Shows time distribution across different call stack depths. Useful for
+#' understanding how deeply nested the hot code paths are.
+#'
+#' @param x A profvis object.
+#'
+#' @return A data frame with columns:
+#'   - `depth`: Call stack depth (1 = top level)
+#'   - `samples`: Number of profiling samples at this depth
+#'   - `time_ms`: Time in milliseconds
+#'   - `pct`: Percentage of total time
+#'   - `top_funcs`: Most common functions at this depth
+#'
+#' @examples
+#' \dontrun{
+#' p <- profvis::profvis(some_function())
+#' pv_call_depth(p)
+#' }
+#' @export
+pv_call_depth <- function(x) {
+  check_profvis(x)
+
+  prof <- extract_prof(x)
+  interval_ms <- extract_interval(x)
+  total_samples <- extract_total_samples(x)
+
+  # Get unique depths present in each time sample
+  depths <- sort(unique(prof$depth))
+
+  result <- lapply(depths, function(d) {
+    at_depth <- prof[prof$depth == d, ]
+    unique_times <- unique(at_depth$time)
+    n_samples <- length(unique_times)
+
+    # Find top functions at this depth
+    func_counts <- sort(table(at_depth$label), decreasing = TRUE)
+    top_funcs <- paste(head(names(func_counts), 3), collapse = ", ")
+
+    data.frame(
+      depth = d,
+      samples = n_samples,
+      time_ms = n_samples * interval_ms,
+      pct = round(100 * n_samples / total_samples, 1),
+      top_funcs = top_funcs,
+      stringsAsFactors = FALSE
+    )
+  })
+
+  do.call(rbind, result)
+}
+
+#' Print call depth breakdown
+#'
+#' @param x A profvis object.
+#'
+#' @return Invisibly returns the call depth data frame.
+#' @export
+pv_print_call_depth <- function(x) {
+  check_profvis(x)
+
+  depth_df <- pv_call_depth(x)
+
+  if (nrow(depth_df) == 0) {
+    cat("No profiling data available.\n")
+    return(invisible(depth_df))
+  }
+
+  cat_header("CALL DEPTH BREAKDOWN")
+  cat("\n")
+  cat("Depth  Time (ms)   Pct   Top functions\n")
+  cat(strrep("-", 70), "\n")
+
+  for (i in seq_len(nrow(depth_df))) {
+    row <- depth_df[i, ]
+    cat(sprintf(
+      "%5d  %8.0f  %5.1f%%  %s\n",
+      row$depth,
+      row$time_ms,
+      row$pct,
+      truncate_string(row$top_funcs, 45)
+    ))
+  }
+
+  invisible(depth_df)
+}

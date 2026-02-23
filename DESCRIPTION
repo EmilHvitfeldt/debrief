@@ -1,0 +1,20 @@
+Package: profvis.txt
+Title: Text-Based Summaries for 'profvis' Profiling Data
+Version: 0.0.0.9000
+Authors@R:
+    person("Emil", "Hvitfeldt", , "emil.hvitfeldt@posit.co", role = c("aut", "cre"))
+Description: Provides text-based summaries and analysis tools for
+    'profvis' profiling output. Designed for terminal workflows and AI
+    agent consumption, offering views including hotspot analysis, call
+    trees, source context, caller/callee relationships, and memory
+    allocation breakdowns.
+License: MIT + file LICENSE
+URL: https://github.com/emilhvitfeldt/profvis.txt
+BugReports: https://github.com/emilhvitfeldt/profvis.txt/issues
+Suggests:
+    profvis,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
