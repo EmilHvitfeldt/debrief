@@ -1,11 +1,11 @@
-# Helper functions for testing profvis.txt
+# Helper functions for testing debrief
 
 # Create a mock profvis object for testing
 # This allows testing without running actual profiling
 mock_profvis <- function(
-    prof = NULL,
-    interval = 10,
-    files = NULL
+  prof = NULL,
+  interval = 10,
+  files = NULL
 ) {
   if (is.null(prof)) {
     # Default simple profile data
@@ -13,24 +13,42 @@ mock_profvis <- function(
       time = c(1L, 1L, 2L, 2L, 2L, 3L, 3L, 4L, 4L, 4L, 5L),
       depth = c(1L, 2L, 1L, 2L, 3L, 1L, 2L, 1L, 2L, 3L, 1L),
       label = c(
-        "outer", "inner",
-        "outer", "inner", "deep",
-        "outer", "helper",
-        "outer", "inner", "deep",
+        "outer",
+        "inner",
+        "outer",
+        "inner",
+        "deep",
+        "outer",
+        "helper",
+        "outer",
+        "inner",
+        "deep",
         "outer"
       ),
       filename = c(
-        "R/main.R", "R/main.R",
-        "R/main.R", "R/main.R", "R/utils.R",
-        "R/main.R", "R/helper.R",
-        "R/main.R", "R/main.R", "R/utils.R",
+        "R/main.R",
+        "R/main.R",
+        "R/main.R",
+        "R/main.R",
+        "R/utils.R",
+        "R/main.R",
+        "R/helper.R",
+        "R/main.R",
+        "R/main.R",
+        "R/utils.R",
         "R/main.R"
       ),
       linenum = as.double(c(
-        10, 15,
-        10, 15, 5,
-        10, 20,
-        10, 15, 5,
+        10,
+        15,
+        10,
+        15,
+        5,
+        10,
+        20,
+        10,
+        15,
+        5,
         10
       )),
       filenum = as.double(c(1, 1, 1, 1, 2, 1, 3, 1, 1, 2, 1)),
@@ -124,7 +142,6 @@ mock_profvis <- function(
 
 # Create a mock profvis with no source references
 mock_profvis_no_source <- function() {
-
   prof <- data.frame(
     time = c(1L, 1L, 2L, 2L, 3L),
     depth = c(1L, 2L, 1L, 2L, 1L),
@@ -146,9 +163,18 @@ mock_profvis_recursive <- function() {
     time = c(1L, 1L, 1L, 2L, 2L, 2L, 2L, 3L, 3L, 3L, 3L, 3L),
     depth = c(1L, 2L, 3L, 1L, 2L, 3L, 4L, 1L, 2L, 3L, 4L, 5L),
     label = c(
-      "recurse", "recurse", "recurse",
-      "recurse", "recurse", "recurse", "recurse",
-      "recurse", "recurse", "recurse", "recurse", "recurse"
+      "recurse",
+      "recurse",
+      "recurse",
+      "recurse",
+      "recurse",
+      "recurse",
+      "recurse",
+      "recurse",
+      "recurse",
+      "recurse",
+      "recurse",
+      "recurse"
     ),
     filename = rep("R/recursive.R", 12),
     linenum = rep(5, 12),
@@ -181,8 +207,28 @@ mock_profvis_gc <- function() {
   prof <- data.frame(
     time = c(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L),
     depth = c(1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L),
-    label = c("work", "work", "<GC>", "work", "<GC>", "<GC>", "work", "<GC>", "work", "work"),
-    filename = c(rep("R/work.R", 2), NA, "R/work.R", NA, NA, "R/work.R", NA, rep("R/work.R", 2)),
+    label = c(
+      "work",
+      "work",
+      "<GC>",
+      "work",
+      "<GC>",
+      "<GC>",
+      "work",
+      "<GC>",
+      "work",
+      "work"
+    ),
+    filename = c(
+      rep("R/work.R", 2),
+      NA,
+      "R/work.R",
+      NA,
+      NA,
+      "R/work.R",
+      NA,
+      rep("R/work.R", 2)
+    ),
     linenum = as.double(c(5, 5, NA, 5, NA, NA, 5, NA, 5, 5)),
     filenum = as.double(c(1, 1, NA, 1, NA, NA, 1, NA, 1, 1)),
     memalloc = c(100, 200, 200, 300, 300, 300, 400, 400, 500, 600),
@@ -207,10 +253,14 @@ mock_profvis_strings <- function() {
     time = c(1L, 1L, 2L, 2L, 3L, 3L, 4L, 4L, 5L),
     depth = c(1L, 2L, 1L, 2L, 1L, 2L, 1L, 2L, 1L),
     label = c(
-      "process", "paste",
-      "process", "paste0",
-      "process", "sprintf",
-      "process", "gsub",
+      "process",
+      "paste",
+      "process",
+      "paste0",
+      "process",
+      "sprintf",
+      "process",
+      "gsub",
       "process"
     ),
     filename = rep("R/strings.R", 9),

@@ -1,17 +1,17 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# profvis.txt
+# debrief
 
 <!-- badges: start -->
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![CRAN
-status](https://www.r-pkg.org/badges/version/profvis.txt)](https://CRAN.R-project.org/package=profvis.txt)
+status](https://www.r-pkg.org/badges/version/debrief)](https://CRAN.R-project.org/package=debrief)
 <!-- badges: end -->
 
-profvis.txt provides text-based summaries and analysis tools for
+debrief provides text-based summaries and analysis tools for
 [profvis](https://rstudio.github.io/profvis/) profiling output. It’s
 designed for terminal workflows and AI agent consumption, offering views
 including hotspot analysis, call trees, source context, caller/callee
@@ -19,12 +19,12 @@ relationships, and memory allocation breakdowns.
 
 ## Installation
 
-You can install the development version of profvis.txt from
+You can install the development version of debrief from
 [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("pak")
-pak::pak("emilhvitfeldt/profvis.txt")
+pak::pak("emilhvitfeldt/debrief")
 ```
 
 ## Example
@@ -33,7 +33,7 @@ First, create a profvis profile of some code:
 
 ``` r
 library(profvis)
-library(profvis.txt)
+library(debrief)
 
 # Profile some code
 p <- profvis({

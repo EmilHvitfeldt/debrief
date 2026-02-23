@@ -1,4 +1,4 @@
-Package: profvis.txt
+Package: debrief
 Title: Text-Based Summaries for 'profvis' Profiling Data
 Version: 0.0.0.9000
 Authors@R:
@@ -9,8 +9,8 @@ Description: Provides text-based summaries and analysis tools for
     trees, source context, caller/callee relationships, and memory
     allocation breakdowns.
 License: MIT + file LICENSE
-URL: https://github.com/emilhvitfeldt/profvis.txt
-BugReports: https://github.com/emilhvitfeldt/profvis.txt/issues
+URL: https://github.com/emilhvitfeldt/debrief
+BugReports: https://github.com/emilhvitfeldt/debrief/issues
 Suggests:
     profvis,
     testthat (>= 3.0.0)

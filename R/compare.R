@@ -247,9 +247,10 @@ pv_print_compare <- function(before, after, n = 15) {
 pv_compare_many <- function(...) {
   args <- list(...)
 
-
   # Handle single list argument
-  if (length(args) == 1 && is.list(args[[1]]) && !inherits(args[[1]], "profvis")) {
+  if (
+    length(args) == 1 && is.list(args[[1]]) && !inherits(args[[1]], "profvis")
+  ) {
     profiles <- args[[1]]
   } else {
     profiles <- args
@@ -260,7 +261,7 @@ pv_compare_many <- function(...) {
   }
 
   # Check names
- names_vec <- names(profiles)
+  names_vec <- names(profiles)
   if (is.null(names_vec) || any(names_vec == "")) {
     stop("All profiles must be named.", call. = FALSE)
   }
@@ -321,7 +322,11 @@ pv_print_compare_many <- function(...) {
 
   cat(sprintf(
     "%4s  %-25s %10s %8s %10s\n",
-    "Rank", "Profile", "Time (ms)", "Samples", "vs Fastest"
+    "Rank",
+    "Profile",
+    "Time (ms)",
+    "Samples",
+    "vs Fastest"
   ))
   cat(strrep("-", 62), "\n")
 

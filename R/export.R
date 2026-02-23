@@ -29,20 +29,20 @@
 #'
 #' @export
 pv_to_json <- function(
-    x,
-    file = NULL,
-    pretty = TRUE,
-    include = c(
-      "summary",
-      "self_time",
-      "total_time",
-      "hot_lines",
-      "memory",
-      "gc_pressure",
-      "suggestions",
-      "recursive"
-    ),
-    system_info = FALSE
+  x,
+  file = NULL,
+  pretty = TRUE,
+  include = c(
+    "summary",
+    "self_time",
+    "total_time",
+    "hot_lines",
+    "memory",
+    "gc_pressure",
+    "suggestions",
+    "recursive"
+  ),
+  system_info = FALSE
 ) {
   check_profvis(x)
 
@@ -77,7 +77,7 @@ pv_to_json <- function(
   )
 
   # Add system info if requested
- if (system_info) {
+  if (system_info) {
     r_info <- R.Version()
     result$metadata$system <- list(
       r_version = paste(r_info$major, r_info$minor, sep = "."),
@@ -179,18 +179,18 @@ pv_to_json <- function(
 #'
 #' @export
 pv_to_list <- function(
-    x,
-    include = c(
-      "summary",
-      "self_time",
-      "total_time",
-      "hot_lines",
-      "memory",
-      "gc_pressure",
-      "suggestions",
-      "recursive"
-    ),
-    system_info = FALSE
+  x,
+  include = c(
+    "summary",
+    "self_time",
+    "total_time",
+    "hot_lines",
+    "memory",
+    "gc_pressure",
+    "suggestions",
+    "recursive"
+  ),
+  system_info = FALSE
 ) {
   check_profvis(x)
 
@@ -293,7 +293,15 @@ to_json <- function(x, pretty = TRUE, indent = 0) {
   }
 
   if (is.logical(x) && length(x) == 1) {
-    return(if (is.na(x)) "null" else if (x) "true" else "false")
+    return(
+      if (is.na(x)) {
+        "null"
+      } else if (x) {
+        "true"
+      } else {
+        "false"
+      }
+    )
   }
 
   if (is.atomic(x) && length(x) == 1) {
@@ -314,7 +322,11 @@ to_json <- function(x, pretty = TRUE, indent = 0) {
 
   if (is.atomic(x) && length(x) > 1) {
     # Array of primitives
-    elements <- vapply(x, function(el) to_json(el, pretty = FALSE), character(1))
+    elements <- vapply(
+      x,
+      function(el) to_json(el, pretty = FALSE),
+      character(1)
+    )
     return(sprintf("[%s]", paste(elements, collapse = ", ")))
   }
 

@@ -3,7 +3,10 @@ test_that("pv_hot_lines returns correct structure", {
   result <- pv_hot_lines(p)
 
   expect_s3_class(result, "data.frame")
-  expect_named(result, c("location", "samples", "label", "filename", "linenum", "time_ms", "pct"))
+  expect_named(
+    result,
+    c("location", "samples", "label", "filename", "linenum", "time_ms", "pct")
+  )
 })
 
 test_that("pv_hot_lines respects n parameter", {

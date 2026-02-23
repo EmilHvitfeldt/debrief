@@ -76,7 +76,10 @@ test_that("pv_call_stats returns correct structure", {
   result <- pv_call_stats(p)
 
   expect_s3_class(result, "data.frame")
-  expect_named(result, c("label", "calls", "total_ms", "self_ms", "child_ms", "ms_per_call", "pct"))
+  expect_named(
+    result,
+    c("label", "calls", "total_ms", "self_ms", "child_ms", "ms_per_call", "pct")
+  )
 })
 
 test_that("pv_call_stats child_ms = total_ms - self_ms", {

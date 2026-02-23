@@ -12,7 +12,13 @@ test_that("pv_summary respects n parameters", {
   p <- mock_profvis()
 
   # Should not error with different n values
-  expect_no_error(capture.output(pv_summary(p, n_functions = 2, n_lines = 2, n_paths = 2, n_memory = 2)))
+  expect_no_error(capture.output(pv_summary(
+    p,
+    n_functions = 2,
+    n_lines = 2,
+    n_paths = 2,
+    n_memory = 2
+  )))
 })
 
 test_that("pv_summary returns invisibly", {

@@ -14,7 +14,7 @@ test_that("pv_self_time calculates self-time correctly", {
   p <- mock_profvis()
   result <- pv_self_time(p)
 
- # Self-time should only count when function is at top of stack
+  # Self-time should only count when function is at top of stack
   # In mock data: inner is at top at time 1, deep at times 2,4, helper at time 3, outer at time 5
   expect_true("deep" %in% result$label)
   expect_true("inner" %in% result$label)

@@ -19,8 +19,16 @@ test_that("mock profvis prof has correct columns", {
   p <- pv_example()
   prof <- p$x$message$prof
 
-  expected_cols <- c("time", "depth", "label", "filename", "linenum",
-                     "filenum", "memalloc", "meminc")
+  expected_cols <- c(
+    "time",
+    "depth",
+    "label",
+    "filename",
+    "linenum",
+    "filenum",
+    "memalloc",
+    "meminc"
+  )
 
   expect_s3_class(prof, "data.frame")
   expect_true(all(expected_cols %in% names(prof)))
@@ -90,7 +98,18 @@ test_that("mock_profvis produces valid structure", {
   expect_type(p$x$message$files, "list")
 
   prof <- p$x$message$prof
-  expect_true(all(c("time", "depth", "label", "filename", "linenum", "memalloc", "meminc") %in% names(prof)))
+  expect_true(all(
+    c(
+      "time",
+      "depth",
+      "label",
+      "filename",
+      "linenum",
+      "memalloc",
+      "meminc"
+    ) %in%
+      names(prof)
+  ))
 })
 
 test_that("mock_profvis_no_source produces valid structure", {
@@ -102,7 +121,18 @@ test_that("mock_profvis_no_source produces valid structure", {
   expect_type(p$x$message$files, "list")
 
   prof <- p$x$message$prof
-  expect_true(all(c("time", "depth", "label", "filename", "linenum", "memalloc", "meminc") %in% names(prof)))
+  expect_true(all(
+    c(
+      "time",
+      "depth",
+      "label",
+      "filename",
+      "linenum",
+      "memalloc",
+      "meminc"
+    ) %in%
+      names(prof)
+  ))
 
   # Verify no source refs
   expect_true(all(is.na(prof$filename)))
@@ -117,7 +147,18 @@ test_that("mock_profvis_recursive produces valid structure", {
   expect_type(p$x$message$files, "list")
 
   prof <- p$x$message$prof
-  expect_true(all(c("time", "depth", "label", "filename", "linenum", "memalloc", "meminc") %in% names(prof)))
+  expect_true(all(
+    c(
+      "time",
+      "depth",
+      "label",
+      "filename",
+      "linenum",
+      "memalloc",
+      "meminc"
+    ) %in%
+      names(prof)
+  ))
 
   # Verify it has recursive structure (same function at multiple depths)
   expect_true("recurse" %in% prof$label)
@@ -132,7 +173,18 @@ test_that("mock_profvis_gc produces valid structure", {
   expect_type(p$x$message$files, "list")
 
   prof <- p$x$message$prof
-  expect_true(all(c("time", "depth", "label", "filename", "linenum", "memalloc", "meminc") %in% names(prof)))
+  expect_true(all(
+    c(
+      "time",
+      "depth",
+      "label",
+      "filename",
+      "linenum",
+      "memalloc",
+      "meminc"
+    ) %in%
+      names(prof)
+  ))
 
   # Verify it has GC entries
   expect_true("<GC>" %in% prof$label)
@@ -147,7 +199,18 @@ test_that("mock_profvis_strings produces valid structure", {
   expect_type(p$x$message$files, "list")
 
   prof <- p$x$message$prof
-  expect_true(all(c("time", "depth", "label", "filename", "linenum", "memalloc", "meminc") %in% names(prof)))
+  expect_true(all(
+    c(
+      "time",
+      "depth",
+      "label",
+      "filename",
+      "linenum",
+      "memalloc",
+      "meminc"
+    ) %in%
+      names(prof)
+  ))
 
   # Verify it has string operations
   string_funcs <- c("paste", "paste0", "sprintf", "gsub")
@@ -163,7 +226,18 @@ test_that("mock_profvis_df_ops produces valid structure", {
   expect_type(p$x$message$files, "list")
 
   prof <- p$x$message$prof
-  expect_true(all(c("time", "depth", "label", "filename", "linenum", "memalloc", "meminc") %in% names(prof)))
+  expect_true(all(
+    c(
+      "time",
+      "depth",
+      "label",
+      "filename",
+      "linenum",
+      "memalloc",
+      "meminc"
+    ) %in%
+      names(prof)
+  ))
 
   # Verify it has data frame operations
   expect_true("[.data.frame" %in% prof$label)
@@ -176,9 +250,12 @@ test_that("mock has same essential structure as real profvis", {
   skip_on_covr()
 
   # Create a real profvis object using pause() to ensure samples are collected
-  real_p <- profvis::profvis({
-    profvis::pause(0.1)
-  }, simplify = FALSE)
+  real_p <- profvis::profvis(
+    {
+      profvis::pause(0.1)
+    },
+    simplify = FALSE
+  )
 
   mock_p <- pv_example()
 
@@ -221,25 +298,51 @@ test_that("mock has same essential structure as real profvis", {
 validate_mock_against_real <- function(mock_p, real_prof, mock_name) {
   mock_prof <- mock_p$x$message$prof
 
- # Class check
-  expect_true("profvis" %in% class(mock_p), label = paste(mock_name, "has profvis class"))
+  # Class check
+  expect_true(
+    "profvis" %in% class(mock_p),
+    label = paste(mock_name, "has profvis class")
+  )
 
   # Structure check
   expect_true("x" %in% names(mock_p), label = paste(mock_name, "has x"))
- expect_true("message" %in% names(mock_p$x), label = paste(mock_name, "has message"))
-  expect_true("prof" %in% names(mock_p$x$message), label = paste(mock_name, "has prof"))
-  expect_true("interval" %in% names(mock_p$x$message), label = paste(mock_name, "has interval"))
-  expect_true("files" %in% names(mock_p$x$message), label = paste(mock_name, "has files"))
+  expect_true(
+    "message" %in% names(mock_p$x),
+    label = paste(mock_name, "has message")
+  )
+  expect_true(
+    "prof" %in% names(mock_p$x$message),
+    label = paste(mock_name, "has prof")
+  )
+  expect_true(
+    "interval" %in% names(mock_p$x$message),
+    label = paste(mock_name, "has interval")
+  )
+  expect_true(
+    "files" %in% names(mock_p$x$message),
+    label = paste(mock_name, "has files")
+  )
 
   # Prof is data frame
   expect_s3_class(mock_prof, "data.frame")
 
   # These are the columns our package actually uses
-  used_cols <- c("time", "depth", "label", "filename", "linenum", "memalloc", "meminc")
+  used_cols <- c(
+    "time",
+    "depth",
+    "label",
+    "filename",
+    "linenum",
+    "memalloc",
+    "meminc"
+  )
 
   # All used columns should be present
   for (col in used_cols) {
-    expect_true(col %in% names(mock_prof), label = paste(mock_name, "has column", col))
+    expect_true(
+      col %in% names(mock_prof),
+      label = paste(mock_name, "has column", col)
+    )
   }
 
   # Column types should match real profvis
@@ -258,16 +361,23 @@ test_that("all pv_example types match real profvis structure", {
   skip_on_covr()
 
   # Create a real profvis object
-  real_p <- profvis::profvis({
-    profvis::pause(0.1)
-  }, simplify = FALSE)
+  real_p <- profvis::profvis(
+    {
+      profvis::pause(0.1)
+    },
+    simplify = FALSE
+  )
   real_prof <- real_p$x$message$prof
 
   # Test all pv_example types
   types <- c("default", "no_source", "recursive", "gc")
   for (type in types) {
     mock_p <- pv_example(type)
-    validate_mock_against_real(mock_p, real_prof, paste("pv_example(", type, ")"))
+    validate_mock_against_real(
+      mock_p,
+      real_prof,
+      paste("pv_example(", type, ")")
+    )
   }
 })
 
@@ -277,16 +387,35 @@ test_that("all test helper mocks match real profvis structure", {
   skip_on_covr()
 
   # Create a real profvis object
-  real_p <- profvis::profvis({
-    profvis::pause(0.1)
-  }, simplify = FALSE)
+  real_p <- profvis::profvis(
+    {
+      profvis::pause(0.1)
+    },
+    simplify = FALSE
+  )
   real_prof <- real_p$x$message$prof
 
   # Test all helper mock functions
   validate_mock_against_real(mock_profvis(), real_prof, "mock_profvis()")
-  validate_mock_against_real(mock_profvis_no_source(), real_prof, "mock_profvis_no_source()")
-  validate_mock_against_real(mock_profvis_recursive(), real_prof, "mock_profvis_recursive()")
+  validate_mock_against_real(
+    mock_profvis_no_source(),
+    real_prof,
+    "mock_profvis_no_source()"
+  )
+  validate_mock_against_real(
+    mock_profvis_recursive(),
+    real_prof,
+    "mock_profvis_recursive()"
+  )
   validate_mock_against_real(mock_profvis_gc(), real_prof, "mock_profvis_gc()")
-  validate_mock_against_real(mock_profvis_strings(), real_prof, "mock_profvis_strings()")
-  validate_mock_against_real(mock_profvis_df_ops(), real_prof, "mock_profvis_df_ops()")
+  validate_mock_against_real(
+    mock_profvis_strings(),
+    real_prof,
+    "mock_profvis_strings()"
+  )
+  validate_mock_against_real(
+    mock_profvis_df_ops(),
+    real_prof,
+    "mock_profvis_df_ops()"
+  )
 })

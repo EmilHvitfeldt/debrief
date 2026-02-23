@@ -9,7 +9,7 @@
 #'   - `"recursive"`: A profile with recursive function calls
 #'   - `"gc"`: A profile with garbage collection pressure
 #'
-#' @return A profvis object that can be used with all profvis.txt functions.
+#' @return A profvis object that can be used with all debrief functions.
 #'
 #' @examples
 #' # Get default example data
@@ -22,9 +22,10 @@
 #'
 #' @export
 pv_example <- function(type = c("default", "no_source", "recursive", "gc")) {
- type <- match.arg(type)
+  type <- match.arg(type)
 
- switch(type,
+  switch(
+    type,
     default = example_default(),
     no_source = example_no_source(),
     recursive = example_recursive(),
@@ -37,24 +38,42 @@ example_default <- function() {
     time = c(1L, 1L, 2L, 2L, 2L, 3L, 3L, 4L, 4L, 4L, 5L),
     depth = c(1L, 2L, 1L, 2L, 3L, 1L, 2L, 1L, 2L, 3L, 1L),
     label = c(
-      "outer", "inner",
-      "outer", "inner", "deep",
-      "outer", "helper",
-      "outer", "inner", "deep",
+      "outer",
+      "inner",
+      "outer",
+      "inner",
+      "deep",
+      "outer",
+      "helper",
+      "outer",
+      "inner",
+      "deep",
       "outer"
     ),
     filename = c(
-      "R/main.R", "R/main.R",
-      "R/main.R", "R/main.R", "R/utils.R",
-      "R/main.R", "R/helper.R",
-      "R/main.R", "R/main.R", "R/utils.R",
+      "R/main.R",
+      "R/main.R",
+      "R/main.R",
+      "R/main.R",
+      "R/utils.R",
+      "R/main.R",
+      "R/helper.R",
+      "R/main.R",
+      "R/main.R",
+      "R/utils.R",
       "R/main.R"
     ),
     linenum = as.double(c(
-      10, 15,
-      10, 15, 5,
-      10, 20,
-      10, 15, 5,
+      10,
+      15,
+      10,
+      15,
+      5,
+      10,
+      20,
+      10,
+      15,
+      5,
       10
     )),
     filenum = as.double(c(1, 1, 1, 1, 2, 1, 3, 1, 1, 2, 1)),
@@ -217,8 +236,28 @@ example_gc <- function() {
   prof <- data.frame(
     time = c(1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L),
     depth = rep(1L, 10),
-    label = c("work", "work", "<GC>", "work", "<GC>", "<GC>", "work", "<GC>", "work", "work"),
-    filename = c(rep("R/work.R", 2), NA, "R/work.R", NA, NA, "R/work.R", NA, rep("R/work.R", 2)),
+    label = c(
+      "work",
+      "work",
+      "<GC>",
+      "work",
+      "<GC>",
+      "<GC>",
+      "work",
+      "<GC>",
+      "work",
+      "work"
+    ),
+    filename = c(
+      rep("R/work.R", 2),
+      NA,
+      "R/work.R",
+      NA,
+      NA,
+      "R/work.R",
+      NA,
+      rep("R/work.R", 2)
+    ),
     linenum = as.double(c(5, 5, NA, 5, NA, NA, 5, NA, 5, 5)),
     filenum = as.double(c(1, 1, NA, 1, NA, NA, 1, NA, 1, 1)),
     memalloc = c(100, 200, 200, 300, 300, 300, 400, 400, 500, 600),

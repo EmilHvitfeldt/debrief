@@ -107,7 +107,10 @@ pv_print_gc_pressure <- function(x, threshold = 10) {
   cat("\n")
 
   if (nrow(gc_data) == 0) {
-    cat(sprintf("No significant GC pressure detected (<%d%% of time).\n", threshold))
+    cat(sprintf(
+      "No significant GC pressure detected (<%d%% of time).\n",
+      threshold
+    ))
     return(invisible(gc_data))
   }
 

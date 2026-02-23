@@ -30,7 +30,11 @@ test_that("pv_source_context respects context parameter", {
 
   # Different context values should work
   expect_no_error(capture.output(pv_source_context(p, "R/main.R", context = 3)))
-  expect_no_error(capture.output(pv_source_context(p, "R/main.R", context = 15)))
+  expect_no_error(capture.output(pv_source_context(
+    p,
+    "R/main.R",
+    context = 15
+  )))
 })
 
 test_that("pv_source_context returns line data invisibly", {

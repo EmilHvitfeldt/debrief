@@ -179,6 +179,5 @@ pv_flame_condense <- function(x, n = 10, width = 50) {
     }
   }
 
-
   invisible(paths_df)
 }

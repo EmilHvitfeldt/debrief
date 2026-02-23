@@ -9,7 +9,7 @@ test_that("pv_gc_pressure returns correct structure", {
 })
 
 test_that("pv_gc_pressure detects high GC", {
- p <- mock_profvis_gc()
+  p <- mock_profvis_gc()
   result <- pv_gc_pressure(p)
 
   # mock_profvis_gc has 40% GC time, should be detected
@@ -62,7 +62,10 @@ test_that("pv_suggestions returns correct structure", {
   result <- pv_suggestions(p)
 
   expect_s3_class(result, "data.frame")
-  expect_named(result, c("priority", "category", "suggestion", "location", "potential_impact"))
+  expect_named(
+    result,
+    c("priority", "category", "suggestion", "location", "potential_impact")
+  )
 })
 
 test_that("pv_suggestions priority is ordered", {

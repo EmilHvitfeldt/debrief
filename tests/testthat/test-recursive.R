@@ -3,8 +3,19 @@ test_that("pv_recursive returns correct structure", {
   result <- pv_recursive(p)
 
   expect_s3_class(result, "data.frame")
-  expect_named(result, c("label", "max_depth", "avg_depth", "recursive_samples",
-                         "total_samples", "pct_recursive", "total_ms", "pct_time"))
+  expect_named(
+    result,
+    c(
+      "label",
+      "max_depth",
+      "avg_depth",
+      "recursive_samples",
+      "total_samples",
+      "pct_recursive",
+      "total_ms",
+      "pct_time"
+    )
+  )
 })
 
 test_that("pv_recursive detects recursive functions", {

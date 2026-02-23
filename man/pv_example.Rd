@@ -16,7 +16,7 @@ pv_example(type = c("default", "no_source", "recursive", "gc"))
 }}
 }
 \value{
-A profvis object that can be used with all profvis.txt functions.
+A profvis object that can be used with all debrief functions.
 }
 \description{
 Creates an example profvis object for use in examples and testing.

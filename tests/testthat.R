@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library(testthat)
-library(profvis.txt)
+library(debrief)
 
-test_check("profvis.txt")
+test_check("debrief")

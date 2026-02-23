@@ -109,27 +109,26 @@ test_that("pv_to_json handles empty results", {
 
 test_that("JSON serializer handles special characters", {
   # Test internal to_json function
-  result <- profvis.txt:::to_json(list(text = "line1\nline2\ttab"))
+  result <- debrief:::to_json(list(text = "line1\nline2\ttab"))
   expect_true(grepl("\\\\n", result))
   expect_true(grepl("\\\\t", result))
 })
 
-test_that("JSON serializer handles NA values",
-{
-  result <- profvis.txt:::to_json(list(val = NA))
+test_that("JSON serializer handles NA values", {
+  result <- debrief:::to_json(list(val = NA))
   expect_true(grepl("null", result))
 })
 
 test_that("JSON serializer handles empty lists", {
   # Empty unnamed list is an empty array
-  result <- profvis.txt:::to_json(list())
+  result <- debrief:::to_json(list())
   expect_equal(result, "[]")
 
   # Empty named list is an empty object
-  result <- profvis.txt:::to_json(structure(list(), names = character()))
+  result <- debrief:::to_json(structure(list(), names = character()))
   expect_equal(result, "{}")
 
   # Named list with empty value
-  result <- profvis.txt:::to_json(list(arr = list()))
+  result <- debrief:::to_json(list(arr = list()))
   expect_true(grepl("\\[\\]", result))
 })
