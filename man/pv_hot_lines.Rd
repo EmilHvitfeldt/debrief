@@ -4,12 +4,17 @@
 \alias{pv_hot_lines}
 \title{Hot source lines by self-time}
 \usage{
-pv_hot_lines(x, n = NULL)
+pv_hot_lines(x, n = NULL, min_pct = 0, min_time_ms = 0)
 }
 \arguments{
 \item{x}{A profvis object.}
 
-\item{n}{Maximum number of lines to return. If \code{NULL}, returns all.}
+\item{n}{Maximum number of lines to return. If \code{NULL}, returns all that pass
+the filters.}
+
+\item{min_pct}{Minimum percentage of total time to include (default 0).}
+
+\item{min_time_ms}{Minimum time in milliseconds to include (default 0).}
 }
 \value{
 A data frame with columns:
@@ -30,4 +35,7 @@ references (use \code{devtools::load_all()} for best results).
 \examples{
 p <- pv_example()
 pv_hot_lines(p)
+
+# Only lines with >= 10\% of time
+pv_hot_lines(p, min_pct = 10)
 }

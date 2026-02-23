@@ -218,3 +218,128 @@ pv_print_compare <- function(before, after, n = 15) {
 
   invisible(comp)
 }
+
+#' Compare multiple profvis profiles
+#'
+#' Compares multiple profiling runs to identify the fastest. Useful for
+#' comparing different optimization approaches.
+#'
+#' @param ... Named profvis objects to compare, or a single named list of
+#'   profvis objects.
+#'
+#' @return A data frame with columns:
+#'   - `name`: Profile name
+#'   - `time_ms`: Total time in milliseconds
+#'   - `samples`: Number of samples
+#'   - `vs_fastest`: How much slower than the fastest (e.g., "1.5x")
+#'   - `rank`: Rank from fastest (1) to slowest
+#'
+#' @examples
+#' p1 <- pv_example()
+#' p2 <- pv_example("gc")
+#' p3 <- pv_example("recursive")
+#' pv_compare_many(baseline = p1, gc_heavy = p2, recursive = p3)
+#'
+#' # Or pass a named list
+#' profiles <- list(baseline = p1, gc_heavy = p2)
+#' pv_compare_many(profiles)
+#' @export
+pv_compare_many <- function(...) {
+  args <- list(...)
+
+
+  # Handle single list argument
+  if (length(args) == 1 && is.list(args[[1]]) && !inherits(args[[1]], "profvis")) {
+    profiles <- args[[1]]
+  } else {
+    profiles <- args
+  }
+
+  if (length(profiles) < 2) {
+    stop("At least 2 profiles are required for comparison.", call. = FALSE)
+  }
+
+  # Check names
+ names_vec <- names(profiles)
+  if (is.null(names_vec) || any(names_vec == "")) {
+    stop("All profiles must be named.", call. = FALSE)
+  }
+
+  # Validate all are profvis objects
+  for (nm in names_vec) {
+    if (!inherits(profiles[[nm]], "profvis")) {
+      stop(sprintf("'%s' must be a profvis object.", nm), call. = FALSE)
+    }
+  }
+
+  # Extract timing for each
+  results <- lapply(names_vec, function(nm) {
+    p <- profiles[[nm]]
+    interval_ms <- extract_interval(p)
+    samples <- extract_total_samples(p)
+    time_ms <- samples * interval_ms
+
+    data.frame(
+      name = nm,
+      time_ms = time_ms,
+      samples = samples,
+      stringsAsFactors = FALSE
+    )
+  })
+
+  result <- do.call(rbind, results)
+  result <- result[order(result$time_ms), ]
+
+  # Calculate vs_fastest
+  fastest_time <- min(result$time_ms)
+  result$vs_fastest <- sprintf("%.2fx", result$time_ms / fastest_time)
+  result$vs_fastest[result$time_ms == fastest_time] <- "fastest"
+
+  # Add rank
+  result$rank <- seq_len(nrow(result))
+
+  rownames(result) <- NULL
+  result
+}
+
+#' Print comparison of multiple profiles
+#'
+#' @param ... Named profvis objects to compare, or a single named list.
+#'
+#' @return Invisibly returns the comparison data frame.
+#'
+#' @examples
+#' p1 <- pv_example()
+#' p2 <- pv_example("gc")
+#' pv_print_compare_many(baseline = p1, gc_heavy = p2)
+#' @export
+pv_print_compare_many <- function(...) {
+  result <- pv_compare_many(...)
+
+  cat_header("MULTI-PROFILE COMPARISON")
+  cat("\n")
+
+  cat(sprintf(
+    "%4s  %-25s %10s %8s %10s\n",
+    "Rank", "Profile", "Time (ms)", "Samples", "vs Fastest"
+  ))
+  cat(strrep("-", 62), "\n")
+
+  for (i in seq_len(nrow(result))) {
+    row <- result[i, ]
+    marker <- if (row$rank == 1) "*" else " "
+    cat(sprintf(
+      "%3d%s  %-25s %10.0f %8d %10s\n",
+      row$rank,
+      marker,
+      truncate_string(row$name, 25),
+      row$time_ms,
+      row$samples,
+      row$vs_fastest
+    ))
+  }
+
+  cat("\n* = fastest\n")
+
+  invisible(result)
+}

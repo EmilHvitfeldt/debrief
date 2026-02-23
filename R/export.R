@@ -10,6 +10,8 @@
 #' @param include Character vector specifying which analyses to include.
 #'   Options: "summary", "self_time", "total_time", "hot_lines", "memory",
 #'   "callers", "gc_pressure", "suggestions", "recursive". Default includes all.
+#' @param system_info If `TRUE`, includes R version and platform info in
+#'   metadata. Useful for reproducibility.
 #'
 #' @return If `file` is `NULL`, returns a JSON string. Otherwise writes to file
 #'   and returns the file path invisibly.
@@ -21,6 +23,9 @@
 #'
 #' # Include only specific analyses
 #' json <- pv_to_json(p, include = c("self_time", "hot_lines"))
+#'
+#' # Include system info for reproducibility
+#' json <- pv_to_json(p, system_info = TRUE)
 #'
 #' @export
 pv_to_json <- function(
@@ -36,7 +41,8 @@ pv_to_json <- function(
       "gc_pressure",
       "suggestions",
       "recursive"
-    )
+    ),
+    system_info = FALSE
 ) {
   check_profvis(x)
 
@@ -66,8 +72,20 @@ pv_to_json <- function(
     total_time_ms = total_samples * interval_ms,
     total_samples = total_samples,
     interval_ms = interval_ms,
-    has_source_refs = has_source_refs(x)
+    has_source_refs = has_source_refs(x),
+    exported_at = format(Sys.time(), "%Y-%m-%dT%H:%M:%S%z")
   )
+
+  # Add system info if requested
+ if (system_info) {
+    r_info <- R.Version()
+    result$metadata$system <- list(
+      r_version = paste(r_info$major, r_info$minor, sep = "."),
+      platform = r_info$platform,
+      os = r_info$os,
+      arch = r_info$arch
+    )
+  }
 
   # Include requested analyses
   if ("summary" %in% include) {
@@ -148,6 +166,8 @@ pv_to_json <- function(
 #' @param x A profvis object.
 #' @param include Character vector specifying which analyses to include.
 #'   Same options as [pv_to_json()].
+#' @param system_info If `TRUE`, includes R version and platform info in
+#'   metadata.
 #'
 #' @return A named list containing the requested analyses.
 #'
@@ -169,7 +189,8 @@ pv_to_list <- function(
       "gc_pressure",
       "suggestions",
       "recursive"
-    )
+    ),
+    system_info = FALSE
 ) {
   check_profvis(x)
 
@@ -198,8 +219,19 @@ pv_to_list <- function(
     total_time_ms = total_samples * interval_ms,
     total_samples = total_samples,
     interval_ms = interval_ms,
-    has_source_refs = has_source_refs(x)
+    has_source_refs = has_source_refs(x),
+    exported_at = Sys.time()
   )
+
+  if (system_info) {
+    r_info <- R.Version()
+    result$metadata$system <- list(
+      r_version = paste(r_info$major, r_info$minor, sep = "."),
+      platform = r_info$platform,
+      os = r_info$os,
+      arch = r_info$arch
+    )
+  }
 
   if ("summary" %in% include) {
     result$summary <- list(

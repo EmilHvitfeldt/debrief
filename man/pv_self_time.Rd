@@ -4,10 +4,17 @@
 \alias{pv_self_time}
 \title{Self-time summary by function}
 \usage{
-pv_self_time(x)
+pv_self_time(x, n = NULL, min_pct = 0, min_time_ms = 0)
 }
 \arguments{
 \item{x}{A profvis object.}
+
+\item{n}{Maximum number of functions to return. If \code{NULL}, returns all that
+pass the filters.}
+
+\item{min_pct}{Minimum percentage of total time to include (default 0).}
+
+\item{min_time_ms}{Minimum time in milliseconds to include (default 0).}
 }
 \value{
 A data frame with columns:
@@ -25,4 +32,7 @@ stack). This shows where CPU cycles are actually being consumed.
 \examples{
 p <- pv_example()
 pv_self_time(p)
+
+# Only functions with >= 5\% self-time
+pv_self_time(p, min_pct = 5)
 }

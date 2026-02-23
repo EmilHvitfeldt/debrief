@@ -9,7 +9,8 @@ pv_to_json(
   file = NULL,
   pretty = TRUE,
   include = c("summary", "self_time", "total_time", "hot_lines", "memory", "gc_pressure",
-    "suggestions", "recursive")
+    "suggestions", "recursive"),
+  system_info = FALSE
 )
 }
 \arguments{
@@ -23,6 +24,9 @@ JSON string.}
 \item{include}{Character vector specifying which analyses to include.
 Options: "summary", "self_time", "total_time", "hot_lines", "memory",
 "callers", "gc_pressure", "suggestions", "recursive". Default includes all.}
+
+\item{system_info}{If \code{TRUE}, includes R version and platform info in
+metadata. Useful for reproducibility.}
 }
 \value{
 If \code{file} is \code{NULL}, returns a JSON string. Otherwise writes to file
@@ -39,5 +43,8 @@ cat(json)
 
 # Include only specific analyses
 json <- pv_to_json(p, include = c("self_time", "hot_lines"))
+
+# Include system info for reproducibility
+json <- pv_to_json(p, system_info = TRUE)
 
 }

@@ -4,29 +4,32 @@
 \alias{pv_gc_pressure}
 \title{Detect GC pressure}
 \usage{
-pv_gc_pressure(x)
+pv_gc_pressure(x, threshold = 10)
 }
 \arguments{
 \item{x}{A profvis object.}
+
+\item{threshold}{Minimum GC percentage to report (default 10). Set lower to
+detect smaller GC overhead.}
 }
 \value{
 A data frame with columns:
 \itemize{
-\item \code{severity}: "high" (>25\%), "medium" (>15\%), or "low" (>10\%)
+\item \code{severity}: "high" (>25\%), "medium" (>15\%), or "low" (>threshold\%)
 \item \code{pct}: Percentage of total time spent in GC
 \item \code{time_ms}: Time spent in garbage collection
 \item \code{description}: Explanation of the issue
 }
 
-Returns an empty data frame (0 rows) if GC is below 10\% of total time.
+Returns an empty data frame (0 rows) if GC is below the threshold.
 }
 \description{
 Analyzes the profile to detect excessive garbage collection, which is a
 universal indicator of memory allocation issues in R code.
 }
 \details{
-GC pressure above 10\% indicates the code is allocating and discarding
-memory faster than necessary. Common causes include:
+GC pressure above 10\% typically indicates the code is allocating and
+discarding memory faster than necessary. Common causes include:
 \itemize{
 \item Growing vectors with \code{c(x, new)} instead of pre-allocation
 \item Building data frames row-by-row with \code{rbind()}
@@ -38,7 +41,10 @@ memory faster than necessary. Common causes include:
 p <- pv_example("gc")
 pv_gc_pressure(p)
 
+# More sensitive detection
+pv_gc_pressure(p, threshold = 5)
+
 # No GC pressure in default example
 p2 <- pv_example()
-pv_gc_pressure(p2)  # Empty data frame
+pv_gc_pressure(p2)
 }

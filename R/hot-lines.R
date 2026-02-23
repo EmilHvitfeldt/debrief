@@ -4,7 +4,10 @@
 #' references (use `devtools::load_all()` for best results).
 #'
 #' @param x A profvis object.
-#' @param n Maximum number of lines to return. If `NULL`, returns all.
+#' @param n Maximum number of lines to return. If `NULL`, returns all that pass
+#'   the filters.
+#' @param min_pct Minimum percentage of total time to include (default 0).
+#' @param min_time_ms Minimum time in milliseconds to include (default 0).
 #'
 #' @return A data frame with columns:
 #'   - `location`: File path and line number (e.g., "R/foo.R:42")
@@ -18,8 +21,11 @@
 #' @examples
 #' p <- pv_example()
 #' pv_hot_lines(p)
+#'
+#' # Only lines with >= 10% of time
+#' pv_hot_lines(p, min_pct = 10)
 #' @export
-pv_hot_lines <- function(x, n = NULL) {
+pv_hot_lines <- function(x, n = NULL, min_pct = 0, min_time_ms = 0) {
   check_profvis(x)
 
   prof <- extract_prof(x)
@@ -67,6 +73,9 @@ pv_hot_lines <- function(x, n = NULL) {
   result$pct <- round(100 * result$samples / total_samples, 1)
   result <- result[order(-result$samples), ]
   rownames(result) <- NULL
+
+  # Apply filters
+  result <- result[result$pct >= min_pct & result$time_ms >= min_time_ms, ]
 
   if (!is.null(n)) {
     result <- head(result, n)

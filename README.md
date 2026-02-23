@@ -73,6 +73,11 @@ pv_self_time(p)
 
 # Total time: time spent in function + all its callees
 pv_total_time(p)
+
+# Filter to significant functions only
+pv_self_time(p, min_pct = 5)           # >= 5% of time
+pv_self_time(p, n = 10, min_time_ms = 50)
+# Top 10 functions with >= 50ms
 ```
 
 ### Hot Spots
@@ -163,7 +168,7 @@ p1 <- profvis(slow_function())
 # After optimization
 p2 <- profvis(fast_function())
 
-# Compare
+# Compare two profiles
 pv_print_compare(p1, p2)
 #> ======================================================================
 #> PROFILE COMPARISON
@@ -177,6 +182,22 @@ pv_print_compare(p1, p2)
 #> ------------------------------------------------------------------------
 #> slow_helper                          300         50       -250    -83%
 #> ...
+
+# Compare multiple optimization approaches
+pv_print_compare_many(
+  baseline = p1,
+  vectorized = p2,
+  parallel = p3
+)
+#> ======================================================================
+#> MULTI-PROFILE COMPARISON
+#> ======================================================================
+#>
+#> Rank  Profile                      Time (ms)  Samples  vs Fastest
+#> --------------------------------------------------------------
+#>   1*  parallel                          85       9     fastest
+#>   2   vectorized                       120      12        1.41x
+#>   3   baseline                         500      50        5.88x
 ```
 
 ### Diagnostics
@@ -199,11 +220,32 @@ pv_print_suggestions(p)
 #>     Potential impact: 250 ms (25%)
 ```
 
+### Export for AI Agents
+
+Export structured data for programmatic access:
+
+``` r
+# Export as JSON for AI agents or external tools
+json <- pv_to_json(p)
+
+# Include system info for reproducibility
+json <- pv_to_json(p, system_info = TRUE)
+
+# Export as R list for programmatic access
+results <- pv_to_list(p)
+results$self_time      # Data frame of functions by self-time
+results$hot_lines      # Data frame of hot source lines
+results$suggestions    # Optimization suggestions
+
+# Export only specific analyses
+pv_to_json(p, include = c("self_time", "hot_lines", "gc_pressure"))
+```
+
 ## Available Functions
 
 | Category | Functions |
 |----|----|
-| Overview | `pv_summary()` |
+| Overview | `pv_summary()`, `pv_example()` |
 | Time Analysis | `pv_self_time()`, `pv_total_time()` |
 | Hot Spots | `pv_hot_lines()`, `pv_hot_paths()`, `pv_print_hot_lines()`, `pv_print_hot_paths()` |
 | Memory | `pv_memory()`, `pv_memory_lines()`, `pv_print_memory()` |
@@ -211,6 +253,25 @@ pv_print_suggestions(p)
 | Function Analysis | `pv_focus()`, `pv_recursive()` |
 | Source Context | `pv_source_context()`, `pv_file_summary()` |
 | Visualization | `pv_flame()`, `pv_flame_condense()` |
-| Comparison | `pv_compare()`, `pv_print_compare()` |
+| Comparison | `pv_compare()`, `pv_print_compare()`, `pv_compare_many()`, `pv_print_compare_many()` |
 | Diagnostics | `pv_gc_pressure()`, `pv_suggestions()` |
 | Export | `pv_to_json()`, `pv_to_list()` |
+
+### Filtering Support
+
+Time and hot spot functions support filtering:
+
+``` r
+# Filter by percentage threshold
+pv_self_time(p, min_pct = 5)
+pv_hot_lines(p, min_pct = 10)
+
+# Filter by time threshold
+pv_self_time(p, min_time_ms = 100)
+
+# Limit number of results
+pv_self_time(p, n = 10)
+
+# Combine filters
+pv_hot_lines(p, n = 5, min_pct = 2, min_time_ms = 10)
+```

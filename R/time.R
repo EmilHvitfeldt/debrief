@@ -4,6 +4,10 @@
 #' stack). This shows where CPU cycles are actually being consumed.
 #'
 #' @param x A profvis object.
+#' @param n Maximum number of functions to return. If `NULL`, returns all that
+#'   pass the filters.
+#' @param min_pct Minimum percentage of total time to include (default 0).
+#' @param min_time_ms Minimum time in milliseconds to include (default 0).
 #'
 #' @return A data frame with columns:
 #'   - `label`: Function name
@@ -14,8 +18,11 @@
 #' @examples
 #' p <- pv_example()
 #' pv_self_time(p)
+#'
+#' # Only functions with >= 5% self-time
+#' pv_self_time(p, min_pct = 5)
 #' @export
-pv_self_time <- function(x) {
+pv_self_time <- function(x, n = NULL, min_pct = 0, min_time_ms = 0) {
   check_profvis(x)
 
   prof <- extract_prof(x)
@@ -35,6 +42,14 @@ pv_self_time <- function(x) {
   result$pct <- round(100 * result$samples / total_samples, 1)
   result <- result[order(-result$samples), ]
   rownames(result) <- NULL
+
+  # Apply filters
+  result <- result[result$pct >= min_pct & result$time_ms >= min_time_ms, ]
+
+  if (!is.null(n)) {
+    result <- head(result, n)
+  }
+
   result
 }
 
@@ -44,6 +59,10 @@ pv_self_time <- function(x) {
 #' shows which functions are on the call stack when time is being spent.
 #'
 #' @param x A profvis object.
+#' @param n Maximum number of functions to return. If `NULL`, returns all that
+#'   pass the filters.
+#' @param min_pct Minimum percentage of total time to include (default 0).
+#' @param min_time_ms Minimum time in milliseconds to include (default 0).
 #'
 #' @return A data frame with columns:
 #'   - `label`: Function name
@@ -54,8 +73,11 @@ pv_self_time <- function(x) {
 #' @examples
 #' p <- pv_example()
 #' pv_total_time(p)
+#'
+#' # Only functions with >= 50% total time
+#' pv_total_time(p, min_pct = 50)
 #' @export
-pv_total_time <- function(x) {
+pv_total_time <- function(x, n = NULL, min_pct = 0, min_time_ms = 0) {
   check_profvis(x)
 
   prof <- extract_prof(x)
@@ -75,5 +97,13 @@ pv_total_time <- function(x) {
   result$pct <- round(100 * result$samples / total_samples, 1)
   result <- result[order(-result$samples), ]
   rownames(result) <- NULL
+
+  # Apply filters
+  result <- result[result$pct >= min_pct & result$time_ms >= min_time_ms, ]
+
+  if (!is.null(n)) {
+    result <- head(result, n)
+  }
+
   result
 }

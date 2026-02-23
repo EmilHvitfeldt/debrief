@@ -66,6 +66,8 @@ reference:
   contents:
   - pv_compare
   - pv_print_compare
+  - pv_compare_many
+  - pv_print_compare_many
 
 - title: Diagnostics
   desc: Detect GC pressure and get optimization suggestions

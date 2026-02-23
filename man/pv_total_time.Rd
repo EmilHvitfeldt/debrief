@@ -4,10 +4,17 @@
 \alias{pv_total_time}
 \title{Total time summary by function}
 \usage{
-pv_total_time(x)
+pv_total_time(x, n = NULL, min_pct = 0, min_time_ms = 0)
 }
 \arguments{
 \item{x}{A profvis object.}
+
+\item{n}{Maximum number of functions to return. If \code{NULL}, returns all that
+pass the filters.}
+
+\item{min_pct}{Minimum percentage of total time to include (default 0).}
+
+\item{min_time_ms}{Minimum time in milliseconds to include (default 0).}
 }
 \value{
 A data frame with columns:
@@ -25,4 +32,7 @@ shows which functions are on the call stack when time is being spent.
 \examples{
 p <- pv_example()
 pv_total_time(p)
+
+# Only functions with >= 50\% total time
+pv_total_time(p, min_pct = 50)
 }

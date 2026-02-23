@@ -7,7 +7,8 @@
 pv_to_list(
   x,
   include = c("summary", "self_time", "total_time", "hot_lines", "memory", "gc_pressure",
-    "suggestions", "recursive")
+    "suggestions", "recursive"),
+  system_info = FALSE
 )
 }
 \arguments{
@@ -15,6 +16,9 @@ pv_to_list(
 
 \item{include}{Character vector specifying which analyses to include.
 Same options as \code{\link[=pv_to_json]{pv_to_json()}}.}
+
+\item{system_info}{If \code{TRUE}, includes R version and platform info in
+metadata.}
 }
 \value{
 A named list containing the requested analyses.

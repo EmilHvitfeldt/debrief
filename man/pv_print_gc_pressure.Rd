@@ -4,10 +4,12 @@
 \alias{pv_print_gc_pressure}
 \title{Print GC pressure analysis}
 \usage{
-pv_print_gc_pressure(x)
+pv_print_gc_pressure(x, threshold = 10)
 }
 \arguments{
 \item{x}{A profvis object.}
+
+\item{threshold}{Minimum GC percentage to report (default 10).}
 }
 \value{
 Invisibly returns the GC pressure data frame.
