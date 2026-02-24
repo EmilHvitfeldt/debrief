@@ -110,10 +110,11 @@ print_flame_tree <- function(tree, width, min_pct, total_samples, max_depth) {
 
       bar_width <- max(1, round(width * item$samples / total_samples))
       bar <- strrep("=", bar_width)
+      padding <- strrep(" ", width - bar_width)
       indent <- strrep("  ", item$depth)
 
       name <- truncate_string(item$name, 40)
-      cat(sprintf("%s[%s] %s (%.1f%%)\n", indent, bar, name, pct))
+      cat(sprintf("[%s%s]%s %s (%.1f%%)\n", bar, padding, indent, name, pct))
     }
   }
 }
