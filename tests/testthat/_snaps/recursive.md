@@ -15,6 +15,8 @@
       recurse                               5      4.0         30   100.0%
       
       Note: MaxDepth = max times function appears in single stack
+      
+      Tip: Investigate top recursive function: pv_focus(p, "recurse")
 
 # pv_print_recursive handles non-recursive profile
 

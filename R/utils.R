@@ -113,3 +113,15 @@ truncate_string <- function(s, max_len = 60) {
     s
   }
 }
+
+# Print contextual hints at end of output
+cat_hints <- function(...) {
+  hints <- c(...)
+  if (length(hints) == 0) {
+    return(invisible())
+  }
+  cat("\n")
+  for (hint in hints) {
+    cat("Tip: ", hint, "\n", sep = "")
+  }
+}

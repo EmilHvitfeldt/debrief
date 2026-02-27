@@ -165,5 +165,30 @@ pv_print_memory <- function(x, n = 10, by = c("function", "line")) {
     }
   }
 
+  # Add hints
+  hints <- character()
+  if (by == "function" && nrow(mem_df) > 0) {
+    hints <- c(
+      hints,
+      "For line-level detail: pv_print_memory(p, by = \"line\")"
+    )
+    top_func <- mem_df$label[1]
+    hints <- c(
+      hints,
+      sprintf('Investigate top allocator: pv_focus(p, "%s")', top_func)
+    )
+  } else if (by == "line" && nrow(mem_df) > 0) {
+    hints <- c(
+      hints,
+      "For function-level summary: pv_print_memory(p, by = \"function\")"
+    )
+    top_func <- mem_df$label[1]
+    hints <- c(
+      hints,
+      sprintf('Investigate function: pv_focus(p, "%s")', top_func)
+    )
+  }
+  cat_hints(hints)
+
   invisible(mem_df)
 }

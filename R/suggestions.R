@@ -360,5 +360,19 @@ pv_print_suggestions <- function(x) {
     cat(sprintf("    Potential impact: %s\n\n", row$potential_impact))
   }
 
+  # Add hints - suggest focusing on the first suggestion's target
+  hints <- character()
+  if (nrow(suggestions) > 0) {
+    first_location <- suggestions$location[1]
+    # Only suggest if it looks like a function name (not a description)
+    if (!grepl(" ", first_location) && !grepl("/", first_location)) {
+      hints <- c(
+        hints,
+        sprintf('Investigate first target: pv_focus(p, "%s")', first_location)
+      )
+    }
+  }
+  cat_hints(hints)
+
   invisible(suggestions)
 }

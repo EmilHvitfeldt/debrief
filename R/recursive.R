@@ -151,5 +151,19 @@ pv_print_recursive <- function(x) {
   cat("\n")
   cat("Note: MaxDepth = max times function appears in single stack\n")
 
+  # Add hints - suggest focusing on top recursive function
+  hints <- character()
+  if (nrow(recursive) > 0) {
+    top_recursive <- recursive$label[1]
+    hints <- c(
+      hints,
+      sprintf(
+        'Investigate top recursive function: pv_focus(p, "%s")',
+        top_recursive
+      )
+    )
+  }
+  cat_hints(hints)
+
   invisible(recursive)
 }

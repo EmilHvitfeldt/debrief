@@ -39,6 +39,18 @@ pv_flame <- function(x, width = 70, min_pct = 2, max_depth = 15) {
 
   cat("\nLegend: [====] = time spent, width proportional to time\n")
 
+  # Add hints - suggest top function by self-time
+  hints <- "For condensed view: pv_flame_condense(p)"
+  top_of_stack <- extract_top_of_stack(prof)
+  if (nrow(top_of_stack) > 0) {
+    top_func <- names(sort(table(top_of_stack$label), decreasing = TRUE))[1]
+    hints <- c(
+      hints,
+      sprintf('Investigate top function: pv_focus(p, "%s")', top_func)
+    )
+  }
+  cat_hints(hints)
+
   invisible(tree)
 }
 
@@ -179,6 +191,19 @@ pv_flame_condense <- function(x, n = 10, width = 50) {
       cat(sprintf("%s-> %s\n", indent, parts[j]))
     }
   }
+
+  # Add hints - suggest focusing on the leaf function of the hottest path
+  hints <- character()
+  if (nrow(paths_df) > 0) {
+    hottest_path <- paths_df$path[1]
+    parts <- strsplit(hottest_path, " > ")[[1]]
+    leaf_func <- parts[length(parts)]
+    hints <- c(
+      hints,
+      sprintf('Investigate hottest path leaf: pv_focus(p, "%s")', leaf_func)
+    )
+  }
+  cat_hints(hints)
 
   invisible(paths_df)
 }

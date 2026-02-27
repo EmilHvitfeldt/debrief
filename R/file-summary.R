@@ -85,5 +85,8 @@ pv_print_file_summary <- function(x) {
     ))
   }
 
+  # Add hints
+  cat_hints("For line-level detail: pv_print_hot_lines(p)")
+
   invisible(summary_df)
 }

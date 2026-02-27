@@ -144,5 +144,16 @@ pv_print_hot_lines <- function(x, n = 5, context = 3) {
     cat("\n")
   }
 
+  # Add hints - suggest focusing on the function containing the hottest line
+  hints <- character()
+  if (nrow(hot_lines) > 0) {
+    top_func <- hot_lines$label[1]
+    hints <- c(
+      hints,
+      sprintf('Investigate function: pv_focus(p, "%s")', top_func)
+    )
+  }
+  cat_hints(hints)
+
   invisible(hot_lines)
 }

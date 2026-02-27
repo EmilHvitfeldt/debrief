@@ -222,5 +222,23 @@ pv_print_callers_callees <- function(x, func, n = 10) {
   }
   cat("\n")
 
+  # Add hints
+  hints <- character()
+  if (nrow(callees) > 0) {
+    top_callee <- callees$label[1]
+    hints <- c(
+      hints,
+      sprintf('Drill into top callee: pv_focus(p, "%s")', top_callee)
+    )
+  }
+  if (nrow(callers) > 0 && callers$label[1] != "(top-level)") {
+    top_caller <- callers$label[1]
+    hints <- c(
+      hints,
+      sprintf('See calling context: pv_focus(p, "%s")', top_caller)
+    )
+  }
+  cat_hints(hints)
+
   invisible(list(callers = callers, callees = callees))
 }

@@ -12,6 +12,8 @@
           1        50  100.0%  outer
           2        40   80.0%  inner, helper
           3        20   40.0%  deep
+      
+      Tip: Investigate deepest level: pv_focus(p, "deep")
 
 # pv_print_callers_callees snapshot
 
@@ -31,6 +33,9 @@
       --- Calls to ---------------------------------------------------
             2 samples ( 66.7%)  deep
       
+      
+      Tip: Drill into top callee: pv_focus(p, "deep")
+      Tip: See calling context: pv_focus(p, "outer")
 
 # pv_print_call_stats snapshot
 
@@ -47,4 +52,6 @@
       inner                                      2         30         10      15.00  60.0%
       deep                                       2         20         20      10.00  40.0%
       helper                                     1         10         10      10.00  20.0%
+      
+      Tip: Investigate highest self-time: pv_focus(p, "deep")
 

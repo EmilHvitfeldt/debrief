@@ -85,5 +85,20 @@ pv_print_call_depth <- function(x) {
     ))
   }
 
+  # Add hints - suggest focusing on function at deepest level
+  hints <- character()
+  if (nrow(depth_df) > 0) {
+    deepest_row <- depth_df[nrow(depth_df), ]
+    top_funcs <- strsplit(deepest_row$top_funcs, ", ")[[1]]
+    if (length(top_funcs) > 0) {
+      deepest_func <- top_funcs[1]
+      hints <- c(
+        hints,
+        sprintf('Investigate deepest level: pv_focus(p, "%s")', deepest_func)
+      )
+    }
+  }
+  cat_hints(hints)
+
   invisible(depth_df)
 }

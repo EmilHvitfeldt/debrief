@@ -16,6 +16,9 @@
       [============================                                          ]       deep (40.0%)
       
       Legend: [====] = time spent, width proportional to time
+      
+      Tip: For condensed view: pv_flame_condense(p)
+      Tip: Investigate top function: pv_focus(p, "deep")
 
 # pv_flame respects width parameter
 
@@ -35,6 +38,9 @@
       [================                        ]       deep (40.0%)
       
       Legend: [====] = time spent, width proportional to time
+      
+      Tip: For condensed view: pv_flame_condense(p)
+      Tip: Investigate top function: pv_focus(p, "deep")
 
 # pv_flame respects min_pct parameter
 
@@ -53,6 +59,9 @@
       [============================                                          ]       deep (40.0%)
       
       Legend: [====] = time spent, width proportional to time
+      
+      Tip: For condensed view: pv_flame_condense(p)
+      Tip: Investigate top function: pv_focus(p, "deep")
 
 # pv_flame_condense snapshot
 
@@ -76,6 +85,8 @@
       ########## 20.0% (1 samples)
       -> outer
         -> helper
+      
+      Tip: Investigate hottest path leaf: pv_focus(p, "deep")
 
 # pv_flame_condense respects width parameter
 
@@ -95,4 +106,6 @@
       ###### 20.0% (1 samples)
       -> outer
         -> inner
+      
+      Tip: Investigate hottest path leaf: pv_focus(p, "deep")
 

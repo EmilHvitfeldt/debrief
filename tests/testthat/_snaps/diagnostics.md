@@ -10,6 +10,8 @@
       [!!!] GC consuming 40.0% of time (40 ms)
       
       High garbage collection overhead (40.0% of time). Indicates excessive memory allocation. Look for growing vectors, repeated data frame operations, or unnecessary copies. 
+      
+      Tip: Find memory allocators: pv_print_memory(p)
 
 # pv_print_gc_pressure snapshot with no GC
 
@@ -67,4 +69,6 @@
           Function 'x' has highest self-time (100.0%). Profile this function in isolation to find micro-optimization opportunities.
           Potential impact: 10 ms (100.0%)
       
+      
+      Tip: Investigate first target: pv_focus(p, "x")
 

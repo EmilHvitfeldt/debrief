@@ -188,6 +188,26 @@ pv_focus <- function(x, func, context = 5) {
 
   cat("\n", strrep("-", 70), "\n", sep = "")
 
+  # Add hints
+  hints <- character()
+  if (nrow(callees) > 0) {
+    top_callee <- callees$label[1]
+    hints <- c(
+      hints,
+      sprintf('Drill into top callee: pv_focus(p, "%s")', top_callee)
+    )
+  }
+  if (nrow(callers) > 0) {
+    top_caller <- callers$label[1]
+    if (top_caller != "(top-level)") {
+      hints <- c(
+        hints,
+        sprintf('See calling context: pv_focus(p, "%s")', top_caller)
+      )
+    }
+  }
+  cat_hints(hints)
+
   invisible(list(
     func = func,
     total_time_ms = func_total_time,

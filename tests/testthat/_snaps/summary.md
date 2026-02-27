@@ -64,6 +64,9 @@
          50.00 MB R/helper.R:20
                   do_work()
       ---------------------------------------------------------------------- 
+      
+      Tip: Investigate top function: pv_focus(p, "deep")
+      Tip: For optimization guidance: pv_print_suggestions(p)
 
 # pv_summary handles no source refs
 
@@ -105,4 +108,7 @@
          50.00 MB bar
          50.00 MB baz
       ---------------------------------------------------------------------- 
+      
+      Tip: Investigate top function: pv_focus(p, "bar")
+      Tip: For optimization guidance: pv_print_suggestions(p)
 

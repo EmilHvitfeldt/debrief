@@ -10,6 +10,9 @@
         150.00 MB inner
         100.00 MB deep
          50.00 MB helper
+      
+      Tip: For line-level detail: pv_print_memory(p, by = "line")
+      Tip: Investigate top allocator: pv_focus(p, "inner")
 
 # pv_print_memory by line snapshot
 
@@ -26,6 +29,9 @@
                   x <- rnorm(1000)
          50.00 MB R/helper.R:20
                   do_work()
+      
+      Tip: For function-level summary: pv_print_memory(p, by = "function")
+      Tip: Investigate function: pv_focus(p, "inner")
 
 # pv_print_memory handles no source refs for line mode
 

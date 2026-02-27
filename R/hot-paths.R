@@ -117,5 +117,20 @@ pv_print_hot_paths <- function(x, n = 10, include_source = TRUE) {
     cat("    ", paste(parts, collapse = "\n  \u2192 "), "\n\n", sep = "")
   }
 
+  # Add hints - suggest focusing on the leaf function of the hottest path
+  hints <- character()
+  if (nrow(paths) > 0) {
+    hottest_stack <- paths$stack[1]
+    parts <- strsplit(hottest_stack, " \u2192 ")[[1]]
+    # Extract function name (without source location)
+    leaf_part <- parts[length(parts)]
+    leaf_func <- sub(" \\(.*\\)$", "", leaf_part)
+    hints <- c(
+      hints,
+      sprintf('Investigate hottest path: pv_focus(p, "%s")', leaf_func)
+    )
+  }
+  cat_hints(hints)
+
   invisible(paths)
 }

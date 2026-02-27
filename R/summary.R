@@ -80,6 +80,18 @@ pv_summary <- function(
 
   cat(strrep("-", 70), "\n")
 
+  # Add hints
+  hints <- character()
+  if (nrow(self_time) > 0) {
+    top_func <- self_time$label[1]
+    hints <- c(
+      hints,
+      sprintf('Investigate top function: pv_focus(p, "%s")', top_func)
+    )
+  }
+  hints <- c(hints, "For optimization guidance: pv_print_suggestions(p)")
+  cat_hints(hints)
+
   invisible(list(
     total_time_ms = total_time_ms,
     total_samples = total_samples,

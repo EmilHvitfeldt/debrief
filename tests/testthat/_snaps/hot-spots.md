@@ -35,6 +35,8 @@
              12: 
              13: 
       
+      
+      Tip: Investigate function: pv_focus(p, "deep")
 
 # pv_print_hot_lines handles no source refs
 
@@ -65,4 +67,6 @@
           outer (R/main.R:10)
         → helper (R/helper.R:20)
       
+      
+      Tip: Investigate hottest path: pv_focus(p, "deep")
 

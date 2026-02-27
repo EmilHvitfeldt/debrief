@@ -33,6 +33,9 @@
        >>>   15:   z <- heavy_computation()
       
       ----------------------------------------------------------------------
+      
+      Tip: Drill into top callee: pv_focus(p, "deep")
+      Tip: See calling context: pv_focus(p, "outer")
 
 # pv_focus handles non-existent function
 
@@ -74,4 +77,6 @@
         Use devtools::load_all() to enable.
       
       ----------------------------------------------------------------------
+      
+      Tip: Drill into top callee: pv_focus(p, "bar")
 

@@ -118,6 +118,8 @@
           50 ms (100.0%)  R/main.R
           20 ms ( 40.0%)  R/utils.R
           10 ms ( 20.0%)  R/helper.R
+      
+      Tip: For line-level detail: pv_print_hot_lines(p)
 
 # pv_print_file_summary handles no source refs
 

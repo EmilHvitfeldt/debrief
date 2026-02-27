@@ -216,6 +216,23 @@ pv_print_compare <- function(before, after, n = 15) {
 
   cat("\n")
 
+  # Add hints
+  hints <- character()
+  if (nrow(comp$regressed) > 0) {
+    top_regressed <- comp$regressed$label[1]
+    hints <- c(
+      hints,
+      sprintf('Investigate regression: pv_focus(after, "%s")', top_regressed)
+    )
+  } else if (nrow(comp$improved) > 0) {
+    top_improved <- comp$improved$label[1]
+    hints <- c(
+      hints,
+      sprintf('See improvement details: pv_focus(after, "%s")', top_improved)
+    )
+  }
+  cat_hints(hints)
+
   invisible(comp)
 }
 
@@ -345,6 +362,22 @@ pv_print_compare_many <- function(...) {
   }
 
   cat("\n* = fastest\n")
+
+  # Add hints
+  hints <- character()
+  if (nrow(result) >= 2) {
+    fastest <- result$name[1]
+    slowest <- result$name[nrow(result)]
+    hints <- c(
+      hints,
+      sprintf(
+        "Compare fastest vs slowest: pv_print_compare(%s, %s)",
+        fastest,
+        slowest
+      )
+    )
+  }
+  cat_hints(hints)
 
   invisible(result)
 }

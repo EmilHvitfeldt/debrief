@@ -169,5 +169,19 @@ pv_print_call_stats <- function(x, n = 20) {
     ))
   }
 
+  # Add hints - suggest focusing on function with highest self-time
+  hints <- character()
+  if (nrow(stats) > 0) {
+    top_self <- stats[which.max(stats$self_ms), ]
+    hints <- c(
+      hints,
+      sprintf(
+        'Investigate highest self-time: pv_focus(p, "%s")',
+        top_self$label
+      )
+    )
+  }
+  cat_hints(hints)
+
   invisible(stats)
 }

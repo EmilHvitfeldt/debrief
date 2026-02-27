@@ -130,5 +130,8 @@ pv_print_gc_pressure <- function(x, threshold = 10) {
   ))
   cat(row$description, "\n")
 
+  # Add hints for high GC
+  cat_hints("Find memory allocators: pv_print_memory(p)")
+
   invisible(gc_data)
 }
