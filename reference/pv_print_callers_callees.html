@@ -69,18 +69,20 @@ calls) in a single view.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="pv_example.html">pv_example</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">pv_print_callers_callees</span><span class="op">(</span><span class="va">p</span>, <span class="st">"inner"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Function 'inner' not found in profiling data.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Function 'inner' not found in profiling data.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ====================================================================== </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                        FUNCTION ANALYSIS: inner</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ====================================================================== </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Total time: 30 ms (60.0% of profile)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Appearances: 3 samples</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total time: 0 ms (0.0% of profile)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Appearances: 0 samples</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> --- Called by --------------------------------------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       3 samples (100.0%)  outer</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   (no callers found - may be entry point)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> --- Calls to ---------------------------------------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       2 samples ( 66.7%)  deep</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   (no callees - all time is self-time)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>

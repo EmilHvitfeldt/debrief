@@ -31,8 +31,9 @@ A data frame with columns:
 ``` r
 p <- pv_example()
 pv_memory(p)
-#>    label mem_mb
-#> 1  inner    150
-#> 2   deep    100
-#> 3 helper     50
+#>                              label    mem_mb
+#> 1                            rnorm 1.3752670
+#> 2                 x[i] <- rnorm(1) 1.2550430
+#> 3                    generate_data 0.5630035
+#> 4 result[i] <- sqrt(abs(x[i])) * 2 0.3564835
 ```

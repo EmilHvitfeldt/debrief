@@ -45,17 +45,17 @@ A data frame with columns:
 ``` r
 p <- pv_example()
 pv_self_time(p)
-#>    label samples time_ms pct
-#> 1   deep       2      20  40
-#> 2 helper       1      10  20
-#> 3  inner       1      10  20
-#> 4  outer       1      10  20
+#>                              label samples time_ms  pct
+#> 1                            rnorm       6      30 42.9
+#> 2                 x[i] <- rnorm(1)       4      20 28.6
+#> 3                    generate_data       3      15 21.4
+#> 4 result[i] <- sqrt(abs(x[i])) * 2       1       5  7.1
 
 # Only functions with >= 5% self-time
 pv_self_time(p, min_pct = 5)
-#>    label samples time_ms pct
-#> 1   deep       2      20  40
-#> 2 helper       1      10  20
-#> 3  inner       1      10  20
-#> 4  outer       1      10  20
+#>                              label samples time_ms  pct
+#> 1                            rnorm       6      30 42.9
+#> 2                 x[i] <- rnorm(1)       4      20 28.6
+#> 3                    generate_data       3      15 21.4
+#> 4 result[i] <- sqrt(abs(x[i])) * 2       1       5  7.1
 ```

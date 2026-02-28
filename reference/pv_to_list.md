@@ -42,9 +42,9 @@ names(results)
 #> [1] "metadata"    "summary"     "self_time"   "total_time"  "hot_lines"  
 #> [6] "memory"      "gc_pressure" "suggestions" "recursive"  
 results$self_time
-#>    label samples time_ms pct
-#> 1   deep       2      20  40
-#> 2 helper       1      10  20
-#> 3  inner       1      10  20
-#> 4  outer       1      10  20
+#>                              label samples time_ms  pct
+#> 1                            rnorm       6      30 42.9
+#> 2                 x[i] <- rnorm(1)       4      20 28.6
+#> 3                    generate_data       3      15 21.4
+#> 4 result[i] <- sqrt(abs(x[i])) * 2       1       5  7.1
 ```

@@ -35,42 +35,37 @@ pv_print_hot_lines(p, n = 5, context = 3)
 #>                            HOT SOURCE LINES
 #> ====================================================================== 
 #> 
-#> Rank 1: R/utils.R:5 (20 ms, 40.0%)
-#> Function: deep
+#> Rank 1: example_code.R:13 (50 ms, 71.4%)
+#> Function: rnorm
 #> 
-#>         2: deep <- function() {
-#>         3:   Sys.sleep(0.01)
-#>         4:   42
-#>  >>>    5:   x <- rnorm(1000)
-#>         6: }
+#>        10: generate_data <- function(n) {
+#>        11:   x <- numeric(n)
+#>        12:   for (i in seq_len(n)) {
+#>  >>>   13:     x[i] <- rnorm(1)
+#>        14:   }
+#>        15:   x
+#>        16: }
 #> 
-#> Rank 2: R/helper.R:20 (10 ms, 20.0%)
-#> Function: helper
+#> Rank 2: example_code.R:5 (15 ms, 21.4%)
+#> Function: generate_data
 #> 
-#>        17: 
-#>        18: 
-#>        19: 
-#>  >>>   20: 
-#>        21:   do_work()
+#>         2: # Example functions for profiling demonstration
+#>         3: 
+#>         4: process_data <- function(n) {
+#>  >>>    5:   data <- generate_data(n)
+#>         6:   result <- transform_data(data)
+#>         7:   summarize_data(result)
+#>         8: }
 #> 
-#> Rank 3: R/main.R:10 (10 ms, 20.0%)
-#> Function: outer
+#> Rank 3: example_code.R:21 (5 ms, 7.1%)
+#> Function: result[i] <- sqrt(abs(x[i])) * 2
 #> 
-#>         7: }
-#>         8: 
-#>         9: inner <- function() {
-#>  >>>   10:   result <- deep()
-#>        11:   result
-#>        12: }
-#>        13: 
-#> 
-#> Rank 4: R/main.R:15 (10 ms, 20.0%)
-#> Function: inner
-#> 
-#>        12: }
-#>        13: 
-#>        14: 
-#>  >>>   15: 
-#>        16:   z <- heavy_computation()
+#>        18: transform_data <- function(x) {
+#>        19:   result <- numeric(length(x))
+#>        20:   for (i in seq_along(x)) {
+#>  >>>   21:     result[i] <- sqrt(abs(x[i])) * 2
+#>        22:   }
+#>        23:   result
+#>        24: }
 #> 
 ```

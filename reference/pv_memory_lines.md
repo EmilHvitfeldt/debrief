@@ -38,8 +38,12 @@ A data frame with columns:
 ``` r
 p <- pv_example()
 pv_memory_lines(p)
-#>        location mem_mb  label   filename linenum
-#> 1   R/main.R:15    150  inner   R/main.R      15
-#> 2   R/utils.R:5    100   deep  R/utils.R       5
-#> 3 R/helper.R:20     50 helper R/helper.R      20
+#>            location    mem_mb                            label       filename
+#> 1 example_code.R:13 2.6303101                            rnorm example_code.R
+#> 2  example_code.R:5 0.5630035                    generate_data example_code.R
+#> 3 example_code.R:21 0.3564835 result[i] <- sqrt(abs(x[i])) * 2 example_code.R
+#>   linenum
+#> 1      13
+#> 2       5
+#> 3      21
 ```

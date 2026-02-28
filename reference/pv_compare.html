@@ -75,16 +75,16 @@ the impact of optimizations.</p>
 <span class="r-in"><span><span class="fu">pv_compare</span><span class="op">(</span><span class="va">p1</span>, <span class="va">p2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $summary</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            metric before after        change</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Total time (ms)     50    50 +0 ms (+0.0%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2         Samples      5     5            +0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 Total time (ms)     70    70 +0 ms (+0.0%)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         Samples     14    14            +0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3         Speedup      1     1         1.00x</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $by_function</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    label before_ms after_ms diff_ms pct_change</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   deep        20       20       0          0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 helper        10       10       0          0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  inner        10       10       0          0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  outer        10       10       0          0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              label before_ms after_ms diff_ms pct_change</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                            rnorm        30       30       0          0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                 x[i] &lt;- rnorm(1)        20       20       0          0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                    generate_data        15       15       0          0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 result[i] &lt;- sqrt(abs(x[i])) * 2         5        5       0          0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $improved</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] label      before_ms  after_ms   diff_ms    pct_change</span>

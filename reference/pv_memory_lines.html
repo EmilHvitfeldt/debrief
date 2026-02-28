@@ -69,10 +69,14 @@ references (use <code>devtools::load_all()</code> for best results).</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="pv_example.html">pv_example</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">pv_memory_lines</span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        location mem_mb  label   filename linenum</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   R/main.R:15    150  inner   R/main.R      15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   R/utils.R:5    100   deep  R/utils.R       5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 R/helper.R:20     50 helper R/helper.R      20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            location    mem_mb                            label       filename</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 example_code.R:13 2.6303101                            rnorm example_code.R</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  example_code.R:5 0.5630035                    generate_data example_code.R</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 example_code.R:21 0.3564835 result[i] &lt;- sqrt(abs(x[i])) * 2 example_code.R</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   linenum</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2       5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3      21</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

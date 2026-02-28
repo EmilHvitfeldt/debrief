@@ -27,7 +27,5 @@ pv_print_file_summary(p)
 #>                              FILE SUMMARY
 #> ====================================================================== 
 #> 
-#>     50 ms (100.0%)  R/main.R
-#>     20 ms ( 40.0%)  R/utils.R
-#>     10 ms ( 20.0%)  R/helper.R
+#>     70 ms (100.0%)  example_code.R
 ```

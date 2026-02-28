@@ -65,10 +65,14 @@ understanding how deeply nested the hot code paths are.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="pv_example.html">pv_example</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">pv_call_depth</span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   depth samples time_ms pct     top_funcs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1       5      50 100         outer</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2       4      40  80 inner, helper</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3     3       2      20  40          deep</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   depth samples time_ms   pct</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     1      14      70 100.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     2      14      70 100.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3     3      11      55  78.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                   top_funcs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                              process_data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                             generate_data, transform_data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 rnorm, x[i] &lt;- rnorm(1), result[i] &lt;- sqrt(abs(x[i])) * 2</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

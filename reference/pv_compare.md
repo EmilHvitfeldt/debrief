@@ -43,16 +43,16 @@ p2 <- pv_example()
 pv_compare(p1, p2)
 #> $summary
 #>            metric before after        change
-#> 1 Total time (ms)     50    50 +0 ms (+0.0%)
-#> 2         Samples      5     5            +0
+#> 1 Total time (ms)     70    70 +0 ms (+0.0%)
+#> 2         Samples     14    14            +0
 #> 3         Speedup      1     1         1.00x
 #> 
 #> $by_function
-#>    label before_ms after_ms diff_ms pct_change
-#> 1   deep        20       20       0          0
-#> 2 helper        10       10       0          0
-#> 3  inner        10       10       0          0
-#> 4  outer        10       10       0          0
+#>                              label before_ms after_ms diff_ms pct_change
+#> 1                            rnorm        30       30       0          0
+#> 2                 x[i] <- rnorm(1)        20       20       0          0
+#> 3                    generate_data        15       15       0          0
+#> 4 result[i] <- sqrt(abs(x[i])) * 2         5        5       0          0
 #> 
 #> $improved
 #> [1] label      before_ms  after_ms   diff_ms    pct_change

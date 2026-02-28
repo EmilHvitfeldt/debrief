@@ -29,7 +29,7 @@ pv_print_call_depth(p)
 #> 
 #> Depth  Time (ms)   Pct   Top functions
 #> ---------------------------------------------------------------------- 
-#>     1        50  100.0%  outer
-#>     2        40   80.0%  inner, helper
-#>     3        20   40.0%  deep
+#>     1        70  100.0%  process_data
+#>     2        70  100.0%  generate_data, transform_data
+#>     3        55   78.6%  rnorm, x[i] <- rnorm(1), result[i] <- sqrt...
 ```

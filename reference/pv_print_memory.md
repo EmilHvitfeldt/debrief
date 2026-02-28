@@ -35,16 +35,19 @@ pv_print_memory(p, by = "function")
 #>                     MEMORY ALLOCATION BY FUNCTION
 #> ====================================================================== 
 #> 
-#>   150.00 MB inner
-#>   100.00 MB deep
-#>    50.00 MB helper
+#>     1.38 MB rnorm
+#>     1.26 MB x[i] <- rnorm(1)
+#>     0.56 MB generate_data
+#>     0.36 MB result[i] <- sqrt(abs(x[i])) * 2
 pv_print_memory(p, by = "line")
 #> ====================================================================== 
 #>                       MEMORY ALLOCATION BY LINE
 #> ====================================================================== 
 #> 
-#>   150.00 MB R/main.R:15
-#>   100.00 MB R/utils.R:5
-#>             x <- rnorm(1000)
-#>    50.00 MB R/helper.R:20
+#>     2.63 MB example_code.R:13
+#>             x[i] <- rnorm(1)
+#>     0.56 MB example_code.R:5
+#>             data <- generate_data(n)
+#>     0.36 MB example_code.R:21
+#>             result[i] <- sqrt(abs(x[i])) * 2
 ```

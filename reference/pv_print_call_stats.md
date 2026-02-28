@@ -33,8 +33,10 @@ pv_print_call_stats(p)
 #> 
 #> Function                               Calls   Total ms    Self ms    ms/call    Pct
 #> ------------------------------------------------------------------------------------- 
-#> outer                                      1         50         10      50.00 100.0%
-#> inner                                      2         30         10      15.00  60.0%
-#> deep                                       2         20         20      10.00  40.0%
-#> helper                                     1         10         10      10.00  20.0%
+#> process_data                               1         70          0      70.00 100.0%
+#> generate_data                              2         65         15      32.50  92.9%
+#> rnorm                                      4         30         30       7.50  42.9%
+#> x[i] <- rnorm(1)                           4         20         20       5.00  28.6%
+#> result[i] <- sqrt(abs(x[i])) * 2           1          5          5       5.00   7.1%
+#> transform_data                             1          5          0       5.00   7.1%
 ```

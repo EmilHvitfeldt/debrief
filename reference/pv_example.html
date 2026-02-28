@@ -49,10 +49,10 @@ This avoids the need to run actual profiling code in examples.</p>
 
 
 <dl><dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
-<dd><p>Type of example data to create:</p><ul><li><p><code>"default"</code>: A typical profile with multiple functions and source refs</p></li>
-<li><p><code>"no_source"</code>: A profile without source references</p></li>
-<li><p><code>"recursive"</code>: A profile with recursive function calls</p></li>
-<li><p><code>"gc"</code>: A profile with garbage collection pressure</p></li>
+<dd><p>Type of example data to create:</p><ul><li><p><code>"default"</code>: A real profile captured from example code with source refs</p></li>
+<li><p><code>"no_source"</code>: A synthetic profile without source references</p></li>
+<li><p><code>"recursive"</code>: A synthetic profile with recursive function calls</p></li>
+<li><p><code>"gc"</code>: A synthetic profile with garbage collection pressure</p></li>
 </ul></dd>
 
 </dl></div>
@@ -66,11 +66,11 @@ This avoids the need to run actual profiling code in examples.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Get default example data</span></span></span>
 <span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">pv_example</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="pv_self_time.html">pv_self_time</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    label samples time_ms pct</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   deep       2      20  40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 helper       1      10  20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  inner       1      10  20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  outer       1      10  20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              label samples time_ms  pct</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                            rnorm       6      30 42.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                 x[i] &lt;- rnorm(1)       4      20 28.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                    generate_data       3      15 21.4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 result[i] &lt;- sqrt(abs(x[i])) * 2       1       5  7.1</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get example with recursive calls</span></span></span>
 <span class="r-in"><span><span class="va">p_recursive</span> <span class="op">&lt;-</span> <span class="fu">pv_example</span><span class="op">(</span><span class="st">"recursive"</span><span class="op">)</span></span></span>

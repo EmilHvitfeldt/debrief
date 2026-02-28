@@ -32,17 +32,19 @@ Invisibly returns a list with `callers` and `callees` data frames.
 ``` r
 p <- pv_example()
 pv_print_callers_callees(p, "inner")
+#> Function 'inner' not found in profiling data.
+#> Function 'inner' not found in profiling data.
 #> ====================================================================== 
 #>                        FUNCTION ANALYSIS: inner
 #> ====================================================================== 
 #> 
-#> Total time: 30 ms (60.0% of profile)
-#> Appearances: 3 samples
+#> Total time: 0 ms (0.0% of profile)
+#> Appearances: 0 samples
 #> 
 #> --- Called by --------------------------------------------------
-#>       3 samples (100.0%)  outer
+#>   (no callers found - may be entry point)
 #> 
 #> --- Calls to ---------------------------------------------------
-#>       2 samples ( 66.7%)  deep
+#>   (no callees - all time is self-time)
 #> 
 ```

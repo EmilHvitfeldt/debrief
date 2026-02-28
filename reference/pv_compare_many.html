@@ -70,15 +70,15 @@ profvis objects.</p></dd>
 <span class="r-in"><span><span class="fu">pv_compare_many</span><span class="op">(</span>baseline <span class="op">=</span> <span class="va">p1</span>, gc_heavy <span class="op">=</span> <span class="va">p2</span>, recursive <span class="op">=</span> <span class="va">p3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        name time_ms samples vs_fastest rank</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 recursive      30       3    fastest    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  baseline      50       5      1.67x    2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  baseline      70      14      2.33x    2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3  gc_heavy     100      10      3.33x    3</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Or pass a named list</span></span></span>
 <span class="r-in"><span><span class="va">profiles</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>baseline <span class="op">=</span> <span class="va">p1</span>, gc_heavy <span class="op">=</span> <span class="va">p2</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">pv_compare_many</span><span class="op">(</span><span class="va">profiles</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       name time_ms samples vs_fastest rank</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 baseline      50       5    fastest    1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 gc_heavy     100      10      2.00x    2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 baseline      70      14    fastest    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 gc_heavy     100      10      1.43x    2</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

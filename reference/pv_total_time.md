@@ -45,15 +45,17 @@ A data frame with columns:
 ``` r
 p <- pv_example()
 pv_total_time(p)
-#>    label samples time_ms pct
-#> 1  outer       5      50 100
-#> 2  inner       3      30  60
-#> 3   deep       2      20  40
-#> 4 helper       1      10  20
+#>                              label samples time_ms   pct
+#> 1                     process_data      14      70 100.0
+#> 2                    generate_data      13      65  92.9
+#> 3                            rnorm       6      30  42.9
+#> 4                 x[i] <- rnorm(1)       4      20  28.6
+#> 5 result[i] <- sqrt(abs(x[i])) * 2       1       5   7.1
+#> 6                   transform_data       1       5   7.1
 
 # Only functions with >= 50% total time
 pv_total_time(p, min_pct = 50)
-#>   label samples time_ms pct
-#> 1 outer       5      50 100
-#> 2 inner       3      30  60
+#>           label samples time_ms   pct
+#> 1  process_data      14      70 100.0
+#> 2 generate_data      13      65  92.9
 ```

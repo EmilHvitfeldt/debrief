@@ -69,36 +69,15 @@ breakdown, callers, callees, and source context if available.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="pv_example.html">pv_example</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">pv_focus</span><span class="op">(</span><span class="va">p</span>, <span class="st">"inner"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ====================================================================== </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                              FOCUS: inner</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ====================================================================== </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Function 'inner' not found in profiling data.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> --- Time Analysis ---------------------------------------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Total time:       30 ms ( 60.0%)  - time on call stack</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Self time:        10 ms ( 20.0%)  - time at top of stack</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Child time:       20 ms ( 40.0%)  - time in callees</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Appearances:       3 samples</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> --- Called By -------------------------------------------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       3 calls (100.0%)  outer</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> --- Calls To --------------------------------------------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       2 calls ( 66.7%)  deep</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> --- Source Locations ------------------------------------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Hot lines (by self-time):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      10 ms (20.0%)  R/main.R:15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> --- Source Context: R/main.R -----------------------------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        10:   result &lt;- deep()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        11:   result</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        12: }</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        13: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        14: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  &gt;&gt;&gt;   15: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        16:   z &lt;- heavy_computation()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ----------------------------------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Available functions (top 20 by time):</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   process_data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   generate_data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   rnorm</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   x[i] &lt;- rnorm(1)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   result[i] &lt;- sqrt(abs(x[i])) * 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   transform_data</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

@@ -77,13 +77,15 @@ breakdown of time spent in the call tree.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                           FLAME GRAPH (text)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ====================================================================== </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Total time: 50 ms | Width: 70 chars | Min: 2%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total time: 70 ms | Width: 70 chars | Min: 2%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [======================================================================] (root) 100%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [======================================================================]   outer (100.0%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [==========================================                            ]     inner (60.0%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [==============                                                        ]     helper (20.0%)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [============================                                          ]       deep (40.0%)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [======================================================================]   process_data (100.0%)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [=================================================================     ]     generate_data (92.9%)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [=====                                                                 ]     transform_data (7.1%)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [==============================                                        ]       rnorm (42.9%)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [====================                                                  ]       x[i] &lt;- rnorm(1) (28.6%)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [=====                                                                 ]       result[i] &lt;- sqrt(abs(x[i])) * 2 (7.1%)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Legend: [====] = time spent, width proportional to time</span>
 </code></pre></div>

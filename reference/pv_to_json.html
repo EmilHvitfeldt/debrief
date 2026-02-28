@@ -92,143 +92,150 @@ and returns the file path invisibly.</p>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="va">json</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> {</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   "metadata": {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     "total_time_ms": 50,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     "total_samples": 5,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     "interval_ms": 10,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     "total_time_ms": 70,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     "total_samples": 14,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     "interval_ms": 5,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     "has_source_refs": true,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     "exported_at": "2026-02-28T00:14:02+0000"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     "exported_at": "2026-02-28T00:35:55+0000"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   },</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   "summary": {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     "total_time_ms": 50,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     "unique_functions": 4,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     "total_time_ms": 70,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     "unique_functions": 6,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     "max_depth": 3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   },</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   "self_time": [</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "label": "deep",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "samples": 2,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "label": "rnorm",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "samples": 6,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "time_ms": 30,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "pct": 42.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     },</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     {</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "label": "x[i] &lt;- rnorm(1)",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "samples": 4,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "time_ms": 20,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "pct": 40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "pct": 28.6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     },</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "label": "helper",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "samples": 1,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "time_ms": 10,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "pct": 20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "label": "generate_data",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "samples": 3,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "time_ms": 15,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "pct": 21.4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     },</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "label": "inner",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "label": "result[i] &lt;- sqrt(abs(x[i])) * 2",</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "samples": 1,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "time_ms": 10,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "pct": 20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     },</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "label": "outer",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "samples": 1,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "time_ms": 10,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "pct": 20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "time_ms": 5,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "pct": 7.1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     }</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ],</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   "total_time": [</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "label": "outer",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "samples": 5,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "time_ms": 50,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "label": "process_data",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "samples": 14,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "time_ms": 70,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "pct": 100</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     },</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "label": "inner",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "samples": 3,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "label": "generate_data",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "samples": 13,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "time_ms": 65,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "pct": 92.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     },</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     {</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "label": "rnorm",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "samples": 6,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "time_ms": 30,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "pct": 60</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "pct": 42.9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     },</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "label": "deep",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "samples": 2,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "label": "x[i] &lt;- rnorm(1)",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "samples": 4,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "time_ms": 20,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "pct": 40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "pct": 28.6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     },</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "label": "helper",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "label": "result[i] &lt;- sqrt(abs(x[i])) * 2",</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "samples": 1,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "time_ms": 10,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "pct": 20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "time_ms": 5,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "pct": 7.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     },</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     {</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "label": "transform_data",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "samples": 1,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "time_ms": 5,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "pct": 7.1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     }</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ],</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   "hot_lines": [</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "location": "R/utils.R:5",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "samples": 2,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "label": "deep",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "filename": "R/utils.R",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "location": "example_code.R:13",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "samples": 10,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "label": "rnorm",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "filename": "example_code.R",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "linenum": 13,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "time_ms": 50,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "pct": 71.4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     },</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     {</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "location": "example_code.R:5",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "samples": 3,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "label": "generate_data",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "filename": "example_code.R",</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "linenum": 5,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "time_ms": 20,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "pct": 40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "time_ms": 15,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "pct": 21.4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     },</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "location": "R/helper.R:20",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "location": "example_code.R:21",</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "samples": 1,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "label": "helper",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "filename": "R/helper.R",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "linenum": 20,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "time_ms": 10,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "pct": 20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     },</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "location": "R/main.R:10",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "samples": 1,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "label": "outer",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "filename": "R/main.R",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "linenum": 10,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "time_ms": 10,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "pct": 20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     },</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "location": "R/main.R:15",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "samples": 1,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "label": "inner",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "filename": "R/main.R",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "linenum": 15,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "time_ms": 10,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "pct": 20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "label": "result[i] &lt;- sqrt(abs(x[i])) * 2",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "filename": "example_code.R",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "linenum": 21,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "time_ms": 5,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "pct": 7.1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     }</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ],</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   "memory": {</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     "by_function": [</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         "label": "inner",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         "mem_mb": 150</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         "label": "rnorm",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         "mem_mb": 1.37526702880859</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       },</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         "label": "deep",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         "mem_mb": 100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         "label": "x[i] &lt;- rnorm(1)",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         "mem_mb": 1.25504302978516</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       },</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         "label": "helper",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         "mem_mb": 50</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         "label": "generate_data",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         "mem_mb": 0.563003540039062</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       },</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       {</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         "label": "result[i] &lt;- sqrt(abs(x[i])) * 2",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         "mem_mb": 0.356483459472656</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       }</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     ],</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     "by_line": [</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         "location": "R/main.R:15",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         "mem_mb": 150,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         "label": "inner",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         "filename": "R/main.R",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         "linenum": 15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         "location": "example_code.R:13",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         "mem_mb": 2.63031005859375,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         "label": "rnorm",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         "filename": "example_code.R",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         "linenum": 13</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       },</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         "location": "R/utils.R:5",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         "mem_mb": 100,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         "label": "deep",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         "filename": "R/utils.R",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         "location": "example_code.R:5",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         "mem_mb": 0.563003540039062,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         "label": "generate_data",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         "filename": "example_code.R",</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         "linenum": 5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       },</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         "location": "R/helper.R:20",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         "mem_mb": 50,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         "label": "helper",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         "filename": "R/helper.R",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         "linenum": 20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         "location": "example_code.R:21",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         "mem_mb": 0.356483459472656,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         "label": "result[i] &lt;- sqrt(abs(x[i])) * 2",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         "filename": "example_code.R",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         "linenum": 21</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       }</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     ]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   },</span>
@@ -237,30 +244,30 @@ and returns the file path invisibly.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     {</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "priority": 1,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "category": "hot line",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "suggestion": "Line 'deep' at R/utils.R:5 consumes 40.0% of time. Focus optimization efforts here first.",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "location": "R/utils.R:5",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "potential_impact": "20 ms (40.0%)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "suggestion": "Line 'rnorm' at example_code.R:13 consumes 71.4% of time. Focus optimization efforts here first.",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "location": "example_code.R:13",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "potential_impact": "50 ms (71.4%)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     },</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     {</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "priority": 1,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "category": "hot line",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "suggestion": "Line 'helper' at R/helper.R:20 consumes 20.0% of time. Focus optimization efforts here first.",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "location": "R/helper.R:20",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "potential_impact": "10 ms (20.0%)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "suggestion": "Line 'generate_data' at example_code.R:5 consumes 21.4% of time. Focus optimization efforts here first.",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "location": "example_code.R:5",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "potential_impact": "15 ms (21.4%)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     },</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     {</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "priority": 1,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "category": "hot line",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "suggestion": "Line 'outer' at R/main.R:10 consumes 20.0% of time. Focus optimization efforts here first.",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "location": "R/main.R:10",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "potential_impact": "10 ms (20.0%)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "suggestion": "Line 'result[i] &lt;- sqrt(abs(x[i])...' at example_code.R:21 consumes 7.1% of time. Focus optimization efforts here first.",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "location": "example_code.R:21",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "potential_impact": "5 ms (7.1%)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     },</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     {</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "priority": 2,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "category": "hot function",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "suggestion": "Function 'deep' has highest self-time (40.0%). Profile this function in isolation to find micro-optimization opportunities.",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "location": "deep",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "potential_impact": "20 ms (40.0%)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "suggestion": "Function 'rnorm' has highest self-time (42.9%). Profile this function in isolation to find micro-optimization opportunities.",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "location": "rnorm",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "potential_impact": "30 ms (42.9%)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     }</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ],</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   "recursive": []</span>

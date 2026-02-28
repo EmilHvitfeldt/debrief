@@ -45,57 +45,65 @@ pv_summary(p)
 #>                           PROFILING SUMMARY
 #> ====================================================================== 
 #> 
-#> Total time: 50 ms (5 samples @ 10 ms interval)
+#> Total time: 70 ms (14 samples @ 5 ms interval)
 #> Source references: available
 #> 
 #> 
 #> --- TOP FUNCTIONS BY SELF-TIME ---------------------------------------
-#>     20 ms ( 40.0%)  deep
-#>     10 ms ( 20.0%)  helper
-#>     10 ms ( 20.0%)  inner
-#>     10 ms ( 20.0%)  outer
+#>     30 ms ( 42.9%)  rnorm
+#>     20 ms ( 28.6%)  x[i] <- rnorm(1)
+#>     15 ms ( 21.4%)  generate_data
+#>      5 ms (  7.1%)  result[i] <- sqrt(abs(x[i])) * 2
 #> 
 #> --- TOP FUNCTIONS BY TOTAL TIME --------------------------------------
-#>     50 ms (100.0%)  outer
-#>     30 ms ( 60.0%)  inner
-#>     20 ms ( 40.0%)  deep
-#>     10 ms ( 20.0%)  helper
+#>     70 ms (100.0%)  process_data
+#>     65 ms ( 92.9%)  generate_data
+#>     30 ms ( 42.9%)  rnorm
+#>     20 ms ( 28.6%)  x[i] <- rnorm(1)
+#>      5 ms (  7.1%)  result[i] <- sqrt(abs(x[i])) * 2
+#>      5 ms (  7.1%)  transform_data
 #> 
 #> --- HOT LINES (by self-time) -----------------------------------------
-#>     20 ms ( 40.0%)  R/utils.R:5
-#>                    x <- rnorm(1000)
-#>     10 ms ( 20.0%)  R/helper.R:20
-#>     10 ms ( 20.0%)  R/main.R:10
-#>                    result <- deep()
-#>     10 ms ( 20.0%)  R/main.R:15
+#>     50 ms ( 71.4%)  example_code.R:13
+#>                    x[i] <- rnorm(1)
+#>     15 ms ( 21.4%)  example_code.R:5
+#>                    data <- generate_data(n)
+#>      5 ms (  7.1%)  example_code.R:21
+#>                    result[i] <- sqrt(abs(x[i])) * 2
 #> 
 #> --- HOT CALL PATHS ---------------------------------------------------
 #> 
-#> 20 ms (40.0%) - 2 samples:
-#>     outer (R/main.R:10)
-#>   → inner (R/main.R:15)
-#>   → deep (R/utils.R:5)
+#> 30 ms (42.9%) - 6 samples:
+#>     process_data
+#>   → generate_data (example_code.R:5)
+#>   → rnorm (example_code.R:13)
 #> 
-#> 10 ms (20.0%) - 1 samples:
-#>     outer (R/main.R:10)
+#> 20 ms (28.6%) - 4 samples:
+#>     process_data
+#>   → generate_data (example_code.R:5)
+#>   → x[i] <- rnorm(1) (example_code.R:13)
 #> 
-#> 10 ms (20.0%) - 1 samples:
-#>     outer (R/main.R:10)
-#>   → helper (R/helper.R:20)
+#> 15 ms (21.4%) - 3 samples:
+#>     process_data
+#>   → generate_data (example_code.R:5)
 #> 
-#> 10 ms (20.0%) - 1 samples:
-#>     outer (R/main.R:10)
-#>   → inner (R/main.R:15)
+#> 5 ms (7.1%) - 1 samples:
+#>     process_data
+#>   → transform_data (example_code.R:6)
+#>   → result[i] <- sqrt(abs(x[i])) * 2 (example_code.R:21)
 #> 
 #> --- MEMORY ALLOCATION (by function) ----------------------------------
-#>   150.00 MB inner
-#>   100.00 MB deep
-#>    50.00 MB helper
+#>     1.38 MB rnorm
+#>     1.26 MB x[i] <- rnorm(1)
+#>     0.56 MB generate_data
+#>     0.36 MB result[i] <- sqrt(abs(x[i])) * 2
 #> 
 #> --- MEMORY ALLOCATION (by line) --------------------------------------
-#>   150.00 MB R/main.R:15
-#>   100.00 MB R/utils.R:5
-#>             x <- rnorm(1000)
-#>    50.00 MB R/helper.R:20
+#>     2.63 MB example_code.R:13
+#>             x[i] <- rnorm(1)
+#>     0.56 MB example_code.R:5
+#>             data <- generate_data(n)
+#>     0.36 MB example_code.R:21
+#>             result[i] <- sqrt(abs(x[i])) * 2
 #> ---------------------------------------------------------------------- 
 ```

@@ -77,11 +77,20 @@ would help).</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="pv_example.html">pv_example</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">pv_call_stats</span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    label calls total_ms self_ms child_ms ms_per_call pct</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  outer     1       50      10       40          50 100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  inner     2       30      10       20          15  60</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   deep     2       20      20        0          10  40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 helper     1       10      10        0          10  20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              label calls total_ms self_ms child_ms ms_per_call</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                     process_data     1       70       0       70        70.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                    generate_data     2       65      15       50        32.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                            rnorm     4       30      30        0         7.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4                 x[i] &lt;- rnorm(1)     4       20      20        0         5.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 result[i] &lt;- sqrt(abs(x[i])) * 2     1        5       5        0         5.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6                   transform_data     1        5       0        5         5.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     pct</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 100.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  92.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  42.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  28.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   7.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6   7.1</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

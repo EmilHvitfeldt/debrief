@@ -34,8 +34,12 @@ A data frame with columns:
 ``` r
 p <- pv_example()
 pv_call_depth(p)
-#>   depth samples time_ms pct     top_funcs
-#> 1     1       5      50 100         outer
-#> 2     2       4      40  80 inner, helper
-#> 3     3       2      20  40          deep
+#>   depth samples time_ms   pct
+#> 1     1      14      70 100.0
+#> 2     2      14      70 100.0
+#> 3     3      11      55  78.6
+#>                                                   top_funcs
+#> 1                                              process_data
+#> 2                             generate_data, transform_data
+#> 3 rnorm, x[i] <- rnorm(1), result[i] <- sqrt(abs(x[i])) * 2
 ```

@@ -35,16 +35,18 @@ pv_print_hot_paths(p, n = 3)
 #>                             HOT CALL PATHS
 #> ====================================================================== 
 #> 
-#> Rank 1: 20 ms (40.0%) - 2 samples
-#>     outer (R/main.R:10)
-#>   → inner (R/main.R:15)
-#>   → deep (R/utils.R:5)
+#> Rank 1: 30 ms (42.9%) - 6 samples
+#>     process_data
+#>   → generate_data (example_code.R:5)
+#>   → rnorm (example_code.R:13)
 #> 
-#> Rank 2: 10 ms (20.0%) - 1 samples
-#>     outer (R/main.R:10)
+#> Rank 2: 20 ms (28.6%) - 4 samples
+#>     process_data
+#>   → generate_data (example_code.R:5)
+#>   → x[i] <- rnorm(1) (example_code.R:13)
 #> 
-#> Rank 3: 10 ms (20.0%) - 1 samples
-#>     outer (R/main.R:10)
-#>   → helper (R/helper.R:20)
+#> Rank 3: 15 ms (21.4%) - 3 samples
+#>     process_data
+#>   → generate_data (example_code.R:5)
 #> 
 ```

@@ -39,13 +39,13 @@ p3 <- pv_example("recursive")
 pv_compare_many(baseline = p1, gc_heavy = p2, recursive = p3)
 #>        name time_ms samples vs_fastest rank
 #> 1 recursive      30       3    fastest    1
-#> 2  baseline      50       5      1.67x    2
+#> 2  baseline      70      14      2.33x    2
 #> 3  gc_heavy     100      10      3.33x    3
 
 # Or pass a named list
 profiles <- list(baseline = p1, gc_heavy = p2)
 pv_compare_many(profiles)
 #>       name time_ms samples vs_fastest rank
-#> 1 baseline      50       5    fastest    1
-#> 2 gc_heavy     100      10      2.00x    2
+#> 1 baseline      70      14    fastest    1
+#> 2 gc_heavy     100      10      1.43x    2
 ```

@@ -34,7 +34,7 @@ A data frame with columns:
 ``` r
 p <- pv_example()
 pv_callees(p, "outer")
-#>    label samples pct
-#> 1  inner       3  60
-#> 2 helper       1  20
+#> Function 'outer' not found in profiling data.
+#> [1] label   samples pct    
+#> <0 rows> (or 0-length row.names)
 ```

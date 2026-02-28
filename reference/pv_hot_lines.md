@@ -51,17 +51,18 @@ A data frame with columns:
 ``` r
 p <- pv_example()
 pv_hot_lines(p)
-#>        location samples  label   filename linenum time_ms pct
-#> 1   R/utils.R:5       2   deep  R/utils.R       5      20  40
-#> 2 R/helper.R:20       1 helper R/helper.R      20      10  20
-#> 3   R/main.R:10       1  outer   R/main.R      10      10  20
-#> 4   R/main.R:15       1  inner   R/main.R      15      10  20
+#>            location samples                            label       filename
+#> 1 example_code.R:13      10                            rnorm example_code.R
+#> 2  example_code.R:5       3                    generate_data example_code.R
+#> 3 example_code.R:21       1 result[i] <- sqrt(abs(x[i])) * 2 example_code.R
+#>   linenum time_ms  pct
+#> 1      13      50 71.4
+#> 2       5      15 21.4
+#> 3      21       5  7.1
 
 # Only lines with >= 10% of time
 pv_hot_lines(p, min_pct = 10)
-#>        location samples  label   filename linenum time_ms pct
-#> 1   R/utils.R:5       2   deep  R/utils.R       5      20  40
-#> 2 R/helper.R:20       1 helper R/helper.R      20      10  20
-#> 3   R/main.R:10       1  outer   R/main.R      10      10  20
-#> 4   R/main.R:15       1  inner   R/main.R      15      10  20
+#>            location samples         label       filename linenum time_ms  pct
+#> 1 example_code.R:13      10         rnorm example_code.R      13      50 71.4
+#> 2  example_code.R:5       3 generate_data example_code.R       5      15 21.4
 ```

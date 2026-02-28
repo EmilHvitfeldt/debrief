@@ -15,14 +15,14 @@ pv_example(type = c("default", "no_source", "recursive", "gc"))
 
   Type of example data to create:
 
-  - `"default"`: A typical profile with multiple functions and source
+  - `"default"`: A real profile captured from example code with source
     refs
 
-  - `"no_source"`: A profile without source references
+  - `"no_source"`: A synthetic profile without source references
 
-  - `"recursive"`: A profile with recursive function calls
+  - `"recursive"`: A synthetic profile with recursive function calls
 
-  - `"gc"`: A profile with garbage collection pressure
+  - `"gc"`: A synthetic profile with garbage collection pressure
 
 ## Value
 
@@ -34,11 +34,11 @@ A profvis object that can be used with all debrief functions.
 # Get default example data
 p <- pv_example()
 pv_self_time(p)
-#>    label samples time_ms pct
-#> 1   deep       2      20  40
-#> 2 helper       1      10  20
-#> 3  inner       1      10  20
-#> 4  outer       1      10  20
+#>                              label samples time_ms  pct
+#> 1                            rnorm       6      30 42.9
+#> 2                 x[i] <- rnorm(1)       4      20 28.6
+#> 3                    generate_data       3      15 21.4
+#> 4 result[i] <- sqrt(abs(x[i])) * 2       1       5  7.1
 
 # Get example with recursive calls
 p_recursive <- pv_example("recursive")

@@ -68,10 +68,12 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Function                               Calls   Total ms    Self ms    ms/call    Pct</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ------------------------------------------------------------------------------------- </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> outer                                      1         50         10      50.00 100.0%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> inner                                      2         30         10      15.00  60.0%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> deep                                       2         20         20      10.00  40.0%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> helper                                     1         10         10      10.00  20.0%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> process_data                               1         70          0      70.00 100.0%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> generate_data                              2         65         15      32.50  92.9%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> rnorm                                      4         30         30       7.50  42.9%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x[i] &lt;- rnorm(1)                           4         20         20       5.00  28.6%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> result[i] &lt;- sqrt(abs(x[i])) * 2           1          5          5       5.00   7.1%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> transform_data                             1          5          0       5.00   7.1%</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

@@ -32,8 +32,6 @@ A data frame with columns:
 ``` r
 p <- pv_example()
 pv_file_summary(p)
-#>     filename samples time_ms pct
-#> 1   R/main.R       5      50 100
-#> 2  R/utils.R       2      20  40
-#> 3 R/helper.R       1      10  20
+#>         filename samples time_ms pct
+#> 1 example_code.R      14      70 100
 ```

@@ -81,58 +81,66 @@ terminal output or AI agent consumption.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                           PROFILING SUMMARY</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ====================================================================== </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Total time: 50 ms (5 samples @ 10 ms interval)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Total time: 70 ms (14 samples @ 5 ms interval)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Source references: available</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> --- TOP FUNCTIONS BY SELF-TIME ---------------------------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     20 ms ( 40.0%)  deep</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     10 ms ( 20.0%)  helper</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     10 ms ( 20.0%)  inner</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     10 ms ( 20.0%)  outer</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     30 ms ( 42.9%)  rnorm</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     20 ms ( 28.6%)  x[i] &lt;- rnorm(1)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     15 ms ( 21.4%)  generate_data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      5 ms (  7.1%)  result[i] &lt;- sqrt(abs(x[i])) * 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> --- TOP FUNCTIONS BY TOTAL TIME --------------------------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     50 ms (100.0%)  outer</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     30 ms ( 60.0%)  inner</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     20 ms ( 40.0%)  deep</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     10 ms ( 20.0%)  helper</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     70 ms (100.0%)  process_data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     65 ms ( 92.9%)  generate_data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     30 ms ( 42.9%)  rnorm</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     20 ms ( 28.6%)  x[i] &lt;- rnorm(1)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      5 ms (  7.1%)  result[i] &lt;- sqrt(abs(x[i])) * 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      5 ms (  7.1%)  transform_data</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> --- HOT LINES (by self-time) -----------------------------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     20 ms ( 40.0%)  R/utils.R:5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                    x &lt;- rnorm(1000)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     10 ms ( 20.0%)  R/helper.R:20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     10 ms ( 20.0%)  R/main.R:10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                    result &lt;- deep()</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     10 ms ( 20.0%)  R/main.R:15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     50 ms ( 71.4%)  example_code.R:13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                    x[i] &lt;- rnorm(1)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     15 ms ( 21.4%)  example_code.R:5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                    data &lt;- generate_data(n)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      5 ms (  7.1%)  example_code.R:21</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                    result[i] &lt;- sqrt(abs(x[i])) * 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> --- HOT CALL PATHS ---------------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20 ms (40.0%) - 2 samples:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     outer (R/main.R:10)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   → inner (R/main.R:15)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   → deep (R/utils.R:5)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30 ms (42.9%) - 6 samples:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     process_data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   → generate_data (example_code.R:5)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   → rnorm (example_code.R:13)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 ms (20.0%) - 1 samples:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     outer (R/main.R:10)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20 ms (28.6%) - 4 samples:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     process_data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   → generate_data (example_code.R:5)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   → x[i] &lt;- rnorm(1) (example_code.R:13)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 ms (20.0%) - 1 samples:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     outer (R/main.R:10)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   → helper (R/helper.R:20)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15 ms (21.4%) - 3 samples:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     process_data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   → generate_data (example_code.R:5)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 ms (20.0%) - 1 samples:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     outer (R/main.R:10)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   → inner (R/main.R:15)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 ms (7.1%) - 1 samples:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     process_data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   → transform_data (example_code.R:6)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   → result[i] &lt;- sqrt(abs(x[i])) * 2 (example_code.R:21)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> --- MEMORY ALLOCATION (by function) ----------------------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   150.00 MB inner</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   100.00 MB deep</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    50.00 MB helper</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     1.38 MB rnorm</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     1.26 MB x[i] &lt;- rnorm(1)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     0.56 MB generate_data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     0.36 MB result[i] &lt;- sqrt(abs(x[i])) * 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> --- MEMORY ALLOCATION (by line) --------------------------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   150.00 MB R/main.R:15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   100.00 MB R/utils.R:5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             x &lt;- rnorm(1000)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    50.00 MB R/helper.R:20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     2.63 MB example_code.R:13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             x[i] &lt;- rnorm(1)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     0.56 MB example_code.R:5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             data &lt;- generate_data(n)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     0.36 MB example_code.R:21</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             result[i] &lt;- sqrt(abs(x[i])) * 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------------- </span>
 </code></pre></div>
     </div>

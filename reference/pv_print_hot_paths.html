@@ -70,17 +70,19 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>                             HOT CALL PATHS</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ====================================================================== </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Rank 1: 20 ms (40.0%) - 2 samples</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     outer (R/main.R:10)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   → inner (R/main.R:15)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   → deep (R/utils.R:5)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Rank 1: 30 ms (42.9%) - 6 samples</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     process_data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   → generate_data (example_code.R:5)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   → rnorm (example_code.R:13)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Rank 2: 10 ms (20.0%) - 1 samples</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     outer (R/main.R:10)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Rank 2: 20 ms (28.6%) - 4 samples</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     process_data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   → generate_data (example_code.R:5)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   → x[i] &lt;- rnorm(1) (example_code.R:13)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Rank 3: 10 ms (20.0%) - 1 samples</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     outer (R/main.R:10)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   → helper (R/helper.R:20)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Rank 3: 15 ms (21.4%) - 3 samples</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     process_data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   → generate_data (example_code.R:5)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

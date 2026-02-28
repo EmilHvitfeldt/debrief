@@ -56,143 +56,150 @@ json <- pv_to_json(p)
 cat(json)
 #> {
 #>   "metadata": {
-#>     "total_time_ms": 50,
-#>     "total_samples": 5,
-#>     "interval_ms": 10,
+#>     "total_time_ms": 70,
+#>     "total_samples": 14,
+#>     "interval_ms": 5,
 #>     "has_source_refs": true,
-#>     "exported_at": "2026-02-28T00:14:02+0000"
+#>     "exported_at": "2026-02-28T00:35:55+0000"
 #>   },
 #>   "summary": {
-#>     "total_time_ms": 50,
-#>     "unique_functions": 4,
+#>     "total_time_ms": 70,
+#>     "unique_functions": 6,
 #>     "max_depth": 3
 #>   },
 #>   "self_time": [
 #>     {
-#>       "label": "deep",
-#>       "samples": 2,
+#>       "label": "rnorm",
+#>       "samples": 6,
+#>       "time_ms": 30,
+#>       "pct": 42.9
+#>     },
+#>     {
+#>       "label": "x[i] <- rnorm(1)",
+#>       "samples": 4,
 #>       "time_ms": 20,
-#>       "pct": 40
+#>       "pct": 28.6
 #>     },
 #>     {
-#>       "label": "helper",
-#>       "samples": 1,
-#>       "time_ms": 10,
-#>       "pct": 20
+#>       "label": "generate_data",
+#>       "samples": 3,
+#>       "time_ms": 15,
+#>       "pct": 21.4
 #>     },
 #>     {
-#>       "label": "inner",
+#>       "label": "result[i] <- sqrt(abs(x[i])) * 2",
 #>       "samples": 1,
-#>       "time_ms": 10,
-#>       "pct": 20
-#>     },
-#>     {
-#>       "label": "outer",
-#>       "samples": 1,
-#>       "time_ms": 10,
-#>       "pct": 20
+#>       "time_ms": 5,
+#>       "pct": 7.1
 #>     }
 #>   ],
 #>   "total_time": [
 #>     {
-#>       "label": "outer",
-#>       "samples": 5,
-#>       "time_ms": 50,
+#>       "label": "process_data",
+#>       "samples": 14,
+#>       "time_ms": 70,
 #>       "pct": 100
 #>     },
 #>     {
-#>       "label": "inner",
-#>       "samples": 3,
+#>       "label": "generate_data",
+#>       "samples": 13,
+#>       "time_ms": 65,
+#>       "pct": 92.9
+#>     },
+#>     {
+#>       "label": "rnorm",
+#>       "samples": 6,
 #>       "time_ms": 30,
-#>       "pct": 60
+#>       "pct": 42.9
 #>     },
 #>     {
-#>       "label": "deep",
-#>       "samples": 2,
+#>       "label": "x[i] <- rnorm(1)",
+#>       "samples": 4,
 #>       "time_ms": 20,
-#>       "pct": 40
+#>       "pct": 28.6
 #>     },
 #>     {
-#>       "label": "helper",
+#>       "label": "result[i] <- sqrt(abs(x[i])) * 2",
 #>       "samples": 1,
-#>       "time_ms": 10,
-#>       "pct": 20
+#>       "time_ms": 5,
+#>       "pct": 7.1
+#>     },
+#>     {
+#>       "label": "transform_data",
+#>       "samples": 1,
+#>       "time_ms": 5,
+#>       "pct": 7.1
 #>     }
 #>   ],
 #>   "hot_lines": [
 #>     {
-#>       "location": "R/utils.R:5",
-#>       "samples": 2,
-#>       "label": "deep",
-#>       "filename": "R/utils.R",
+#>       "location": "example_code.R:13",
+#>       "samples": 10,
+#>       "label": "rnorm",
+#>       "filename": "example_code.R",
+#>       "linenum": 13,
+#>       "time_ms": 50,
+#>       "pct": 71.4
+#>     },
+#>     {
+#>       "location": "example_code.R:5",
+#>       "samples": 3,
+#>       "label": "generate_data",
+#>       "filename": "example_code.R",
 #>       "linenum": 5,
-#>       "time_ms": 20,
-#>       "pct": 40
+#>       "time_ms": 15,
+#>       "pct": 21.4
 #>     },
 #>     {
-#>       "location": "R/helper.R:20",
+#>       "location": "example_code.R:21",
 #>       "samples": 1,
-#>       "label": "helper",
-#>       "filename": "R/helper.R",
-#>       "linenum": 20,
-#>       "time_ms": 10,
-#>       "pct": 20
-#>     },
-#>     {
-#>       "location": "R/main.R:10",
-#>       "samples": 1,
-#>       "label": "outer",
-#>       "filename": "R/main.R",
-#>       "linenum": 10,
-#>       "time_ms": 10,
-#>       "pct": 20
-#>     },
-#>     {
-#>       "location": "R/main.R:15",
-#>       "samples": 1,
-#>       "label": "inner",
-#>       "filename": "R/main.R",
-#>       "linenum": 15,
-#>       "time_ms": 10,
-#>       "pct": 20
+#>       "label": "result[i] <- sqrt(abs(x[i])) * 2",
+#>       "filename": "example_code.R",
+#>       "linenum": 21,
+#>       "time_ms": 5,
+#>       "pct": 7.1
 #>     }
 #>   ],
 #>   "memory": {
 #>     "by_function": [
 #>       {
-#>         "label": "inner",
-#>         "mem_mb": 150
+#>         "label": "rnorm",
+#>         "mem_mb": 1.37526702880859
 #>       },
 #>       {
-#>         "label": "deep",
-#>         "mem_mb": 100
+#>         "label": "x[i] <- rnorm(1)",
+#>         "mem_mb": 1.25504302978516
 #>       },
 #>       {
-#>         "label": "helper",
-#>         "mem_mb": 50
+#>         "label": "generate_data",
+#>         "mem_mb": 0.563003540039062
+#>       },
+#>       {
+#>         "label": "result[i] <- sqrt(abs(x[i])) * 2",
+#>         "mem_mb": 0.356483459472656
 #>       }
 #>     ],
 #>     "by_line": [
 #>       {
-#>         "location": "R/main.R:15",
-#>         "mem_mb": 150,
-#>         "label": "inner",
-#>         "filename": "R/main.R",
-#>         "linenum": 15
+#>         "location": "example_code.R:13",
+#>         "mem_mb": 2.63031005859375,
+#>         "label": "rnorm",
+#>         "filename": "example_code.R",
+#>         "linenum": 13
 #>       },
 #>       {
-#>         "location": "R/utils.R:5",
-#>         "mem_mb": 100,
-#>         "label": "deep",
-#>         "filename": "R/utils.R",
+#>         "location": "example_code.R:5",
+#>         "mem_mb": 0.563003540039062,
+#>         "label": "generate_data",
+#>         "filename": "example_code.R",
 #>         "linenum": 5
 #>       },
 #>       {
-#>         "location": "R/helper.R:20",
-#>         "mem_mb": 50,
-#>         "label": "helper",
-#>         "filename": "R/helper.R",
-#>         "linenum": 20
+#>         "location": "example_code.R:21",
+#>         "mem_mb": 0.356483459472656,
+#>         "label": "result[i] <- sqrt(abs(x[i])) * 2",
+#>         "filename": "example_code.R",
+#>         "linenum": 21
 #>       }
 #>     ]
 #>   },
@@ -201,30 +208,30 @@ cat(json)
 #>     {
 #>       "priority": 1,
 #>       "category": "hot line",
-#>       "suggestion": "Line 'deep' at R/utils.R:5 consumes 40.0% of time. Focus optimization efforts here first.",
-#>       "location": "R/utils.R:5",
-#>       "potential_impact": "20 ms (40.0%)"
+#>       "suggestion": "Line 'rnorm' at example_code.R:13 consumes 71.4% of time. Focus optimization efforts here first.",
+#>       "location": "example_code.R:13",
+#>       "potential_impact": "50 ms (71.4%)"
 #>     },
 #>     {
 #>       "priority": 1,
 #>       "category": "hot line",
-#>       "suggestion": "Line 'helper' at R/helper.R:20 consumes 20.0% of time. Focus optimization efforts here first.",
-#>       "location": "R/helper.R:20",
-#>       "potential_impact": "10 ms (20.0%)"
+#>       "suggestion": "Line 'generate_data' at example_code.R:5 consumes 21.4% of time. Focus optimization efforts here first.",
+#>       "location": "example_code.R:5",
+#>       "potential_impact": "15 ms (21.4%)"
 #>     },
 #>     {
 #>       "priority": 1,
 #>       "category": "hot line",
-#>       "suggestion": "Line 'outer' at R/main.R:10 consumes 20.0% of time. Focus optimization efforts here first.",
-#>       "location": "R/main.R:10",
-#>       "potential_impact": "10 ms (20.0%)"
+#>       "suggestion": "Line 'result[i] <- sqrt(abs(x[i])...' at example_code.R:21 consumes 7.1% of time. Focus optimization efforts here first.",
+#>       "location": "example_code.R:21",
+#>       "potential_impact": "5 ms (7.1%)"
 #>     },
 #>     {
 #>       "priority": 2,
 #>       "category": "hot function",
-#>       "suggestion": "Function 'deep' has highest self-time (40.0%). Profile this function in isolation to find micro-optimization opportunities.",
-#>       "location": "deep",
-#>       "potential_impact": "20 ms (40.0%)"
+#>       "suggestion": "Function 'rnorm' has highest self-time (42.9%). Profile this function in isolation to find micro-optimization opportunities.",
+#>       "location": "rnorm",
+#>       "potential_impact": "30 ms (42.9%)"
 #>     }
 #>   ],
 #>   "recursive": []

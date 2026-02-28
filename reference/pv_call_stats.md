@@ -44,9 +44,18 @@ A data frame with columns:
 ``` r
 p <- pv_example()
 pv_call_stats(p)
-#>    label calls total_ms self_ms child_ms ms_per_call pct
-#> 1  outer     1       50      10       40          50 100
-#> 2  inner     2       30      10       20          15  60
-#> 3   deep     2       20      20        0          10  40
-#> 4 helper     1       10      10        0          10  20
+#>                              label calls total_ms self_ms child_ms ms_per_call
+#> 1                     process_data     1       70       0       70        70.0
+#> 2                    generate_data     2       65      15       50        32.5
+#> 3                            rnorm     4       30      30        0         7.5
+#> 4                 x[i] <- rnorm(1)     4       20      20        0         5.0
+#> 5 result[i] <- sqrt(abs(x[i])) * 2     1        5       5        0         5.0
+#> 6                   transform_data     1        5       0        5         5.0
+#>     pct
+#> 1 100.0
+#> 2  92.9
+#> 3  42.9
+#> 4  28.6
+#> 5   7.1
+#> 6   7.1
 ```
