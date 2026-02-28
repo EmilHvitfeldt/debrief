@@ -12,9 +12,12 @@ License: MIT + file LICENSE
 URL: https://github.com/emilhvitfeldt/debrief, https://emilhvitfeldt.github.io/debrief/
 BugReports: https://github.com/emilhvitfeldt/debrief/issues
 Suggests:
+    knitr,
     profvis,
+    rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+VignetteBuilder: knitr
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3

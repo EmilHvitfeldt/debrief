@@ -2,6 +2,12 @@ url: https://emilhvitfeldt.github.io/debrief/
 template:
   bootstrap: 5
 
+articles:
+  - title: Case studies
+    navbar: ~
+    contents:
+      - case-study-tidypredict
+
 reference:
   - title: Summary and suggestions
     desc: Overview and optimization recommendations
