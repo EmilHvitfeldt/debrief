@@ -37,19 +37,19 @@
       
       20 ms (40.0%) - 2 samples:
           outer (R/main.R:10)
-        → inner (R/main.R:15)
-        → deep (R/utils.R:5)
+        -> inner (R/main.R:15)
+        -> deep (R/utils.R:5)
       
       10 ms (20.0%) - 1 samples:
           outer (R/main.R:10)
       
       10 ms (20.0%) - 1 samples:
           outer (R/main.R:10)
-        → helper (R/helper.R:20)
+        -> helper (R/helper.R:20)
       
       10 ms (20.0%) - 1 samples:
           outer (R/main.R:10)
-        → inner (R/main.R:15)
+        -> inner (R/main.R:15)
       
       --- MEMORY ALLOCATION (by function) ----------------------------------
         150.00 MB inner
@@ -95,11 +95,11 @@
       
       10 ms (33.3%) - 1 samples:
           foo
-        → bar
+        -> bar
       
       10 ms (33.3%) - 1 samples:
           foo
-        → baz
+        -> baz
       
       --- MEMORY ALLOCATION (by function) ----------------------------------
          50.00 MB bar

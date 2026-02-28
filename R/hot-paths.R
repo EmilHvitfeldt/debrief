@@ -51,7 +51,7 @@ pv_hot_paths <- function(x, n = NULL, include_source = TRUE) {
   stacks <- tapply(
     prof_sorted$display,
     prof_sorted$time,
-    function(labels) paste(labels, collapse = " \u2192 ")
+    function(labels) paste(labels, collapse = " -> ")
   )
 
   stack_df <- data.frame(
@@ -115,8 +115,8 @@ pv_print_hot_paths <- function(x, n = 10, include_source = TRUE) {
       row$samples
     ))
 
-    parts <- strsplit(row$stack, " \u2192 ")[[1]]
-    cat("    ", paste(parts, collapse = "\n  \u2192 "), "\n\n", sep = "")
+    parts <- strsplit(row$stack, " -> ")[[1]]
+    cat("    ", paste(parts, collapse = "\n  -> "), "\n\n", sep = "")
   }
 
   invisible(paths)

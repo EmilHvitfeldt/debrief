@@ -142,8 +142,8 @@ print_paths_df <- function(df) {
       df$pct[i],
       df$samples[i]
     ))
-    parts <- strsplit(df$stack[i], " \u2192 ")[[1]]
-    cat("    ", paste(parts, collapse = "\n  \u2192 "), "\n", sep = "")
+    parts <- strsplit(df$stack[i], " -> ")[[1]]
+    cat("    ", paste(parts, collapse = "\n  -> "), "\n", sep = "")
   }
 }
 

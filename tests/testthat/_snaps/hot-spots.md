@@ -55,14 +55,14 @@
       
       Rank 1: 20 ms (40.0%) - 2 samples
           outer (R/main.R:10)
-        → inner (R/main.R:15)
-        → deep (R/utils.R:5)
+        -> inner (R/main.R:15)
+        -> deep (R/utils.R:5)
       
       Rank 2: 10 ms (20.0%) - 1 samples
           outer (R/main.R:10)
       
       Rank 3: 10 ms (20.0%) - 1 samples
           outer (R/main.R:10)
-        → helper (R/helper.R:20)
+        -> helper (R/helper.R:20)
       
 

@@ -57,7 +57,7 @@ test_that("pv_hot_paths stacks contain arrows", {
   result <- pv_hot_paths(p)
 
   # Multi-level stacks should contain arrow separator
-  multi_level <- result[grepl("\u2192", result$stack), ]
+  multi_level <- result[grepl("->", result$stack), ]
   expect_gt(nrow(multi_level), 0)
 })
 

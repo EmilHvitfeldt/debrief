@@ -23,6 +23,7 @@ This is the top priority. Every design decision flows from this:
 ## Don't
 
 - No ANSI colors or terminal escape codes
+- No Unicode characters - use ASCII only for cross-platform compatibility
 - No interactive prompts
 - No vague language ("some functions", "may be slow") - be specific
 - No prose paragraphs - use structured output
