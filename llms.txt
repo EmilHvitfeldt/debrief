@@ -853,3 +853,9 @@ Export results for external tools
 - [`pv_example()`](https://emilhvitfeldt.github.io/debrief/reference/pv_example.md)
   : Example profvis data
 
+# Articles
+
+### Case studies
+
+- [Case study: Using debrief for iterative R performance
+  optimization](https://emilhvitfeldt.github.io/debrief/articles/case-study-tidypredict.md):
