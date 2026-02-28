@@ -26,29 +26,13 @@
 #' pv_hot_lines(p, min_pct = 10)
 #' @export
 pv_hot_lines <- function(x, n = NULL, min_pct = 0, min_time_ms = 0) {
-  check_profvis(x)
-  check_empty_profile(x)
-
-  prof <- extract_prof(x)
-  interval_ms <- extract_interval(x)
-  total_samples <- extract_total_samples(x)
-
-  # Get the deepest frame for each time point (self-time)
-  top_of_stack <- extract_top_of_stack(prof)
+  pd <- extract_profile_data(x)
+  top_of_stack <- extract_top_of_stack(pd$prof)
 
   # Filter to rows with source info
   with_source <- top_of_stack[!is.na(top_of_stack$filename), ]
   if (nrow(with_source) == 0) {
-    return(data.frame(
-      location = character(),
-      label = character(),
-      filename = character(),
-      linenum = integer(),
-      samples = integer(),
-      time_ms = numeric(),
-      pct = numeric(),
-      stringsAsFactors = FALSE
-    ))
+    return(empty_location_result())
   }
 
   # Create location key
@@ -58,8 +42,7 @@ pv_hot_lines <- function(x, n = NULL, min_pct = 0, min_time_ms = 0) {
   counts <- table(with_source$location)
   result <- data.frame(
     location = names(counts),
-    samples = as.integer(counts),
-    stringsAsFactors = FALSE
+    samples = as.integer(counts)
   )
 
   # Get label, filename, linenum for each location
@@ -70,19 +53,12 @@ pv_hot_lines <- function(x, n = NULL, min_pct = 0, min_time_ms = 0) {
     by = "location"
   )
 
-  result$time_ms <- result$samples * interval_ms
-  result$pct <- round(100 * result$samples / total_samples, 1)
+  result$time_ms <- result$samples * pd$interval_ms
+  result$pct <- round(100 * result$samples / pd$total_samples, 1)
   result <- result[order(-result$samples), ]
   rownames(result) <- NULL
 
-  # Apply filters
-  result <- result[result$pct >= min_pct & result$time_ms >= min_time_ms, ]
-
-  if (!is.null(n)) {
-    result <- head(result, n)
-  }
-
-  result
+  apply_result_filters(result, n, min_pct, min_time_ms)
 }
 
 #' Print hot lines with source context
@@ -148,10 +124,10 @@ pv_print_hot_lines <- function(x, n = 5, context = 3) {
 
   # Next steps suggestions
   if (nrow(hot_lines) > 0) {
-    suggestions <- character()
     top_func <- hot_lines$label[1]
     top_file <- hot_lines$filename[1]
-    if (!grepl("^[(<\\[]", top_func)) {
+    suggestions <- character()
+    if (is_user_function(top_func)) {
       suggestions <- c(suggestions, sprintf("pv_focus(p, \"%s\")", top_func))
     }
     suggestions <- c(

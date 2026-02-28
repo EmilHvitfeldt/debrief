@@ -22,18 +22,13 @@ pv_memory <- function(x, n = NULL) {
   # Sum positive memory increments by function
   prof_pos <- prof[prof$meminc > 0, ]
   if (nrow(prof_pos) == 0) {
-    return(data.frame(
-      label = character(),
-      mem_mb = numeric(),
-      stringsAsFactors = FALSE
-    ))
+    return(empty_memory_result())
   }
 
   mem_sums <- tapply(prof_pos$meminc, prof_pos$label, sum)
   result <- data.frame(
     label = names(mem_sums),
-    mem_mb = as.numeric(mem_sums),
-    stringsAsFactors = FALSE
+    mem_mb = as.numeric(mem_sums)
   )
   result <- result[order(-result$mem_mb), ]
   rownames(result) <- NULL
@@ -73,14 +68,7 @@ pv_memory_lines <- function(x, n = NULL) {
   # Sum positive memory increments by source location
   prof_pos <- prof[prof$meminc > 0 & !is.na(prof$filename), ]
   if (nrow(prof_pos) == 0) {
-    return(data.frame(
-      location = character(),
-      label = character(),
-      filename = character(),
-      linenum = integer(),
-      mem_mb = numeric(),
-      stringsAsFactors = FALSE
-    ))
+    return(empty_memory_lines_result())
   }
 
   prof_pos$location <- paste0(prof_pos$filename, ":", prof_pos$linenum)
@@ -88,8 +76,7 @@ pv_memory_lines <- function(x, n = NULL) {
   mem_sums <- tapply(prof_pos$meminc, prof_pos$location, sum)
   result <- data.frame(
     location = names(mem_sums),
-    mem_mb = as.numeric(mem_sums),
-    stringsAsFactors = FALSE
+    mem_mb = as.numeric(mem_sums)
   )
 
   # Get label, filename, linenum for each location
@@ -170,22 +157,17 @@ pv_print_memory <- function(x, n = 10, by = c("function", "line")) {
 
   # Next steps suggestions
   if (nrow(mem_df) > 0) {
+    top_func <- mem_df$label[1]
     suggestions <- character()
+    if (is_user_function(top_func)) {
+      suggestions <- c(suggestions, sprintf("pv_focus(p, \"%s\")", top_func))
+    }
     if (by == "function") {
-      top_func <- mem_df$label[1]
-      if (!grepl("^[(<\\[]", top_func)) {
-        suggestions <- c(suggestions, sprintf("pv_focus(p, \"%s\")", top_func))
-      }
       suggestions <- c(suggestions, "pv_gc_pressure(p)")
     } else {
-      top_func <- mem_df$label[1]
-      top_file <- mem_df$filename[1]
-      if (!grepl("^[(<\\[]", top_func)) {
-        suggestions <- c(suggestions, sprintf("pv_focus(p, \"%s\")", top_func))
-      }
       suggestions <- c(
         suggestions,
-        sprintf("pv_source_context(p, \"%s\")", top_file)
+        sprintf("pv_source_context(p, \"%s\")", mem_df$filename[1])
       )
     }
     cat_next_steps(suggestions)

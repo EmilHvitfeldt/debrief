@@ -23,18 +23,13 @@
 #' pv_recursive(p)
 #' @export
 pv_recursive <- function(x) {
-  check_profvis(x)
-  check_empty_profile(x)
-
-  prof <- extract_prof(x)
-  interval_ms <- extract_interval(x)
-  total_samples <- extract_total_samples(x)
+  pd <- extract_profile_data(x)
 
   # For each time point, find functions that appear multiple times
-  times <- unique(prof$time)
+  times <- unique(pd$prof$time)
 
   recursive_info <- lapply(times, function(t) {
-    stack <- prof[prof$time == t, ]
+    stack <- pd$prof[pd$prof$time == t, ]
     func_counts <- table(stack$label)
     recursive_funcs <- names(func_counts[func_counts > 1])
 
@@ -49,8 +44,7 @@ pv_recursive <- function(x) {
         time = t,
         count = length(depths),
         min_depth = min(depths),
-        max_depth = max(depths),
-        stringsAsFactors = FALSE
+        max_depth = max(depths)
       )
     })
   })
@@ -65,8 +59,7 @@ pv_recursive <- function(x) {
       total_samples = integer(),
       pct_recursive = numeric(),
       total_ms = numeric(),
-      pct_time = numeric(),
-      stringsAsFactors = FALSE
+      pct_time = numeric()
     ))
   }
 
@@ -76,7 +69,7 @@ pv_recursive <- function(x) {
   funcs <- unique(recursive_df$label)
   result <- lapply(funcs, function(func) {
     func_recursive <- recursive_df[recursive_df$label == func, ]
-    func_all <- prof[prof$label == func, ]
+    func_all <- pd$prof[pd$prof$label == func, ]
 
     recursive_samples <- nrow(func_recursive)
     total_func_samples <- length(unique(func_all$time))
@@ -88,9 +81,8 @@ pv_recursive <- function(x) {
       recursive_samples = recursive_samples,
       total_samples = total_func_samples,
       pct_recursive = round(100 * recursive_samples / total_func_samples, 1),
-      total_ms = total_func_samples * interval_ms,
-      pct_time = round(100 * total_func_samples / total_samples, 1),
-      stringsAsFactors = FALSE
+      total_ms = total_func_samples * pd$interval_ms,
+      pct_time = round(100 * total_func_samples / pd$total_samples, 1)
     )
   })
 
@@ -150,7 +142,7 @@ pv_print_recursive <- function(x) {
   if (nrow(recursive) > 0) {
     top_func <- recursive$label[1]
     suggestions <- "pv_suggestions(p)"
-    if (!grepl("^[(<\\[]", top_func)) {
+    if (is_user_function(top_func)) {
       suggestions <- c(sprintf("pv_focus(p, \"%s\")", top_func), suggestions)
     }
     cat_next_steps(suggestions)

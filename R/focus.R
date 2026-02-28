@@ -14,17 +14,12 @@
 #' pv_focus(p, "inner")
 #' @export
 pv_focus <- function(x, func, context = 5) {
-  check_profvis(x)
-  check_empty_profile(x)
-
-  prof <- extract_prof(x)
-  interval_ms <- extract_interval(x)
-  total_samples <- extract_total_samples(x)
+  pd <- extract_profile_data(x)
   files <- extract_files(x)
   file_contents <- build_file_contents(files)
 
   # Check if function exists
-  func_rows <- prof[prof$label == func, ]
+  func_rows <- pd$prof[pd$prof$label == func, ]
   if (nrow(func_rows) == 0) {
     cat(sprintf("Function '%s' not found in profiling data.\n\n", func))
     cat("Available functions (top 20 by time):\n")
@@ -37,14 +32,14 @@ pv_focus <- function(x, func, context = 5) {
 
   # Calculate time stats
   func_times <- unique(func_rows$time)
-  func_total_time <- length(func_times) * interval_ms
-  func_total_pct <- round(100 * length(func_times) / total_samples, 1)
+  func_total_time <- length(func_times) * pd$interval_ms
+  func_total_pct <- round(100 * length(func_times) / pd$total_samples, 1)
 
   # Calculate self-time (deepest frame for each time point)
-  top_of_stack <- extract_top_of_stack(prof)
+  top_of_stack <- extract_top_of_stack(pd$prof)
   self_samples <- sum(top_of_stack$label == func)
-  self_time <- self_samples * interval_ms
-  self_pct <- round(100 * self_samples / total_samples, 1)
+  self_time <- self_samples * pd$interval_ms
+  self_pct <- round(100 * self_samples / pd$total_samples, 1)
 
   # Get callers and callees
   callers <- pv_callers(x, func)
@@ -112,6 +107,11 @@ pv_focus <- function(x, func, context = 5) {
   }
   cat("\n")
 
+  # Filter to self-time only (needed for source locations and next steps)
+  func_top_of_stack <- top_of_stack[
+    top_of_stack$label == func & !is.na(top_of_stack$filename),
+  ]
+
   # Show source locations if available
   if (has_source) {
     cat("### Source Locations\n")
@@ -122,11 +122,6 @@ pv_focus <- function(x, func, context = 5) {
       ":",
       func_with_source$linenum
     )
-
-    # Filter to self-time only
-    func_top_of_stack <- top_of_stack[
-      top_of_stack$label == func & !is.na(top_of_stack$filename),
-    ]
 
     if (nrow(func_top_of_stack) > 0) {
       func_top_of_stack$location <- paste0(
@@ -140,8 +135,8 @@ pv_focus <- function(x, func, context = 5) {
       for (i in seq_len(min(5, length(line_counts)))) {
         loc <- names(line_counts)[i]
         samples <- as.integer(line_counts[i])
-        time_ms <- samples * interval_ms
-        pct <- round(100 * samples / total_samples, 1)
+        time_ms <- samples * pd$interval_ms
+        pct <- round(100 * samples / pd$total_samples, 1)
 
         cat(sprintf("  %5.0f ms (%4.1f%%)  %s\n", time_ms, pct, loc))
 
@@ -188,16 +183,19 @@ pv_focus <- function(x, func, context = 5) {
 
   # Next steps suggestions
   suggestions <- character()
-  if (nrow(callees) > 0) {
-    top_callee <- callees$label[1]
-    suggestions <- c(suggestions, sprintf("pv_focus(p, \"%s\")", top_callee))
+  if (nrow(callees) > 0 && is_user_function(callees$label[1])) {
+    suggestions <- c(
+      suggestions,
+      sprintf("pv_focus(p, \"%s\")", callees$label[1])
+    )
   }
   if (nrow(callers) > 0) {
     suggestions <- c(suggestions, sprintf("pv_callers(p, \"%s\")", func))
-    top_caller <- callers$label[1]
-    # Don't suggest focusing on pseudo-functions like (top-level)
-    if (!grepl("^\\(", top_caller)) {
-      suggestions <- c(suggestions, sprintf("pv_focus(p, \"%s\")", top_caller))
+    if (is_user_function(callers$label[1])) {
+      suggestions <- c(
+        suggestions,
+        sprintf("pv_focus(p, \"%s\")", callers$label[1])
+      )
     }
   }
   if (has_source && nrow(func_top_of_stack) > 0) {

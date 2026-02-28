@@ -46,8 +46,7 @@ example_no_source <- function() {
     linenum = rep(NA_real_, 5),
     filenum = rep(NA_real_, 5),
     memalloc = c(100, 150, 150, 200, 200),
-    meminc = c(0, 50, 0, 50, 0),
-    stringsAsFactors = FALSE
+    meminc = c(0, 50, 0, 50, 0)
   )
 
   structure(
@@ -73,8 +72,7 @@ example_recursive <- function() {
     linenum = rep(5, 12),
     filenum = rep(1, 12),
     memalloc = seq(100, 1200, by = 100),
-    meminc = rep(100, 12),
-    stringsAsFactors = FALSE
+    meminc = rep(100, 12)
   )
 
   files <- list(
@@ -135,8 +133,7 @@ example_gc <- function() {
     linenum = as.double(c(5, 5, NA, 5, NA, NA, 5, NA, 5, 5)),
     filenum = as.double(c(1, 1, NA, 1, NA, NA, 1, NA, 1, 1)),
     memalloc = c(100, 200, 200, 300, 300, 300, 400, 400, 500, 600),
-    meminc = c(0, 100, 0, 100, 0, 0, 100, 0, 100, 100),
-    stringsAsFactors = FALSE
+    meminc = c(0, 100, 0, 100, 0, 0, 100, 0, 100, 100)
   )
 
   files <- list(

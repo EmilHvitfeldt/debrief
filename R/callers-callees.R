@@ -16,65 +16,7 @@
 #' pv_callers(p, "inner")
 #' @export
 pv_callers <- function(x, func) {
-  check_profvis(x)
-  check_empty_profile(x)
-
-  prof <- extract_prof(x)
-
-  # Find times when target function appears
-  target_times <- unique(prof$time[prof$label == func])
-
-  if (length(target_times) == 0) {
-    message(sprintf("Function '%s' not found in profiling data.", func))
-    return(data.frame(
-      label = character(),
-      samples = integer(),
-      pct = numeric(),
-      stringsAsFactors = FALSE
-    ))
-  }
-
-  # For each time, find the frame just before (below) the target
-  callers <- lapply(target_times, function(t) {
-    stack <- prof[prof$time == t, ]
-    stack <- stack[order(stack$depth), ]
-
-    target_idx <- which(stack$label == func)
-    if (length(target_idx) == 0) {
-      return(NULL)
-    }
-
-    # Take the first (deepest) occurrence and look at caller
-    target_depth <- stack$depth[target_idx[1]]
-    caller_row <- stack[stack$depth == target_depth - 1, ]
-
-    if (nrow(caller_row) > 0) {
-      caller_row$label[1]
-    } else {
-      "(top-level)"
-    }
-  })
-
-  callers <- unlist(callers)
-  if (length(callers) == 0) {
-    return(data.frame(
-      label = character(),
-      samples = integer(),
-      pct = numeric(),
-      stringsAsFactors = FALSE
-    ))
-  }
-
-  counts <- table(callers)
-  result <- data.frame(
-    label = names(counts),
-    samples = as.integer(counts),
-    stringsAsFactors = FALSE
-  )
-  result$pct <- round(100 * result$samples / sum(result$samples), 1)
-  result <- result[order(-result$samples), ]
-  rownames(result) <- NULL
-  result
+  find_adjacent_functions(x, func, direction = "caller")
 }
 
 #' Get callees of a function
@@ -95,26 +37,34 @@ pv_callers <- function(x, func) {
 #' pv_callees(p, "outer")
 #' @export
 pv_callees <- function(x, func) {
+  find_adjacent_functions(x, func, direction = "callee")
+}
+
+# Shared implementation for callers/callees
+find_adjacent_functions <- function(
+  x,
+  func,
+  direction = c("caller", "callee")
+) {
   check_profvis(x)
   check_empty_profile(x)
+  direction <- match.arg(direction)
 
   prof <- extract_prof(x)
-
-  # Find times when target function appears
   target_times <- unique(prof$time[prof$label == func])
 
   if (length(target_times) == 0) {
     message(sprintf("Function '%s' not found in profiling data.", func))
-    return(data.frame(
-      label = character(),
-      samples = integer(),
-      pct = numeric(),
-      stringsAsFactors = FALSE
-    ))
+    return(empty_label_samples_pct())
   }
 
-  # For each time, find the frame just after (above) the target
-  callees <- lapply(target_times, function(t) {
+  # Configuration based on direction
+  depth_offset <- if (direction == "caller") -1L else 1L
+  use_first_occurrence <- direction == "caller"
+  default_value <- if (direction == "caller") "(top-level)" else NULL
+
+  # Find adjacent function for each time point
+  adjacent <- lapply(target_times, function(t) {
     stack <- prof[prof$time == t, ]
     stack <- stack[order(stack$depth), ]
 
@@ -123,34 +73,40 @@ pv_callees <- function(x, func) {
       return(NULL)
     }
 
-    # Take the last (shallowest/deepest call) occurrence and look at callee
-    target_depth <- stack$depth[target_idx[length(target_idx)]]
-    callee_row <- stack[stack$depth == target_depth + 1, ]
-
-    if (nrow(callee_row) > 0) {
-      callee_row$label[1]
+    # Use first or last occurrence based on direction
+    idx <- if (use_first_occurrence) {
+      target_idx[1]
     } else {
-      NULL # Function is at top of stack (self-time)
+      target_idx[length(target_idx)]
+    }
+    target_depth <- stack$depth[idx]
+    adjacent_row <- stack[stack$depth == target_depth + depth_offset, ]
+
+    if (nrow(adjacent_row) > 0) {
+      adjacent_row$label[1]
+    } else {
+      default_value
     }
   })
 
-  callees <- unlist(callees)
-  if (length(callees) == 0) {
-    return(data.frame(
-      label = character(),
-      samples = integer(),
-      pct = numeric(),
-      stringsAsFactors = FALSE
-    ))
+  adjacent <- unlist(adjacent)
+  if (length(adjacent) == 0) {
+    return(empty_label_samples_pct())
   }
 
-  counts <- table(callees)
+  counts <- table(adjacent)
   result <- data.frame(
     label = names(counts),
-    samples = as.integer(counts),
-    stringsAsFactors = FALSE
+    samples = as.integer(counts)
   )
-  result$pct <- round(100 * result$samples / length(target_times), 1)
+
+  # Percentage denominator differs: callers use sum, callees use target_times
+  denom <- if (direction == "caller") {
+    sum(result$samples)
+  } else {
+    length(target_times)
+  }
+  result$pct <- round(100 * result$samples / denom, 1)
   result <- result[order(-result$samples), ]
   rownames(result) <- NULL
   result
@@ -178,14 +134,12 @@ pv_print_callers_callees <- function(x, func, n = 10) {
   callers <- pv_callers(x, func)
   callees <- pv_callees(x, func)
 
-  prof <- extract_prof(x)
-  interval_ms <- extract_interval(x)
-  total_samples <- extract_total_samples(x)
+  pd <- extract_profile_data(x)
 
   # Get time stats for this function
-  func_times <- unique(prof$time[prof$label == func])
-  func_total_time <- length(func_times) * interval_ms
-  func_pct <- round(100 * length(func_times) / total_samples, 1)
+  func_times <- unique(pd$prof$time[pd$prof$label == func])
+  func_total_time <- length(func_times) * pd$interval_ms
+  func_pct <- round(100 * length(func_times) / pd$total_samples, 1)
 
   cat_header(sprintf("FUNCTION ANALYSIS: %s", func))
   cat("\n")
@@ -226,13 +180,13 @@ pv_print_callers_callees <- function(x, func, n = 10) {
 
   # Next steps suggestions
   suggestions <- c(sprintf("pv_focus(p, \"%s\")", func))
-  if (nrow(callers) > 0 && !grepl("^[(<\\[]", callers$label[1])) {
+  if (nrow(callers) > 0 && is_user_function(callers$label[1])) {
     suggestions <- c(
       suggestions,
       sprintf("pv_focus(p, \"%s\")", callers$label[1])
     )
   }
-  if (nrow(callees) > 0 && !grepl("^[(<\\[]", callees$label[1])) {
+  if (nrow(callees) > 0 && is_user_function(callees$label[1])) {
     suggestions <- c(
       suggestions,
       sprintf("pv_focus(p, \"%s\")", callees$label[1])

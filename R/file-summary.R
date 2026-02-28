@@ -16,22 +16,16 @@
 #' pv_file_summary(p)
 #' @export
 pv_file_summary <- function(x) {
-  check_profvis(x)
-  check_empty_profile(x)
-
-  prof <- extract_prof(x)
-  interval_ms <- extract_interval(x)
-  total_samples <- extract_total_samples(x)
+  pd <- extract_profile_data(x)
 
   # Filter to rows with source info
-  with_source <- prof[!is.na(prof$filename), ]
+  with_source <- pd$prof[!is.na(pd$prof$filename), ]
   if (nrow(with_source) == 0) {
     return(data.frame(
       filename = character(),
       samples = integer(),
       time_ms = numeric(),
-      pct = numeric(),
-      stringsAsFactors = FALSE
+      pct = numeric()
     ))
   }
 
@@ -41,11 +35,10 @@ pv_file_summary <- function(x) {
 
   result <- data.frame(
     filename = names(counts),
-    samples = as.integer(counts),
-    stringsAsFactors = FALSE
+    samples = as.integer(counts)
   )
-  result$time_ms <- result$samples * interval_ms
-  result$pct <- round(100 * result$samples / total_samples, 1)
+  result$time_ms <- result$samples * pd$interval_ms
+  result$pct <- round(100 * result$samples / pd$total_samples, 1)
   result <- result[order(-result$samples), ]
   rownames(result) <- NULL
   result

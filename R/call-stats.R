@@ -22,28 +22,23 @@
 #' pv_call_stats(p)
 #' @export
 pv_call_stats <- function(x, n = NULL) {
-  check_profvis(x)
-  check_empty_profile(x)
-
-  prof <- extract_prof(x)
-  interval_ms <- extract_interval(x)
-  total_samples <- extract_total_samples(x)
+  pd <- extract_profile_data(x)
 
   # Get unique functions
-  all_funcs <- unique(prof$label)
+  all_funcs <- unique(pd$prof$label)
 
   # Pre-calculate top of stack (self-time) once for efficiency
-  top_of_stack <- extract_top_of_stack(prof)
+  top_of_stack <- extract_top_of_stack(pd$prof)
   top_of_stack_times <- split(top_of_stack$label, top_of_stack$time)
 
   # Calculate stats for each function
   stats <- lapply(all_funcs, function(func) {
-    func_rows <- prof[prof$label == func, ]
+    func_rows <- pd$prof[pd$prof$label == func, ]
 
     # Total time: unique time points where function appears
     total_times <- unique(func_rows$time)
     total_samples_func <- length(total_times)
-    total_ms <- total_samples_func * interval_ms
+    total_ms <- total_samples_func * pd$interval_ms
 
     # Self time: times when function is at top of stack
     self_samples <- sum(vapply(
@@ -51,12 +46,12 @@ pv_call_stats <- function(x, n = NULL) {
       function(t) func %in% top_of_stack_times[[t]],
       logical(1)
     ))
-    self_ms <- self_samples * interval_ms
+    self_ms <- self_samples * pd$interval_ms
 
     # Estimate call count by counting "entries" into the function
     # A new call is when the function appears at a time point where it
     # wasn't at the previous time point, or when depth increases
-    call_count <- estimate_call_count(func, prof)
+    call_count <- estimate_call_count(func, pd$prof)
 
     data.frame(
       label = func,
@@ -65,8 +60,7 @@ pv_call_stats <- function(x, n = NULL) {
       self_ms = self_ms,
       child_ms = total_ms - self_ms,
       ms_per_call = if (call_count > 0) total_ms / call_count else 0,
-      pct = round(100 * total_samples_func / total_samples, 1),
-      stringsAsFactors = FALSE
+      pct = round(100 * total_samples_func / pd$total_samples, 1)
     )
   })
 
@@ -173,7 +167,7 @@ pv_print_call_stats <- function(x, n = 20) {
   # Next steps
   if (nrow(stats) > 0) {
     top_func <- stats$label[1]
-    if (!grepl("^[(<\\[]", top_func)) {
+    if (is_user_function(top_func)) {
       cat_next_steps(c(
         sprintf("pv_focus(p, \"%s\")", top_func),
         sprintf("pv_callers(p, \"%s\")", top_func)

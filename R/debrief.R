@@ -138,7 +138,7 @@ pv_print_debrief <- function(
   suggestions <- character()
   if (nrow(self_time) > 0) {
     top_func <- self_time$label[1]
-    if (!grepl("^[(<\\[]", top_func)) {
+    if (is_user_function(top_func)) {
       suggestions <- c(suggestions, sprintf("pv_focus(p, \"%s\")", top_func))
     }
   }

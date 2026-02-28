@@ -23,35 +23,11 @@
 #' pv_self_time(p, min_pct = 5)
 #' @export
 pv_self_time <- function(x, n = NULL, min_pct = 0, min_time_ms = 0) {
-  check_profvis(x)
-  check_empty_profile(x)
-
-  prof <- extract_prof(x)
-  interval_ms <- extract_interval(x)
-  total_samples <- extract_total_samples(x)
-
-  # Get the deepest frame for each time point (self-time)
-  top_of_stack <- extract_top_of_stack(prof)
-
+  pd <- extract_profile_data(x)
+  top_of_stack <- extract_top_of_stack(pd$prof)
   counts <- table(top_of_stack$label)
-  result <- data.frame(
-    label = names(counts),
-    samples = as.integer(counts),
-    stringsAsFactors = FALSE
-  )
-  result$time_ms <- result$samples * interval_ms
-  result$pct <- round(100 * result$samples / total_samples, 1)
-  result <- result[order(-result$samples), ]
-  rownames(result) <- NULL
-
-  # Apply filters
-  result <- result[result$pct >= min_pct & result$time_ms >= min_time_ms, ]
-
-  if (!is.null(n)) {
-    result <- head(result, n)
-  }
-
-  result
+  result <- build_count_result(counts, pd$interval_ms, pd$total_samples)
+  apply_result_filters(result, n, min_pct, min_time_ms)
 }
 
 #' Total time summary by function
@@ -79,33 +55,9 @@ pv_self_time <- function(x, n = NULL, min_pct = 0, min_time_ms = 0) {
 #' pv_total_time(p, min_pct = 50)
 #' @export
 pv_total_time <- function(x, n = NULL, min_pct = 0, min_time_ms = 0) {
-  check_profvis(x)
-  check_empty_profile(x)
-
-  prof <- extract_prof(x)
-  interval_ms <- extract_interval(x)
-  total_samples <- extract_total_samples(x)
-
-  # Count unique time-label combinations
-  unique_pairs <- unique(prof[, c("time", "label")])
+  pd <- extract_profile_data(x)
+  unique_pairs <- unique(pd$prof[, c("time", "label")])
   counts <- table(unique_pairs$label)
-
-  result <- data.frame(
-    label = names(counts),
-    samples = as.integer(counts),
-    stringsAsFactors = FALSE
-  )
-  result$time_ms <- result$samples * interval_ms
-  result$pct <- round(100 * result$samples / total_samples, 1)
-  result <- result[order(-result$samples), ]
-  rownames(result) <- NULL
-
-  # Apply filters
-  result <- result[result$pct >= min_pct & result$time_ms >= min_time_ms, ]
-
-  if (!is.null(n)) {
-    result <- head(result, n)
-  }
-
-  result
+  result <- build_count_result(counts, pd$interval_ms, pd$total_samples)
+  apply_result_filters(result, n, min_pct, min_time_ms)
 }

@@ -17,18 +17,13 @@
 #' pv_call_depth(p)
 #' @export
 pv_call_depth <- function(x) {
-  check_profvis(x)
-  check_empty_profile(x)
-
-  prof <- extract_prof(x)
-  interval_ms <- extract_interval(x)
-  total_samples <- extract_total_samples(x)
+  pd <- extract_profile_data(x)
 
   # Get unique depths present in each time sample
-  depths <- sort(unique(prof$depth))
+  depths <- sort(unique(pd$prof$depth))
 
   result <- lapply(depths, function(d) {
-    at_depth <- prof[prof$depth == d, ]
+    at_depth <- pd$prof[pd$prof$depth == d, ]
     unique_times <- unique(at_depth$time)
     n_samples <- length(unique_times)
 
@@ -39,10 +34,9 @@ pv_call_depth <- function(x) {
     data.frame(
       depth = d,
       samples = n_samples,
-      time_ms = n_samples * interval_ms,
-      pct = round(100 * n_samples / total_samples, 1),
-      top_funcs = top_funcs,
-      stringsAsFactors = FALSE
+      time_ms = n_samples * pd$interval_ms,
+      pct = round(100 * n_samples / pd$total_samples, 1),
+      top_funcs = top_funcs
     )
   })
 
@@ -95,7 +89,7 @@ pv_print_call_depth <- function(x) {
     if (
       !is.na(first_func) &&
         nchar(first_func) > 0 &&
-        !grepl("^[(<\\[]", first_func)
+        is_user_function(first_func)
     ) {
       cat_next_steps(c(
         sprintf("pv_focus(p, \"%s\")", first_func),

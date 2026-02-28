@@ -122,7 +122,7 @@ pv_source_context <- function(x, filename, linenum = NULL, context = 10) {
     if (nrow(hot_line_prof) > 0) {
       func <- hot_line_prof$label[1]
       suggestions <- "pv_hot_lines(p)"
-      if (!grepl("^[(<\\[]", func)) {
+      if (is_user_function(func)) {
         suggestions <- c(sprintf("pv_focus(p, \"%s\")", func), suggestions)
       }
       cat_next_steps(suggestions)
@@ -139,8 +139,7 @@ aggregate_lines <- function(file_prof, interval_ms, total_samples) {
       samples = integer(),
       time_ms = numeric(),
       pct = numeric(),
-      mem_mb = numeric(),
-      stringsAsFactors = FALSE
+      mem_mb = numeric()
     ))
   }
 
@@ -154,8 +153,7 @@ aggregate_lines <- function(file_prof, interval_ms, total_samples) {
 
   result <- data.frame(
     linenum = as.integer(names(line_counts)),
-    samples = as.integer(line_counts),
-    stringsAsFactors = FALSE
+    samples = as.integer(line_counts)
   )
   result$time_ms <- result$samples * interval_ms
   result$pct <- round(100 * result$samples / total_samples, 1)

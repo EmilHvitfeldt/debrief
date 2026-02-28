@@ -19,13 +19,8 @@
 #' pv_suggestions(p)
 #' @export
 pv_suggestions <- function(x) {
-  check_profvis(x)
-  check_empty_profile(x)
-
-  prof <- extract_prof(x)
-  interval_ms <- extract_interval(x)
-  total_samples <- extract_total_samples(x)
-  total_time <- total_samples * interval_ms
+  pd <- extract_profile_data(x)
+  total_time <- pd$total_samples * pd$interval_ms
   has_source <- has_source_refs(x)
 
   suggestions <- list()
@@ -33,32 +28,52 @@ pv_suggestions <- function(x) {
   # Check for data frame subsetting in recursion
   suggestions <- c(
     suggestions,
-    suggest_df_vectorization(prof, interval_ms, total_samples, total_time)
+    suggest_df_vectorization(
+      pd$prof,
+      pd$interval_ms,
+      pd$total_samples,
+      total_time
+    )
   )
 
   # Check for recursive functions
   suggestions <- c(
     suggestions,
-    suggest_recursion_optimization(prof, interval_ms, total_samples, total_time)
+    suggest_recursion_optimization(
+      pd$prof,
+      pd$interval_ms,
+      pd$total_samples,
+      total_time
+    )
   )
 
   # Check for GC pressure
   suggestions <- c(
     suggestions,
-    suggest_gc_reduction(prof, interval_ms, total_samples, total_time)
+    suggest_gc_reduction(pd$prof, pd$interval_ms, pd$total_samples, total_time)
   )
 
   # Check for string operations
   suggestions <- c(
     suggestions,
-    suggest_string_optimization(prof, interval_ms, total_samples, total_time)
+    suggest_string_optimization(
+      pd$prof,
+      pd$interval_ms,
+      pd$total_samples,
+      total_time
+    )
   )
 
   # Check for hot lines (if source available)
   if (has_source) {
     suggestions <- c(
       suggestions,
-      suggest_hotline_optimization(x, interval_ms, total_samples, total_time)
+      suggest_hotline_optimization(
+        x,
+        pd$interval_ms,
+        pd$total_samples,
+        total_time
+      )
     )
   }
 
@@ -66,9 +81,9 @@ pv_suggestions <- function(x) {
   suggestions <- c(
     suggestions,
     suggest_top_function_optimization(
-      prof,
-      interval_ms,
-      total_samples,
+      pd$prof,
+      pd$interval_ms,
+      pd$total_samples,
       total_time
     )
   )
@@ -81,8 +96,7 @@ pv_suggestions <- function(x) {
       action = character(),
       pattern = character(),
       replacement = character(),
-      potential_impact = character(),
-      stringsAsFactors = FALSE
+      potential_impact = character()
     ))
   }
 
@@ -120,8 +134,7 @@ suggest_df_vectorization <- function(
         "Up to %.0f ms (%.0f%%)",
         df_time * 0.8,
         df_pct * 0.8
-      ),
-      stringsAsFactors = FALSE
+      )
     ))
   } else {
     list()
@@ -154,7 +167,7 @@ suggest_recursion_optimization <- function(
     func_time <- recursive_stats[[func]] * interval_ms
     func_pct <- 100 * func_time / total_time
 
-    if (func_pct > 20 && !grepl("^[.<\\[]", func)) {
+    if (func_pct > 20 && is_user_function(func)) {
       # Skip internal functions
       suggestions[[length(suggestions) + 1]] <- data.frame(
         priority = 2L,
@@ -167,8 +180,7 @@ suggest_recursion_optimization <- function(
           "Potentially %.0f ms (%.0f%%)",
           func_time * 0.3,
           func_pct * 0.3
-        ),
-        stringsAsFactors = FALSE
+        )
       )
     }
   }
@@ -193,8 +205,7 @@ suggest_gc_reduction <- function(prof, interval_ms, total_samples, total_time) {
         "Up to %.0f ms (%.0f%%)",
         gc_time * 0.5,
         gc_pct * 0.5
-      ),
-      stringsAsFactors = FALSE
+      )
     ))
   } else {
     list()
@@ -248,8 +259,7 @@ suggest_string_optimization <- function(
         "Up to %.0f ms (%.0f%%)",
         total_string_time * 0.5,
         string_pct * 0.5
-      ),
-      stringsAsFactors = FALSE
+      )
     ))
   } else {
     list()
@@ -279,8 +289,7 @@ suggest_hotline_optimization <- function(
         action = sprintf("Optimize hot line (%.1f%%)", row$pct),
         pattern = truncate_string(row$label, 50),
         replacement = NA_character_,
-        potential_impact = sprintf("%.0f ms (%.1f%%)", row$time_ms, row$pct),
-        stringsAsFactors = FALSE
+        potential_impact = sprintf("%.0f ms (%.1f%%)", row$time_ms, row$pct)
       )
     }
   }
@@ -303,7 +312,7 @@ suggest_top_function_optimization <- function(
   top_pct <- 100 * top_time / total_time
 
   # Only suggest if it's not an internal R function
-  if (top_pct > 10 && !grepl("^[.<\\[]|^<", top_func)) {
+  if (top_pct > 10 && is_user_function(top_func)) {
     list(data.frame(
       priority = 2L,
       category = "hot function",
@@ -311,8 +320,7 @@ suggest_top_function_optimization <- function(
       action = sprintf("Profile in isolation (%.1f%% self-time)", top_pct),
       pattern = top_func,
       replacement = NA_character_,
-      potential_impact = sprintf("%.0f ms (%.1f%%)", top_time, top_pct),
-      stringsAsFactors = FALSE
+      potential_impact = sprintf("%.0f ms (%.1f%%)", top_time, top_pct)
     ))
   } else {
     list()
@@ -370,9 +378,7 @@ pv_print_suggestions <- function(x) {
     top_loc <- suggestions$location[1]
     # Check if location looks like a function name (not a file:line or internal)
     if (
-      !grepl(":", top_loc) &&
-        !grepl(" ", top_loc) &&
-        !grepl("^[(<\\[]", top_loc)
+      !grepl(":", top_loc) && !grepl(" ", top_loc) && is_user_function(top_loc)
     ) {
       cat_next_steps(c(
         sprintf("pv_focus(p, \"%s\")", top_loc),

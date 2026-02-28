@@ -47,8 +47,7 @@ pv_compare <- function(before, after, n = 20) {
       sprintf("%+.0f ms (%+.1f%%)", time_diff, time_pct_change),
       sprintf("%+d", after_samples - before_samples),
       sprintf("%.2fx", speedup)
-    ),
-    stringsAsFactors = FALSE
+    )
   )
 
   # Function-by-function comparison (self-time)
@@ -78,8 +77,7 @@ pv_compare <- function(before, after, n = 20) {
       before_ms = before_ms,
       after_ms = after_ms,
       diff_ms = diff_ms,
-      pct_change = pct_change,
-      stringsAsFactors = FALSE
+      pct_change = pct_change
     )
   })
 
@@ -205,7 +203,7 @@ pv_print_compare <- function(before, after, n = 15) {
   suggestions <- character()
   if (nrow(comp$by_function) > 0) {
     top_func <- comp$by_function$label[1]
-    if (!grepl("^[(<\\[]", top_func)) {
+    if (is_user_function(top_func)) {
       suggestions <- c(
         suggestions,
         sprintf("pv_focus(p_before, \"%s\")", top_func),
@@ -285,8 +283,7 @@ pv_compare_many <- function(...) {
     data.frame(
       name = nm,
       time_ms = time_ms,
-      samples = samples,
-      stringsAsFactors = FALSE
+      samples = samples
     )
   })
 

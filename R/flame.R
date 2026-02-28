@@ -15,13 +15,8 @@
 #' pv_flame(p)
 #' @export
 pv_flame <- function(x, width = 70, min_pct = 2, max_depth = 15) {
-  check_profvis(x)
-  check_empty_profile(x)
-
-  prof <- extract_prof(x)
-  interval_ms <- extract_interval(x)
-  total_samples <- extract_total_samples(x)
-  total_time <- total_samples * interval_ms
+  pd <- extract_profile_data(x)
+  total_time <- pd$total_samples * pd$interval_ms
 
   cat_header("FLAME GRAPH (text)")
   cat("\n")
@@ -33,10 +28,10 @@ pv_flame <- function(x, width = 70, min_pct = 2, max_depth = 15) {
   ))
 
   # Build and print flame tree using path-based approach
-  tree <- build_flame_tree_v2(prof, total_samples)
+  tree <- build_flame_tree_v2(pd$prof, pd$total_samples)
 
   # Print the tree
-  print_flame_tree(tree, width, min_pct, total_samples, max_depth)
+  print_flame_tree(tree, width, min_pct, pd$total_samples, max_depth)
 
   cat("\nLegend: [====] = time spent, width proportional to time\n")
 
@@ -45,7 +40,7 @@ pv_flame <- function(x, width = 70, min_pct = 2, max_depth = 15) {
     items <- tree[[1]][order(-sapply(tree[[1]], function(x) x$samples))]
     top_func <- items[[1]]$name
     suggestions <- "pv_hot_paths(p)"
-    if (!grepl("^[(<\\[]", top_func)) {
+    if (is_user_function(top_func)) {
       suggestions <- c(sprintf("pv_focus(p, \"%s\")", top_func), suggestions)
     }
     cat_next_steps(suggestions)
@@ -143,22 +138,17 @@ print_flame_tree <- function(tree, width, min_pct, total_samples, max_depth) {
 #' @return Invisibly returns a data frame with path, samples, and pct columns.
 #' @export
 pv_flame_condense <- function(x, n = 10, width = 50) {
-  check_profvis(x)
-  check_empty_profile(x)
-
-  prof <- extract_prof(x)
-  interval_ms <- extract_interval(x)
-  total_samples <- extract_total_samples(x)
+  pd <- extract_profile_data(x)
 
   cat_header("CONDENSED FLAME VIEW")
   cat("\n")
 
   # Get unique paths and their frequencies
-  times <- unique(prof$time)
+  times <- unique(pd$prof$time)
 
   path_counts <- list()
   for (t in times) {
-    stack <- prof[prof$time == t, ]
+    stack <- pd$prof[pd$prof$time == t, ]
     stack <- stack[order(stack$depth), ]
     path <- paste(stack$label, collapse = " > ")
 
@@ -171,16 +161,15 @@ pv_flame_condense <- function(x, n = 10, width = 50) {
   # Convert to data frame and sort
   paths_df <- data.frame(
     path = names(path_counts),
-    samples = unlist(path_counts),
-    stringsAsFactors = FALSE
+    samples = unlist(path_counts)
   )
   paths_df <- paths_df[order(-paths_df$samples), ]
-  paths_df$pct <- round(100 * paths_df$samples / total_samples, 1)
+  paths_df$pct <- round(100 * paths_df$samples / pd$total_samples, 1)
 
   # Show top n paths
   for (i in seq_len(min(n, nrow(paths_df)))) {
     row <- paths_df[i, ]
-    bar_width <- max(1, round(width * row$samples / total_samples))
+    bar_width <- max(1, round(width * row$samples / pd$total_samples))
     bar <- strrep("#", bar_width)
 
     cat(sprintf("\n%s %.1f%% (%d samples)\n", bar, row$pct, row$samples))
@@ -198,7 +187,7 @@ pv_flame_condense <- function(x, n = 10, width = 50) {
     parts <- strsplit(paths_df$path[1], " > ")[[1]]
     leaf_func <- parts[length(parts)]
     suggestions <- "pv_hot_lines(p)"
-    if (!grepl("^[(<\\[]", leaf_func)) {
+    if (is_user_function(leaf_func)) {
       suggestions <- c(sprintf("pv_focus(p, \"%s\")", leaf_func), suggestions)
     }
     cat_next_steps(suggestions)

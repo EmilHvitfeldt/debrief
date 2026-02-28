@@ -19,16 +19,11 @@
 #' pv_hot_paths(p)
 #' @export
 pv_hot_paths <- function(x, n = NULL, include_source = TRUE) {
-  check_profvis(x)
-  check_empty_profile(x)
-
-  prof <- extract_prof(x)
-  interval_ms <- extract_interval(x)
-  total_samples <- extract_total_samples(x)
+  pd <- extract_profile_data(x)
   has_source <- has_source_refs(x)
 
   # Build call stacks (bottom-up: caller first)
-  prof_sorted <- prof[order(prof$time, prof$depth), ]
+  prof_sorted <- pd$prof[order(pd$prof$time, pd$prof$depth), ]
 
   # Create label with optional source location
   if (has_source && include_source) {
@@ -56,18 +51,16 @@ pv_hot_paths <- function(x, n = NULL, include_source = TRUE) {
 
   stack_df <- data.frame(
     time = as.integer(names(stacks)),
-    stack = as.character(stacks),
-    stringsAsFactors = FALSE
+    stack = as.character(stacks)
   )
 
   counts <- table(stack_df$stack)
   result <- data.frame(
     stack = names(counts),
-    samples = as.integer(counts),
-    stringsAsFactors = FALSE
+    samples = as.integer(counts)
   )
-  result$time_ms <- result$samples * interval_ms
-  result$pct <- round(100 * result$samples / total_samples, 1)
+  result$time_ms <- result$samples * pd$interval_ms
+  result$pct <- round(100 * result$samples / pd$total_samples, 1)
   result <- result[order(-result$samples), ]
   rownames(result) <- NULL
 
@@ -126,7 +119,7 @@ pv_print_hot_paths <- function(x, n = 10, include_source = TRUE) {
     # Remove source info if present: "func (file:line)" -> "func"
     leaf_func <- sub(" \\(.*\\)$", "", parts[length(parts)])
     suggestions <- "pv_flame(p)"
-    if (!grepl("^[(<\\[]", leaf_func)) {
+    if (is_user_function(leaf_func)) {
       suggestions <- c(sprintf("pv_focus(p, \"%s\")", leaf_func), suggestions)
     }
     cat_next_steps(suggestions)

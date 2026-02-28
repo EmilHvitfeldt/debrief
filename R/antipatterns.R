@@ -37,22 +37,17 @@
 #' pv_gc_pressure(p2)
 #' @export
 pv_gc_pressure <- function(x, threshold = 10) {
-  check_profvis(x)
-  check_empty_profile(x)
-
-  prof <- extract_prof(x)
-  interval_ms <- extract_interval(x)
-  total_samples <- extract_total_samples(x)
+  pd <- extract_profile_data(x)
 
   # Detect GC pressure - the one universal anti-pattern signal
-  gc_times <- unique(prof$time[prof$label == "<GC>"])
+  gc_times <- unique(pd$prof$time[pd$prof$label == "<GC>"])
 
   if (length(gc_times) == 0) {
     return(empty_gc_pressure_df())
   }
 
-  time_ms <- length(gc_times) * interval_ms
-  pct <- round(100 * length(gc_times) / total_samples, 1)
+  time_ms <- length(gc_times) * pd$interval_ms
+  pct <- round(100 * length(gc_times) / pd$total_samples, 1)
 
   # Only report if GC exceeds threshold
   if (pct <= threshold) {
@@ -73,8 +68,7 @@ pv_gc_pressure <- function(x, threshold = 10) {
     time_ms = time_ms,
     issue = sprintf("High GC overhead (%.1f%%)", pct),
     cause = "Excessive memory allocation",
-    actions = "growing vectors, repeated data frame ops, unnecessary copies",
-    stringsAsFactors = FALSE
+    actions = "growing vectors, repeated data frame ops, unnecessary copies"
   )
 }
 
@@ -85,8 +79,7 @@ empty_gc_pressure_df <- function() {
     time_ms = numeric(),
     issue = character(),
     cause = character(),
-    actions = character(),
-    stringsAsFactors = FALSE
+    actions = character()
   )
 }
 
