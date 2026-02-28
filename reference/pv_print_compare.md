@@ -32,15 +32,17 @@ Invisibly returns the comparison list.
 p1 <- pv_example()
 p2 <- pv_example()
 pv_print_compare(p1, p2)
-#> ====================================================================== 
-#>                           PROFILE COMPARISON
-#> ====================================================================== 
+#> ## PROFILE COMPARISON
 #> 
-#> --- Overall ----------------------------------------------------------
-#> NO CHANGE: 70 ms
 #> 
-#> --- Biggest Changes --------------------------------------------------
+#> 
+#> ### Overall
+#> before_ms: 70
+#> after_ms: 70
+#> diff_ms: +0
+#> speedup: 1.00x
+#> 
+#> ### Biggest Changes
 #> Function                           Before      After       Diff   Change
-#> ------------------------------------------------------------------------ 
 #> 
 ```

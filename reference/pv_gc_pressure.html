@@ -62,7 +62,9 @@ detect smaller GC overhead.</p></dd>
     <p>A data frame with columns:</p><ul><li><p><code>severity</code>: "high" (&gt;25%), "medium" (&gt;15%), or "low" (&gt;threshold%)</p></li>
 <li><p><code>pct</code>: Percentage of total time spent in GC</p></li>
 <li><p><code>time_ms</code>: Time spent in garbage collection</p></li>
-<li><p><code>description</code>: Explanation of the issue</p></li>
+<li><p><code>issue</code>: Short description of the problem</p></li>
+<li><p><code>cause</code>: What typically causes this issue</p></li>
+<li><p><code>actions</code>: Comma-separated list of things to look for</p></li>
 </ul><p>Returns an empty data frame (0 rows) if GC is below the threshold.</p>
     </div>
     <div class="section level2">
@@ -78,22 +80,22 @@ discarding memory faster than necessary. Common causes include:</p><ul><li><p>Gr
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="pv_example.html">pv_example</a></span><span class="op">(</span><span class="st">"gc"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">pv_gc_pressure</span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   severity pct time_ms</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     high  40      40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                                                                                 description</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 High garbage collection overhead (40.0% of time). Indicates excessive memory allocation. Look for growing vectors, repeated data frame operations, or unnecessary copies.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   severity pct time_ms                    issue                       cause</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     high  40      40 High GC overhead (40.0%) Excessive memory allocation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                        actions</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 growing vectors, repeated data frame ops, unnecessary copies</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># More sensitive detection</span></span></span>
 <span class="r-in"><span><span class="fu">pv_gc_pressure</span><span class="op">(</span><span class="va">p</span>, threshold <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   severity pct time_ms</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     high  40      40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                                                                                 description</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 High garbage collection overhead (40.0% of time). Indicates excessive memory allocation. Look for growing vectors, repeated data frame operations, or unnecessary copies.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   severity pct time_ms                    issue                       cause</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     high  40      40 High GC overhead (40.0%) Excessive memory allocation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                        actions</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 growing vectors, repeated data frame ops, unnecessary copies</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># No GC pressure in default example</span></span></span>
 <span class="r-in"><span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="pv_example.html">pv_example</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">pv_gc_pressure</span><span class="op">(</span><span class="va">p2</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] severity    pct         time_ms     description</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] severity pct      time_ms  issue    cause    actions </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;0 rows&gt; (or 0-length row.names)</span>
 </code></pre></div>
     </div>

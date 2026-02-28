@@ -31,22 +31,21 @@ Invisibly returns the hot paths data frame.
 ``` r
 p <- pv_example()
 pv_print_hot_paths(p, n = 3)
-#> ====================================================================== 
-#>                             HOT CALL PATHS
-#> ====================================================================== 
+#> ## HOT CALL PATHS
+#> 
 #> 
 #> Rank 1: 30 ms (42.9%) - 6 samples
 #>     process_data
-#>   → generate_data (example_code.R:5)
-#>   → rnorm (example_code.R:13)
+#>   -> generate_data (example_code.R:5)
+#>   -> rnorm (example_code.R:13)
 #> 
 #> Rank 2: 20 ms (28.6%) - 4 samples
 #>     process_data
-#>   → generate_data (example_code.R:5)
-#>   → x[i] <- rnorm(1) (example_code.R:13)
+#>   -> generate_data (example_code.R:5)
+#>   -> x[i] <- rnorm(1) (example_code.R:13)
 #> 
 #> Rank 3: 15 ms (21.4%) - 3 samples
 #>     process_data
-#>   → generate_data (example_code.R:5)
+#>   -> generate_data (example_code.R:5)
 #> 
 ```

@@ -27,11 +27,13 @@ Invisibly returns the GC pressure data frame.
 ``` r
 p <- pv_example("gc")
 pv_print_gc_pressure(p)
-#> ====================================================================== 
-#>                              GC PRESSURE
-#> ====================================================================== 
+#> ## GC PRESSURE
 #> 
-#> [!!!] GC consuming 40.0% of time (40 ms)
 #> 
-#> High garbage collection overhead (40.0% of time). Indicates excessive memory allocation. Look for growing vectors, repeated data frame operations, or unnecessary copies. 
+#> severity: high
+#> pct: 40.0
+#> time_ms: 40
+#> issue: High GC overhead (40.0%)
+#> cause: Excessive memory allocation
+#> actions: growing vectors, repeated data frame ops, unnecessary copies
 ```

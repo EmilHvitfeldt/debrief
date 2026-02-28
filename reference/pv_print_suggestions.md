@@ -23,26 +23,30 @@ Invisibly returns the suggestions data frame.
 ``` r
 p <- pv_example("gc")
 pv_print_suggestions(p)
-#> ====================================================================== 
-#>                        OPTIMIZATION SUGGESTIONS
-#> ====================================================================== 
+#> ## OPTIMIZATION SUGGESTIONS
 #> 
-#> Suggestions are ordered by priority (1 = highest impact).
 #> 
-#> === Priority 1 ===
+#> ### Priority 1
 #> 
-#> [hot line] R/work.R:5
-#>     Line 'work' at R/work.R:5 consumes 60.0% of time. Focus optimization efforts here first.
-#>     Potential impact: 60 ms (60.0%)
+#> category: hot line
+#> location: R/work.R:5
+#> action: Optimize hot line (60.0%)
+#> pattern: work
+#> potential_impact: 60 ms (60.0%)
 #> 
-#> === Priority 2 ===
+#> ### Priority 2
 #> 
-#> [memory] memory allocation hotspots
-#>     High GC overhead detected. Pre-allocate vectors/lists to final size instead of growing them. Avoid creating unnecessary intermediate objects. Consider reusing objects where possible.
-#>     Potential impact: Up to 20 ms (20%)
+#> category: memory
+#> location: memory allocation hotspots
+#> action: Reduce memory allocation
+#> pattern: c(x, new), rbind(), growing vectors
+#> replacement: pre-allocate to final size
+#> potential_impact: Up to 20 ms (20%)
 #> 
-#> [hot function] work
-#>     Function 'work' has highest self-time (60.0%). Profile this function in isolation to find micro-optimization opportunities.
-#>     Potential impact: 60 ms (60.0%)
+#> category: hot function
+#> location: work
+#> action: Profile in isolation (60.0% self-time)
+#> pattern: work
+#> potential_impact: 60 ms (60.0%)
 #> 
 ```

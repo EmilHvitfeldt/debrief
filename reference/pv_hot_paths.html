@@ -73,11 +73,11 @@ file:line information in the path labels.</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="pv_example.html">pv_example</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">pv_hot_paths</span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                     stack</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                             process_data → generate_data (example_code.R:5) → rnorm (example_code.R:13)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                  process_data → generate_data (example_code.R:5) → x[i] &lt;- rnorm(1) (example_code.R:13)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                                                         process_data → generate_data (example_code.R:5)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 process_data → transform_data (example_code.R:6) → result[i] &lt;- sqrt(abs(x[i])) * 2 (example_code.R:21)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                       stack</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                             process_data -&gt; generate_data (example_code.R:5) -&gt; rnorm (example_code.R:13)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                  process_data -&gt; generate_data (example_code.R:5) -&gt; x[i] &lt;- rnorm(1) (example_code.R:13)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                                                          process_data -&gt; generate_data (example_code.R:5)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 process_data -&gt; transform_data (example_code.R:6) -&gt; result[i] &lt;- sqrt(abs(x[i])) * 2 (example_code.R:21)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   samples time_ms  pct</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1       6      30 42.9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2       4      20 28.6</span>

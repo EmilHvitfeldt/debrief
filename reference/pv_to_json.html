@@ -96,7 +96,7 @@ and returns the file path invisibly.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     "total_samples": 14,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     "interval_ms": 5,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     "has_source_refs": true,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     "exported_at": "2026-02-28T00:45:09+0000"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     "exported_at": "2026-02-28T01:55:19+0000"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   },</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   "summary": {</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     "total_time_ms": 70,</span>
@@ -244,29 +244,37 @@ and returns the file path invisibly.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     {</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "priority": 1,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "category": "hot line",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "suggestion": "Line 'rnorm' at example_code.R:13 consumes 71.4% of time. Focus optimization efforts here first.",</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "location": "example_code.R:13",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "action": "Optimize hot line (71.4%)",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "pattern": "rnorm",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "replacement": null,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "potential_impact": "50 ms (71.4%)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     },</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     {</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "priority": 1,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "category": "hot line",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "suggestion": "Line 'generate_data' at example_code.R:5 consumes 21.4% of time. Focus optimization efforts here first.",</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "location": "example_code.R:5",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "action": "Optimize hot line (21.4%)",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "pattern": "generate_data",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "replacement": null,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "potential_impact": "15 ms (21.4%)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     },</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     {</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "priority": 1,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "category": "hot line",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "suggestion": "Line 'result[i] &lt;- sqrt(abs(x[i])...' at example_code.R:21 consumes 7.1% of time. Focus optimization efforts here first.",</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "location": "example_code.R:21",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "action": "Optimize hot line (7.1%)",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "pattern": "result[i] &lt;- sqrt(abs(x[i])) * 2",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "replacement": null,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "potential_impact": "5 ms (7.1%)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     },</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     {</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "priority": 2,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "category": "hot function",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       "suggestion": "Function 'rnorm' has highest self-time (42.9%). Profile this function in isolation to find micro-optimization opportunities.",</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "location": "rnorm",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "action": "Profile in isolation (42.9% self-time)",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "pattern": "rnorm",</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       "replacement": null,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "potential_impact": "30 ms (42.9%)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     }</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ],</span>

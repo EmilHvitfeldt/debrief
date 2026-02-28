@@ -27,12 +27,10 @@ Invisibly returns the call stats data frame.
 ``` r
 p <- pv_example()
 pv_print_call_stats(p)
-#> ====================================================================== 
-#>                            CALL STATISTICS
-#> ====================================================================== 
+#> ## CALL STATISTICS
+#> 
 #> 
 #> Function                               Calls   Total ms    Self ms    ms/call    Pct
-#> ------------------------------------------------------------------------------------- 
 #> process_data                               1         70          0      70.00 100.0%
 #> generate_data                              2         65         15      32.50  92.9%
 #> rnorm                                      4         30         30       7.50  42.9%

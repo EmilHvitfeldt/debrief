@@ -41,11 +41,11 @@ A data frame with columns:
 ``` r
 p <- pv_example()
 pv_hot_paths(p)
-#>                                                                                                     stack
-#> 1                             process_data → generate_data (example_code.R:5) → rnorm (example_code.R:13)
-#> 2                  process_data → generate_data (example_code.R:5) → x[i] <- rnorm(1) (example_code.R:13)
-#> 3                                                         process_data → generate_data (example_code.R:5)
-#> 4 process_data → transform_data (example_code.R:6) → result[i] <- sqrt(abs(x[i])) * 2 (example_code.R:21)
+#>                                                                                                       stack
+#> 1                             process_data -> generate_data (example_code.R:5) -> rnorm (example_code.R:13)
+#> 2                  process_data -> generate_data (example_code.R:5) -> x[i] <- rnorm(1) (example_code.R:13)
+#> 3                                                          process_data -> generate_data (example_code.R:5)
+#> 4 process_data -> transform_data (example_code.R:6) -> result[i] <- sqrt(abs(x[i])) * 2 (example_code.R:21)
 #>   samples time_ms  pct
 #> 1       6      30 42.9
 #> 2       4      20 28.6

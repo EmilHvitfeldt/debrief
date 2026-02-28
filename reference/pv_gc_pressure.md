@@ -30,7 +30,11 @@ A data frame with columns:
 
 - `time_ms`: Time spent in garbage collection
 
-- `description`: Explanation of the issue
+- `issue`: Short description of the problem
+
+- `cause`: What typically causes this issue
+
+- `actions`: Comma-separated list of things to look for
 
 Returns an empty data frame (0 rows) if GC is below the threshold.
 
@@ -53,21 +57,21 @@ discarding memory faster than necessary. Common causes include:
 ``` r
 p <- pv_example("gc")
 pv_gc_pressure(p)
-#>   severity pct time_ms
-#> 1     high  40      40
-#>                                                                                                                                                                 description
-#> 1 High garbage collection overhead (40.0% of time). Indicates excessive memory allocation. Look for growing vectors, repeated data frame operations, or unnecessary copies.
+#>   severity pct time_ms                    issue                       cause
+#> 1     high  40      40 High GC overhead (40.0%) Excessive memory allocation
+#>                                                        actions
+#> 1 growing vectors, repeated data frame ops, unnecessary copies
 
 # More sensitive detection
 pv_gc_pressure(p, threshold = 5)
-#>   severity pct time_ms
-#> 1     high  40      40
-#>                                                                                                                                                                 description
-#> 1 High garbage collection overhead (40.0% of time). Indicates excessive memory allocation. Look for growing vectors, repeated data frame operations, or unnecessary copies.
+#>   severity pct time_ms                    issue                       cause
+#> 1     high  40      40 High GC overhead (40.0%) Excessive memory allocation
+#>                                                        actions
+#> 1 growing vectors, repeated data frame ops, unnecessary copies
 
 # No GC pressure in default example
 p2 <- pv_example()
 pv_gc_pressure(p2)
-#> [1] severity    pct         time_ms     description
+#> [1] severity pct      time_ms  issue    cause    actions 
 #> <0 rows> (or 0-length row.names)
 ```

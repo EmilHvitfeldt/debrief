@@ -34,17 +34,16 @@ p <- pv_example()
 pv_print_callers_callees(p, "inner")
 #> Function 'inner' not found in profiling data.
 #> Function 'inner' not found in profiling data.
-#> ====================================================================== 
-#>                        FUNCTION ANALYSIS: inner
-#> ====================================================================== 
+#> ## FUNCTION ANALYSIS: inner
+#> 
 #> 
 #> Total time: 0 ms (0.0% of profile)
 #> Appearances: 0 samples
 #> 
-#> --- Called by --------------------------------------------------
-#>   (no callers found - may be entry point)
+#> ### Called by
+#>   Callers: none
 #> 
-#> --- Calls to ---------------------------------------------------
-#>   (no callees - all time is self-time)
+#> ### Calls to
+#>   Callees: none
 #> 
 ```

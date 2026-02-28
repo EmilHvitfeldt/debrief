@@ -60,7 +60,7 @@ cat(json)
 #>     "total_samples": 14,
 #>     "interval_ms": 5,
 #>     "has_source_refs": true,
-#>     "exported_at": "2026-02-28T00:45:09+0000"
+#>     "exported_at": "2026-02-28T01:55:19+0000"
 #>   },
 #>   "summary": {
 #>     "total_time_ms": 70,
@@ -208,29 +208,37 @@ cat(json)
 #>     {
 #>       "priority": 1,
 #>       "category": "hot line",
-#>       "suggestion": "Line 'rnorm' at example_code.R:13 consumes 71.4% of time. Focus optimization efforts here first.",
 #>       "location": "example_code.R:13",
+#>       "action": "Optimize hot line (71.4%)",
+#>       "pattern": "rnorm",
+#>       "replacement": null,
 #>       "potential_impact": "50 ms (71.4%)"
 #>     },
 #>     {
 #>       "priority": 1,
 #>       "category": "hot line",
-#>       "suggestion": "Line 'generate_data' at example_code.R:5 consumes 21.4% of time. Focus optimization efforts here first.",
 #>       "location": "example_code.R:5",
+#>       "action": "Optimize hot line (21.4%)",
+#>       "pattern": "generate_data",
+#>       "replacement": null,
 #>       "potential_impact": "15 ms (21.4%)"
 #>     },
 #>     {
 #>       "priority": 1,
 #>       "category": "hot line",
-#>       "suggestion": "Line 'result[i] <- sqrt(abs(x[i])...' at example_code.R:21 consumes 7.1% of time. Focus optimization efforts here first.",
 #>       "location": "example_code.R:21",
+#>       "action": "Optimize hot line (7.1%)",
+#>       "pattern": "result[i] <- sqrt(abs(x[i])) * 2",
+#>       "replacement": null,
 #>       "potential_impact": "5 ms (7.1%)"
 #>     },
 #>     {
 #>       "priority": 2,
 #>       "category": "hot function",
-#>       "suggestion": "Function 'rnorm' has highest self-time (42.9%). Profile this function in isolation to find micro-optimization opportunities.",
 #>       "location": "rnorm",
+#>       "action": "Profile in isolation (42.9% self-time)",
+#>       "pattern": "rnorm",
+#>       "replacement": null,
 #>       "potential_impact": "30 ms (42.9%)"
 #>     }
 #>   ],

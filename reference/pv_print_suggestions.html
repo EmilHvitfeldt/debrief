@@ -58,27 +58,31 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="pv_example.html">pv_example</a></span><span class="op">(</span><span class="st">"gc"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">pv_print_suggestions</span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ====================================================================== </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                        OPTIMIZATION SUGGESTIONS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ====================================================================== </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ## OPTIMIZATION SUGGESTIONS</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Suggestions are ordered by priority (1 = highest impact).</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> === Priority 1 ===</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ### Priority 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [hot line] R/work.R:5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Line 'work' at R/work.R:5 consumes 60.0% of time. Focus optimization efforts here first.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Potential impact: 60 ms (60.0%)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> category: hot line</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> location: R/work.R:5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> action: Optimize hot line (60.0%)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pattern: work</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> potential_impact: 60 ms (60.0%)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> === Priority 2 ===</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ### Priority 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [memory] memory allocation hotspots</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     High GC overhead detected. Pre-allocate vectors/lists to final size instead of growing them. Avoid creating unnecessary intermediate objects. Consider reusing objects where possible.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Potential impact: Up to 20 ms (20%)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> category: memory</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> location: memory allocation hotspots</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> action: Reduce memory allocation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pattern: c(x, new), rbind(), growing vectors</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> replacement: pre-allocate to final size</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> potential_impact: Up to 20 ms (20%)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [hot function] work</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Function 'work' has highest self-time (60.0%). Profile this function in isolation to find micro-optimization opportunities.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Potential impact: 60 ms (60.0%)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> category: hot function</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> location: work</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> action: Profile in isolation (60.0% self-time)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pattern: work</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> potential_impact: 60 ms (60.0%)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

@@ -31,18 +31,16 @@ Invisibly returns the memory data frame.
 ``` r
 p <- pv_example()
 pv_print_memory(p, by = "function")
-#> ====================================================================== 
-#>                     MEMORY ALLOCATION BY FUNCTION
-#> ====================================================================== 
+#> ## MEMORY ALLOCATION BY FUNCTION
+#> 
 #> 
 #>     1.38 MB rnorm
 #>     1.26 MB x[i] <- rnorm(1)
 #>     0.56 MB generate_data
 #>     0.36 MB result[i] <- sqrt(abs(x[i])) * 2
 pv_print_memory(p, by = "line")
-#> ====================================================================== 
-#>                       MEMORY ALLOCATION BY LINE
-#> ====================================================================== 
+#> ## MEMORY ALLOCATION BY LINE
+#> 
 #> 
 #>     2.63 MB example_code.R:13
 #>             x[i] <- rnorm(1)

@@ -36,9 +36,8 @@ Invisibly returns the flame data structure.
 ``` r
 p <- pv_example()
 pv_flame(p)
-#> ====================================================================== 
-#>                           FLAME GRAPH (text)
-#> ====================================================================== 
+#> ## FLAME GRAPH (text)
+#> 
 #> 
 #> Total time: 70 ms | Width: 70 chars | Min: 2%
 #> 

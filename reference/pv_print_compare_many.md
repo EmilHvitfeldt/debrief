@@ -24,12 +24,10 @@ Invisibly returns the comparison data frame.
 p1 <- pv_example()
 p2 <- pv_example("gc")
 pv_print_compare_many(baseline = p1, gc_heavy = p2)
-#> ====================================================================== 
-#>                        MULTI-PROFILE COMPARISON
-#> ====================================================================== 
+#> ## MULTI-PROFILE COMPARISON
+#> 
 #> 
 #> Rank  Profile                    Time (ms)  Samples vs Fastest
-#> -------------------------------------------------------------- 
 #>   1*  baseline                          70       14    fastest
 #>   2   gc_heavy                         100       10      1.43x
 #> 

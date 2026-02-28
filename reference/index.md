@@ -4,8 +4,10 @@
 
 Overview and optimization recommendations
 
-- [`pv_summary()`](https://emilhvitfeldt.github.io/debrief/reference/pv_summary.md)
-  : Text-based summary of profvis output
+- [`pv_debrief()`](https://emilhvitfeldt.github.io/debrief/reference/pv_debrief.md)
+  : Comprehensive profiling data
+- [`pv_print_debrief()`](https://emilhvitfeldt.github.io/debrief/reference/pv_print_debrief.md)
+  : Print profiling summary
 - [`pv_suggestions()`](https://emilhvitfeldt.github.io/debrief/reference/pv_suggestions.md)
   : Generate optimization suggestions
 - [`pv_print_suggestions()`](https://emilhvitfeldt.github.io/debrief/reference/pv_print_suggestions.md)
@@ -66,6 +68,8 @@ Find where time is spent
   : Hot source lines by self-time
 - [`pv_print_hot_lines()`](https://emilhvitfeldt.github.io/debrief/reference/pv_print_hot_lines.md)
   : Print hot lines with source context
+- [`pv_worst_line()`](https://emilhvitfeldt.github.io/debrief/reference/pv_worst_line.md)
+  : Get the single hottest line
 - [`pv_hot_paths()`](https://emilhvitfeldt.github.io/debrief/reference/pv_hot_paths.md)
   : Hot call paths
 - [`pv_print_hot_paths()`](https://emilhvitfeldt.github.io/debrief/reference/pv_print_hot_paths.md)

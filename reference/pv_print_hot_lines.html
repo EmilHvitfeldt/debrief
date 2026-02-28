@@ -66,9 +66,8 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="pv_example.html">pv_example</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">pv_print_hot_lines</span><span class="op">(</span><span class="va">p</span>, n <span class="op">=</span> <span class="fl">5</span>, context <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ====================================================================== </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                            HOT SOURCE LINES</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ====================================================================== </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ## HOT SOURCE LINES</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rank 1: example_code.R:13 (50 ms, 71.4%)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Function: rnorm</span>
@@ -76,7 +75,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>        10: generate_data &lt;- function(n) {</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        11:   x &lt;- numeric(n)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        12:   for (i in seq_len(n)) {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  &gt;&gt;&gt;   13:     x[i] &lt;- rnorm(1)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &gt;      13:     x[i] &lt;- rnorm(1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        14:   }</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        15:   x</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        16: }</span>
@@ -87,7 +86,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>         2: # Example functions for profiling demonstration</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         3: </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         4: process_data &lt;- function(n) {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  &gt;&gt;&gt;    5:   data &lt;- generate_data(n)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &gt;       5:   data &lt;- generate_data(n)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         6:   result &lt;- transform_data(data)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         7:   summarize_data(result)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         8: }</span>
@@ -98,7 +97,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>        18: transform_data &lt;- function(x) {</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        19:   result &lt;- numeric(length(x))</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        20:   for (i in seq_along(x)) {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  &gt;&gt;&gt;   21:     result[i] &lt;- sqrt(abs(x[i])) * 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &gt;      21:     result[i] &lt;- sqrt(abs(x[i])) * 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        22:   }</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        23:   result</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        24: }</span>
