@@ -9,6 +9,9 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/debrief)](https://CRAN.R-project.org/package=debrief)
+[![R-CMD-check](https://github.com/EmilHvitfeldt/debrief/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/EmilHvitfeldt/debrief/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/EmilHvitfeldt/debrief/graph/badge.svg)](https://app.codecov.io/gh/EmilHvitfeldt/debrief)
 <!-- badges: end -->
 
 debrief provides text-based summaries and analysis tools for
@@ -87,25 +90,25 @@ pv_summary(p)
 #> 
 #> --- TOP FUNCTIONS BY SELF-TIME ---------------------------------------
 #>    110 ms ( 57.9%)  paste
-#>     20 ms ( 10.5%)  rnorm
-#>     10 ms (  5.3%)  .bincode
-#>     10 ms (  5.3%)  .rangeNum
+#>     20 ms ( 10.5%)  complete.cases
 #>     10 ms (  5.3%)  [.data.frame
-#>     10 ms (  5.3%)  <GC>
 #>     10 ms (  5.3%)  anyDuplicated.default
-#>     10 ms (  5.3%)  as.list
+#>     10 ms (  5.3%)  aperm.default
+#>     10 ms (  5.3%)  colMeans
+#>     10 ms (  5.3%)  factor
+#>     10 ms (  5.3%)  is.na
 #> 
 #> --- TOP FUNCTIONS BY TOTAL TIME --------------------------------------
-#>    190 ms (100.0%)  FUN
-#>    190 ms (100.0%)  lapply
-#>    190 ms (100.0%)  process_data
-#>    120 ms ( 63.2%)  summarize_data
+#>    180 ms ( 94.7%)  FUN
+#>    180 ms ( 94.7%)  lapply
+#>    180 ms ( 94.7%)  process_data
+#>    130 ms ( 68.4%)  summarize_data
 #>    110 ms ( 57.9%)  paste
 #>     50 ms ( 26.3%)  clean_data
-#>     30 ms ( 15.8%)  cut.default
 #>     20 ms ( 10.5%)  [.data.frame
-#>     20 ms ( 10.5%)  generate_data
-#>     20 ms ( 10.5%)  rnorm
+#>     20 ms ( 10.5%)  complete.cases
+#>     10 ms (  5.3%)  anyDuplicated.default
+#>     10 ms (  5.3%)  aperm.default
 #> 
 #> --- HOT CALL PATHS ---------------------------------------------------
 #> 
@@ -120,8 +123,12 @@ pv_summary(p)
 #>     lapply
 #>   → FUN
 #>   → process_data
-#>   → generate_data
-#>   → rnorm
+#>   → clean_data
+#>   → complete.cases
+#> 
+#> 10 ms (5.3%) - 1 samples:
+#>     base::tryCatch
+#>   → is.na
 #> 
 #> 10 ms (5.3%) - 1 samples:
 #>     lapply
@@ -138,19 +145,11 @@ pv_summary(p)
 #>   → [.data.frame
 #>   → anyDuplicated.default
 #> 
-#> 10 ms (5.3%) - 1 samples:
-#>     lapply
-#>   → FUN
-#>   → process_data
-#>   → clean_data
-#>   → cut.default
-#>   → .bincode
-#> 
 #> --- MEMORY ALLOCATION (by function) ----------------------------------
-#>    56.35 MB paste
+#>    50.99 MB paste
 #>    10.01 MB anyDuplicated.default
-#>     6.34 MB [.data.frame
-#>     2.98 MB rnorm
+#>     9.01 MB [.data.frame
+#>     6.57 MB complete.cases
 #> ----------------------------------------------------------------------
 ```
 
@@ -163,48 +162,45 @@ Analyze where time is spent:
 pv_self_time(p)
 #>                   label samples time_ms  pct
 #> 1                 paste      11     110 57.9
-#> 2                 rnorm       2      20 10.5
-#> 3              .bincode       1      10  5.3
-#> 4             .rangeNum       1      10  5.3
-#> 5          [.data.frame       1      10  5.3
-#> 6                  <GC>       1      10  5.3
-#> 7 anyDuplicated.default       1      10  5.3
-#> 8               as.list       1      10  5.3
+#> 2        complete.cases       2      20 10.5
+#> 3          [.data.frame       1      10  5.3
+#> 4 anyDuplicated.default       1      10  5.3
+#> 5         aperm.default       1      10  5.3
+#> 6              colMeans       1      10  5.3
+#> 7                factor       1      10  5.3
+#> 8                 is.na       1      10  5.3
 
 # Total time: time spent in function + all its callees
 pv_total_time(p)
-#>                    label samples time_ms   pct
-#> 1                    FUN      19     190 100.0
-#> 2                 lapply      19     190 100.0
-#> 3           process_data      19     190 100.0
-#> 4         summarize_data      12     120  63.2
-#> 5                  paste      11     110  57.9
-#> 6             clean_data       5      50  26.3
-#> 7            cut.default       3      30  15.8
-#> 8           [.data.frame       2      20  10.5
-#> 9          generate_data       2      20  10.5
-#> 10                 rnorm       2      20  10.5
-#> 11              .bincode       1      10   5.3
-#> 12             .rangeNum       1      10   5.3
-#> 13                  <GC>       1      10   5.3
-#> 14 anyDuplicated.default       1      10   5.3
-#> 15               as.list       1      10   5.3
-#> 16                factor       1      10   5.3
-#> 17            list.names       1      10   5.3
-#> 18                 range       1      10   5.3
-#> 19                 table       1      10   5.3
+#>                    label samples time_ms  pct
+#> 1                    FUN      18     180 94.7
+#> 2                 lapply      18     180 94.7
+#> 3           process_data      18     180 94.7
+#> 4         summarize_data      13     130 68.4
+#> 5                  paste      11     110 57.9
+#> 6             clean_data       5      50 26.3
+#> 7           [.data.frame       2      20 10.5
+#> 8         complete.cases       2      20 10.5
+#> 9  anyDuplicated.default       1      10  5.3
+#> 10         aperm.default       1      10  5.3
+#> 11                 apply       1      10  5.3
+#> 12        base::tryCatch       1      10  5.3
+#> 13              colMeans       1      10  5.3
+#> 14           cut.default       1      10  5.3
+#> 15                factor       1      10  5.3
+#> 16                 is.na       1      10  5.3
 
 # Filter to significant functions only
 pv_self_time(p, min_pct = 5) # >= 5% of time
 #>                   label samples time_ms  pct
 #> 1                 paste      11     110 57.9
-#> 2                 rnorm       2      20 10.5
-#> 3              .bincode       1      10  5.3
-#> 4             .rangeNum       1      10  5.3
-#> 5          [.data.frame       1      10  5.3
-#> 6                  <GC>       1      10  5.3
-#> 7 anyDuplicated.default       1      10  5.3
-#> 8               as.list       1      10  5.3
+#> 2        complete.cases       2      20 10.5
+#> 3          [.data.frame       1      10  5.3
+#> 4 anyDuplicated.default       1      10  5.3
+#> 5         aperm.default       1      10  5.3
+#> 6              colMeans       1      10  5.3
+#> 7                factor       1      10  5.3
+#> 8                 is.na       1      10  5.3
 ```
 
 ### Hot Spots
@@ -234,15 +230,12 @@ pv_print_hot_paths(p, n = 10)
 #>     lapply
 #>   → FUN
 #>   → process_data
-#>   → generate_data
-#>   → rnorm
+#>   → clean_data
+#>   → complete.cases
 #> 
 #> Rank 3: 10 ms (5.3%) - 1 samples
-#>     lapply
-#>   → FUN
-#>   → process_data
-#>   → clean_data
-#>   → [.data.frame
+#>     base::tryCatch
+#>   → is.na
 #> 
 #> Rank 4: 10 ms (5.3%) - 1 samples
 #>     lapply
@@ -250,15 +243,14 @@ pv_print_hot_paths(p, n = 10)
 #>   → process_data
 #>   → clean_data
 #>   → [.data.frame
-#>   → anyDuplicated.default
 #> 
 #> Rank 5: 10 ms (5.3%) - 1 samples
 #>     lapply
 #>   → FUN
 #>   → process_data
 #>   → clean_data
-#>   → cut.default
-#>   → .bincode
+#>   → [.data.frame
+#>   → anyDuplicated.default
 #> 
 #> Rank 6: 10 ms (5.3%) - 1 samples
 #>     lapply
@@ -267,25 +259,21 @@ pv_print_hot_paths(p, n = 10)
 #>   → clean_data
 #>   → cut.default
 #>   → factor
-#>   → <GC>
 #> 
 #> Rank 7: 10 ms (5.3%) - 1 samples
 #>     lapply
 #>   → FUN
 #>   → process_data
-#>   → clean_data
-#>   → cut.default
-#>   → range
-#>   → .rangeNum
+#>   → summarize_data
+#>   → apply
+#>   → aperm.default
 #> 
 #> Rank 8: 10 ms (5.3%) - 1 samples
 #>     lapply
 #>   → FUN
 #>   → process_data
 #>   → summarize_data
-#>   → table
-#>   → list.names
-#>   → as.list
+#>   → colMeans
 ```
 
 ### Function Analysis
@@ -308,8 +296,9 @@ pv_focus(p, "clean_data")
 #>       5 calls (100.0%)  process_data
 #> 
 #> --- Calls To --------------------------------------------------------
-#>       3 calls ( 60.0%)  cut.default
 #>       2 calls ( 40.0%)  [.data.frame
+#>       2 calls ( 40.0%)  complete.cases
+#>       1 calls ( 20.0%)  cut.default
 #> 
 #> --- Source Locations ------------------------------------------------
 #>   Source references not available.
@@ -331,9 +320,8 @@ pv_callers(p, "clean_data")
 # What does this function call?
 pv_callees(p, "process_data")
 #>            label samples  pct
-#> 1 summarize_data      12 63.2
-#> 2     clean_data       5 26.3
-#> 3  generate_data       2 10.5
+#> 1 summarize_data      13 72.2
+#> 2     clean_data       5 27.8
 
 # Full caller/callee analysis
 pv_print_callers_callees(p, "summarize_data")
@@ -341,15 +329,16 @@ pv_print_callers_callees(p, "summarize_data")
 #>                   FUNCTION ANALYSIS: summarize_data
 #> ====================================================================== 
 #> 
-#> Total time: 120 ms (63.2% of profile)
-#> Appearances: 12 samples
+#> Total time: 130 ms (68.4% of profile)
+#> Appearances: 13 samples
 #> 
 #> --- Called by --------------------------------------------------
-#>      12 samples (100.0%)  process_data
+#>      13 samples (100.0%)  process_data
 #> 
 #> --- Calls to ---------------------------------------------------
-#>      11 samples ( 91.7%)  paste
-#>       1 samples (  8.3%)  table
+#>      11 samples ( 84.6%)  paste
+#>       1 samples (  7.7%)  apply
+#>       1 samples (  7.7%)  colMeans
 ```
 
 ### Memory Analysis
@@ -363,10 +352,10 @@ pv_print_memory(p, n = 10, by = "function")
 #>                     MEMORY ALLOCATION BY FUNCTION
 #> ====================================================================== 
 #> 
-#>    56.35 MB paste
+#>    50.99 MB paste
 #>    10.01 MB anyDuplicated.default
-#>     6.34 MB [.data.frame
-#>     2.98 MB rnorm
+#>     9.01 MB [.data.frame
+#>     6.57 MB complete.cases
 
 # Memory by source line
 pv_print_memory(p, n = 10, by = "line")
@@ -387,25 +376,22 @@ pv_flame(p, width = 70, min_pct = 2)
 #> Total time: 190 ms | Width: 70 chars | Min: 2%
 #> 
 #> [======================================================================] (root) 100%
-#>   [======================================================================] lapply (100.0%)
-#>     [======================================================================] FUN (100.0%)
-#>       [======================================================================] process_data (100.0%)
-#>         [============================================] summarize_data (63.2%)
-#>         [==================] clean_data (26.3%)
-#>         [=======] generate_data (10.5%)
-#>           [=========================================] paste (57.9%)
-#>           [===========] cut.default (15.8%)
-#>           [=======] rnorm (10.5%)
-#>           [=======] [.data.frame (10.5%)
-#>           [====] table (5.3%)
-#>             [====] .bincode (5.3%)
-#>             [====] range (5.3%)
-#>             [====] factor (5.3%)
-#>             [====] list.names (5.3%)
-#>             [====] anyDuplicated.default (5.3%)
-#>               [====] .rangeNum (5.3%)
-#>               [====] <GC> (5.3%)
-#>               [====] as.list (5.3%)
+#> [==================================================================    ]   lapply (94.7%)
+#> [====                                                                  ]   base::tryCatch (5.3%)
+#> [==================================================================    ]     FUN (94.7%)
+#> [====                                                                  ]     is.na (5.3%)
+#> [==================================================================    ]       process_data (94.7%)
+#> [================================================                      ]         summarize_data (68.4%)
+#> [==================                                                    ]         clean_data (26.3%)
+#> [=========================================                             ]           paste (57.9%)
+#> [=======                                                               ]           complete.cases (10.5%)
+#> [=======                                                               ]           [.data.frame (10.5%)
+#> [====                                                                  ]           cut.default (5.3%)
+#> [====                                                                  ]           apply (5.3%)
+#> [====                                                                  ]           colMeans (5.3%)
+#> [====                                                                  ]             factor (5.3%)
+#> [====                                                                  ]             aperm.default (5.3%)
+#> [====                                                                  ]             anyDuplicated.default (5.3%)
 #> 
 #> Legend: [====] = time spent, width proportional to time
 ```
@@ -437,24 +423,26 @@ pv_print_compare(p_slow, p_fast)
 #> ====================================================================== 
 #> 
 #> --- Overall ----------------------------------------------------------
-#> IMPROVED: 290 ms -> 200 ms (1.4x faster, saved 90 ms)
+#> IMPROVED: 300 ms -> 210 ms (1.4x faster, saved 90 ms)
 #> 
 #> --- Biggest Changes --------------------------------------------------
 #> Function                           Before      After       Diff   Change
 #> ------------------------------------------------------------------------ 
-#> c                                     200          0       -200    -100%
+#> c                                     270          0       -270    -100%
 #> head                                    0        100       +100      new
-#> <GC>                                   90         30        -60     -67%
 #> rnorm                                   0         60        +60      new
+#> <GC>                                   20         40        +20    +100%
+#> sqrt                                   10          0        -10    -100%
 #> paste                                   0         10        +10      new
 #> 
 #> --- Top Improvements ------------------------------------------------
-#>   c: 200 ms -> 0 ms (saved 200 ms)
-#>   <GC>: 90 ms -> 30 ms (saved 60 ms)
+#>   c: 270 ms -> 0 ms (saved 270 ms)
+#>   sqrt: 10 ms -> 0 ms (saved 10 ms)
 #> 
 #> --- Regressions -----------------------------------------------------
 #>   head: 0 ms -> 100 ms (added 100 ms)
 #>   rnorm: 0 ms -> 60 ms (added 60 ms)
+#>   <GC>: 20 ms -> 40 ms (added 20 ms)
 #>   paste: 0 ms -> 10 ms (added 10 ms)
 
 # Approach 3: Data frame operations
@@ -480,9 +468,9 @@ pv_print_compare_many(
 #> 
 #> Rank  Profile                    Time (ms)  Samples vs Fastest
 #> -------------------------------------------------------------- 
-#>   1*  dataframe_ops                    130       13    fastest
-#>   2   vectorized                       200       20      1.54x
-#>   3   growing_vector                   290       29      2.23x
+#>   1*  dataframe_ops                    140       14    fastest
+#>   2   vectorized                       210       21      1.50x
+#>   3   growing_vector                   300       30      2.14x
 #> 
 #> * = fastest
 ```
@@ -536,13 +524,13 @@ names(results)
 results$self_time
 #>                   label samples time_ms  pct
 #> 1                 paste      11     110 57.9
-#> 2                 rnorm       2      20 10.5
-#> 3              .bincode       1      10  5.3
-#> 4             .rangeNum       1      10  5.3
-#> 5          [.data.frame       1      10  5.3
-#> 6                  <GC>       1      10  5.3
-#> 7 anyDuplicated.default       1      10  5.3
-#> 8               as.list       1      10  5.3
+#> 2        complete.cases       2      20 10.5
+#> 3          [.data.frame       1      10  5.3
+#> 4 anyDuplicated.default       1      10  5.3
+#> 5         aperm.default       1      10  5.3
+#> 6              colMeans       1      10  5.3
+#> 7                factor       1      10  5.3
+#> 8                 is.na       1      10  5.3
 ```
 
 ## Available Functions
