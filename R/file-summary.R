@@ -17,6 +17,7 @@
 #' @export
 pv_file_summary <- function(x) {
   check_profvis(x)
+  check_empty_profile(x)
 
   prof <- extract_prof(x)
   interval_ms <- extract_interval(x)
@@ -63,6 +64,7 @@ pv_file_summary <- function(x) {
 #' @export
 pv_print_file_summary <- function(x) {
   check_profvis(x)
+  check_empty_profile(x)
 
   summary_df <- pv_file_summary(x)
 

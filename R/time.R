@@ -24,6 +24,7 @@
 #' @export
 pv_self_time <- function(x, n = NULL, min_pct = 0, min_time_ms = 0) {
   check_profvis(x)
+  check_empty_profile(x)
 
   prof <- extract_prof(x)
   interval_ms <- extract_interval(x)
@@ -79,6 +80,7 @@ pv_self_time <- function(x, n = NULL, min_pct = 0, min_time_ms = 0) {
 #' @export
 pv_total_time <- function(x, n = NULL, min_pct = 0, min_time_ms = 0) {
   check_profvis(x)
+  check_empty_profile(x)
 
   prof <- extract_prof(x)
   interval_ms <- extract_interval(x)

@@ -45,6 +45,7 @@ pv_to_json <- function(
   system_info = FALSE
 ) {
   check_profvis(x)
+  check_empty_profile(x)
 
   include <- match.arg(
     include,
@@ -193,6 +194,7 @@ pv_to_list <- function(
   system_info = FALSE
 ) {
   check_profvis(x)
+  check_empty_profile(x)
 
   include <- match.arg(
     include,

@@ -27,6 +27,7 @@
 #' @export
 pv_hot_lines <- function(x, n = NULL, min_pct = 0, min_time_ms = 0) {
   check_profvis(x)
+  check_empty_profile(x)
 
   prof <- extract_prof(x)
   interval_ms <- extract_interval(x)
@@ -100,6 +101,7 @@ pv_hot_lines <- function(x, n = NULL, min_pct = 0, min_time_ms = 0) {
 #' @export
 pv_print_hot_lines <- function(x, n = 5, context = 3) {
   check_profvis(x)
+  check_empty_profile(x)
 
   hot_lines <- pv_hot_lines(x, n = n)
 

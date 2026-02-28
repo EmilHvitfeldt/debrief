@@ -17,6 +17,7 @@
 #' @export
 pv_callers <- function(x, func) {
   check_profvis(x)
+  check_empty_profile(x)
 
   prof <- extract_prof(x)
 
@@ -95,6 +96,7 @@ pv_callers <- function(x, func) {
 #' @export
 pv_callees <- function(x, func) {
   check_profvis(x)
+  check_empty_profile(x)
 
   prof <- extract_prof(x)
 
@@ -171,6 +173,7 @@ pv_callees <- function(x, func) {
 #' @export
 pv_print_callers_callees <- function(x, func, n = 10) {
   check_profvis(x)
+  check_empty_profile(x)
 
   callers <- pv_callers(x, func)
   callees <- pv_callees(x, func)

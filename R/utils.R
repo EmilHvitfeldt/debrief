@@ -6,6 +6,19 @@ check_profvis <- function(x, call = parent.frame()) {
   }
 }
 
+check_empty_profile <- function(x) {
+  prof <- extract_prof(x)
+  if (nrow(prof) == 0) {
+    stop(
+      "Profile contains no samples.\n",
+      "Your code ran too fast to capture any profiling data.\n",
+      "Try wrapping your code in a loop: for (i in 1:10) { ... }\n",
+      "Increase the iteration count until samples appear.",
+      call. = FALSE
+    )
+  }
+}
+
 extract_prof <- function(x) {
   x$x$message$prof
 }

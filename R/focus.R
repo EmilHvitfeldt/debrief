@@ -15,6 +15,7 @@
 #' @export
 pv_focus <- function(x, func, context = 5) {
   check_profvis(x)
+  check_empty_profile(x)
 
   prof <- extract_prof(x)
   interval_ms <- extract_interval(x)

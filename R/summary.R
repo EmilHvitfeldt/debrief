@@ -23,6 +23,7 @@ pv_summary <- function(
   n_memory = 5
 ) {
   check_profvis(x)
+  check_empty_profile(x)
 
   interval_ms <- extract_interval(x)
   total_samples <- extract_total_samples(x)

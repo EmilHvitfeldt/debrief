@@ -20,6 +20,7 @@
 #' @export
 pv_hot_paths <- function(x, n = NULL, include_source = TRUE) {
   check_profvis(x)
+  check_empty_profile(x)
 
   prof <- extract_prof(x)
   interval_ms <- extract_interval(x)
@@ -92,6 +93,7 @@ pv_hot_paths <- function(x, n = NULL, include_source = TRUE) {
 #' @export
 pv_print_hot_paths <- function(x, n = 10, include_source = TRUE) {
   check_profvis(x)
+  check_empty_profile(x)
 
   paths <- pv_hot_paths(x, n = n, include_source = include_source)
 

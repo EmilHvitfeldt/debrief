@@ -23,6 +23,7 @@
 #' @export
 pv_call_stats <- function(x, n = NULL) {
   check_profvis(x)
+  check_empty_profile(x)
 
   prof <- extract_prof(x)
   interval_ms <- extract_interval(x)
@@ -134,6 +135,7 @@ estimate_call_count <- function(func, prof) {
 #' @export
 pv_print_call_stats <- function(x, n = 20) {
   check_profvis(x)
+  check_empty_profile(x)
 
   stats <- pv_call_stats(x, n = n)
 

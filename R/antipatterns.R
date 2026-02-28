@@ -36,6 +36,7 @@
 #' @export
 pv_gc_pressure <- function(x, threshold = 10) {
   check_profvis(x)
+  check_empty_profile(x)
 
   prof <- extract_prof(x)
   interval_ms <- extract_interval(x)
@@ -100,6 +101,7 @@ empty_gc_pressure_df <- function() {
 #' @export
 pv_print_gc_pressure <- function(x, threshold = 10) {
   check_profvis(x)
+  check_empty_profile(x)
 
   gc_data <- pv_gc_pressure(x, threshold = threshold)
 

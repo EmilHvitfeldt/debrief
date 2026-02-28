@@ -17,6 +17,7 @@
 #' @export
 pv_source_context <- function(x, filename, linenum = NULL, context = 10) {
   check_profvis(x)
+  check_empty_profile(x)
 
   prof <- extract_prof(x)
   interval_ms <- extract_interval(x)

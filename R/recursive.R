@@ -24,6 +24,7 @@
 #' @export
 pv_recursive <- function(x) {
   check_profvis(x)
+  check_empty_profile(x)
 
   prof <- extract_prof(x)
   interval_ms <- extract_interval(x)
@@ -112,6 +113,7 @@ pv_recursive <- function(x) {
 #' @export
 pv_print_recursive <- function(x) {
   check_profvis(x)
+  check_empty_profile(x)
 
   recursive <- pv_recursive(x)
 

@@ -16,6 +16,7 @@
 #' @export
 pv_flame <- function(x, width = 70, min_pct = 2, max_depth = 15) {
   check_profvis(x)
+  check_empty_profile(x)
 
   prof <- extract_prof(x)
   interval_ms <- extract_interval(x)
@@ -132,6 +133,7 @@ print_flame_tree <- function(tree, width, min_pct, total_samples, max_depth) {
 #' @export
 pv_flame_condense <- function(x, n = 10, width = 50) {
   check_profvis(x)
+  check_empty_profile(x)
 
   prof <- extract_prof(x)
   interval_ms <- extract_interval(x)

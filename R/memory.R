@@ -15,6 +15,7 @@
 #' @export
 pv_memory <- function(x, n = NULL) {
   check_profvis(x)
+  check_empty_profile(x)
 
   prof <- extract_prof(x)
 
@@ -65,6 +66,7 @@ pv_memory <- function(x, n = NULL) {
 #' @export
 pv_memory_lines <- function(x, n = NULL) {
   check_profvis(x)
+  check_empty_profile(x)
 
   prof <- extract_prof(x)
 
@@ -124,6 +126,7 @@ pv_memory_lines <- function(x, n = NULL) {
 #' @export
 pv_print_memory <- function(x, n = 10, by = c("function", "line")) {
   check_profvis(x)
+  check_empty_profile(x)
   by <- match.arg(by)
 
   if (by == "function") {

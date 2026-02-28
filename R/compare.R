@@ -21,6 +21,8 @@
 pv_compare <- function(before, after, n = 20) {
   check_profvis(before)
   check_profvis(after)
+  check_empty_profile(before)
+  check_empty_profile(after)
 
   # Get timing info
   before_interval <- extract_interval(before)
@@ -271,6 +273,7 @@ pv_compare_many <- function(...) {
     if (!inherits(profiles[[nm]], "profvis")) {
       stop(sprintf("'%s' must be a profvis object.", nm), call. = FALSE)
     }
+    check_empty_profile(profiles[[nm]])
   }
 
   # Extract timing for each

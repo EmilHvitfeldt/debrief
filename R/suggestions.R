@@ -18,6 +18,7 @@
 #' @export
 pv_suggestions <- function(x) {
   check_profvis(x)
+  check_empty_profile(x)
 
   prof <- extract_prof(x)
   interval_ms <- extract_interval(x)
@@ -330,6 +331,7 @@ suggest_top_function_optimization <- function(
 #' @export
 pv_print_suggestions <- function(x) {
   check_profvis(x)
+  check_empty_profile(x)
 
   suggestions <- pv_suggestions(x)
 

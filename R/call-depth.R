@@ -18,6 +18,7 @@
 #' @export
 pv_call_depth <- function(x) {
   check_profvis(x)
+  check_empty_profile(x)
 
   prof <- extract_prof(x)
   interval_ms <- extract_interval(x)
@@ -61,6 +62,7 @@ pv_call_depth <- function(x) {
 #' @export
 pv_print_call_depth <- function(x) {
   check_profvis(x)
+  check_empty_profile(x)
 
   depth_df <- pv_call_depth(x)
 
