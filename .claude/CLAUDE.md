@@ -1,3 +1,7 @@
+## debrief
+
+Read `DESIGN.md` for package-specific design decisions before making changes.
+
 ## R package development
 
 ### Key commands
