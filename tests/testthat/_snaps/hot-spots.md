@@ -46,6 +46,7 @@
     Output
       No source location data available.
       Use devtools::load_all() to enable source references.
+      Run pv_help() to see all available functions.
 
 # pv_print_hot_paths snapshot
 

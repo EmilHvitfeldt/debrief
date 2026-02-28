@@ -41,6 +41,8 @@
          R/main.R 
          R/utils.R 
          R/helper.R 
+      
+      Run pv_help() to see all available functions.
 
 # pv_source_context auto-selects hottest line when linenum is NULL
 
@@ -125,4 +127,5 @@
     Output
       No source location data available.
       Use devtools::load_all() to enable source references.
+      Run pv_help() to see all available functions.
 

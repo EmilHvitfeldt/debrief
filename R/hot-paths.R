@@ -92,6 +92,7 @@ pv_print_hot_paths <- function(x, n = 10, include_source = TRUE) {
 
   if (nrow(paths) == 0) {
     cat("No profiling data available.\n")
+    cat_help_hint()
     return(invisible(paths))
   }
 

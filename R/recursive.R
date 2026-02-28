@@ -111,6 +111,7 @@ pv_print_recursive <- function(x) {
 
   if (nrow(recursive) == 0) {
     cat("No recursive functions detected in the profile.\n")
+    cat_help_hint()
     return(invisible(recursive))
   }
 

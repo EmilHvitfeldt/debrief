@@ -135,6 +135,11 @@ cat_next_steps <- function(suggestions) {
   }
 }
 
+# Print a hint about pv_help() when no data is found
+cat_help_hint <- function() {
+  cat("Run pv_help() to see all available functions.\n")
+}
+
 # Check if a function name is a user function (not internal R machinery)
 # Internal functions start with: ( like (top-level), < like <GC>, [ like [.data.frame
 is_user_function <- function(func_name) {

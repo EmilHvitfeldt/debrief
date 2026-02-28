@@ -6,6 +6,7 @@ reference:
   - title: Summary and suggestions
     desc: Overview and optimization recommendations
     contents:
+      - pv_help
       - pv_debrief
       - pv_print_debrief
       - pv_suggestions

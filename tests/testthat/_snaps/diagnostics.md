@@ -27,6 +27,7 @@
       
       
       No significant GC pressure detected (<10% of time).
+      Run pv_help() to see all available functions.
 
 # pv_print_suggestions snapshot with GC pressure
 

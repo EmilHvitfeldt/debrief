@@ -49,6 +49,8 @@
         inner
         deep
         helper
+      
+      Run pv_help() to see all available functions.
 
 # pv_focus handles no source refs
 

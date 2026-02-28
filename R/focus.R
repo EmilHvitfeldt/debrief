@@ -27,6 +27,8 @@ pv_focus <- function(x, func, context = 5) {
     for (i in seq_len(min(20, nrow(total_time)))) {
       cat(sprintf("  %s\n", total_time$label[i]))
     }
+    cat("\n")
+    cat_help_hint()
     return(invisible(NULL))
   }
 

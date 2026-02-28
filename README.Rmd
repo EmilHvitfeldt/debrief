@@ -33,6 +33,46 @@ You can install the development version of debrief from [GitHub](https://github.
 pak::pak("emilhvitfeldt/debrief")
 ```
 
+## Quick Start
+
+```r
+library(profvis)
+library(debrief)
+
+# Profile some code
+p <- profvis({
+  # your code here
+})
+
+# Get help on available functions
+pv_help()
+
+# Start with a summary
+pv_print_debrief(p)
+```
+
+## Typical Workflow
+
+debrief is designed for iterative profiling. Each function prints "Next steps" suggestions to guide you deeper:
+```
+1. pv_print_debrief(p)
+ -> Overview: identifies hot functions and lines
+
+2. pv_focus(p, "hot_function")
+ -> Deep dive: time breakdown, callers, callees, source
+
+3. pv_hot_lines(p)
+ -> Exact lines: find the specific code consuming time
+
+4. pv_source_context(p, "file.R")
+ -> Code view: see source with profiling data overlay
+
+5. pv_suggestions(p)
+ -> Actions: get specific optimization recommendations
+```
+
+The `pv_help()` function lists all available functions by category.
+
 ## Example
 
 First, create a profvis profile of some code. To get source references in the
@@ -233,7 +273,7 @@ results$self_time
 
 | Category | Functions |
 |----------|-----------|
-| Overview | `pv_debrief()`, `pv_print_debrief()`, `pv_example()` |
+| Overview | `pv_help()`, `pv_debrief()`, `pv_print_debrief()`, `pv_example()` |
 | Time Analysis | `pv_self_time()`, `pv_total_time()` |
 | Hot Spots | `pv_hot_lines()`, `pv_hot_paths()`, `pv_worst_line()`, `pv_print_hot_lines()`, `pv_print_hot_paths()` |
 | Memory | `pv_memory()`, `pv_memory_lines()`, `pv_print_memory()` |

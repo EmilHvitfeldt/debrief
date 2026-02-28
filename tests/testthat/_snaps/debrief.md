@@ -67,6 +67,7 @@
       pv_focus(p, "deep")
       pv_source_context(p, "R/utils.R")
       pv_suggestions(p)
+      pv_help()
 
 # pv_print_debrief handles no source refs
 
@@ -110,4 +111,5 @@
       ### Next steps
       pv_focus(p, "bar")
       pv_suggestions(p)
+      pv_help()
 

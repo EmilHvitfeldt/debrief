@@ -135,6 +135,7 @@ pv_print_call_stats <- function(x, n = 20) {
 
   if (nrow(stats) == 0) {
     cat("No profiling data available.\n")
+    cat_help_hint()
     return(invisible(stats))
   }
 

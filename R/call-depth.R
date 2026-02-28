@@ -62,6 +62,7 @@ pv_print_call_depth <- function(x) {
 
   if (nrow(depth_df) == 0) {
     cat("No profiling data available.\n")
+    cat_help_hint()
     return(invisible(depth_df))
   }
 

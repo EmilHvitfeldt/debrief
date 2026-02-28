@@ -19,4 +19,5 @@
       pv_print_recursive(p)
     Output
       No recursive functions detected in the profile.
+      Run pv_help() to see all available functions.
 

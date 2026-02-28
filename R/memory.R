@@ -121,6 +121,7 @@ pv_print_memory <- function(x, n = 10, by = c("function", "line")) {
 
     if (nrow(mem_df) == 0) {
       cat("No significant memory allocations detected.\n")
+      cat_help_hint()
       return(invisible(mem_df))
     }
 
@@ -136,6 +137,7 @@ pv_print_memory <- function(x, n = 10, by = c("function", "line")) {
     if (nrow(mem_df) == 0) {
       cat("No source location data available.\n")
       cat("Use devtools::load_all() to enable source references.\n")
+      cat_help_hint()
       return(invisible(mem_df))
     }
 

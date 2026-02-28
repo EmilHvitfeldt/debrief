@@ -84,6 +84,7 @@ pv_print_hot_lines <- function(x, n = 5, context = 3) {
   if (nrow(hot_lines) == 0) {
     cat("No source location data available.\n")
     cat("Use devtools::load_all() to enable source references.\n")
+    cat_help_hint()
     return(invisible(hot_lines))
   }
 

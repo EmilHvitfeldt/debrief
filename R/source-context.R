@@ -35,6 +35,8 @@ pv_source_context <- function(x, filename, linenum = NULL, context = 10) {
     for (f in available_files) {
       cat("  ", f, "\n")
     }
+    cat("\n")
+    cat_help_hint()
     return(invisible(NULL))
   }
 

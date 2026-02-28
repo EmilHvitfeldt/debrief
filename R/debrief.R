@@ -149,7 +149,7 @@ pv_print_debrief <- function(
       sprintf("pv_source_context(p, \"%s\")", top_file)
     )
   }
-  suggestions <- c(suggestions, "pv_suggestions(p)")
+  suggestions <- c(suggestions, "pv_suggestions(p)", "pv_help()")
   cat_next_steps(suggestions)
 
   invisible(pv_debrief(x, n = max(n_functions, n_lines, n_paths, n_memory)))

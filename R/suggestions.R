@@ -349,6 +349,7 @@ pv_print_suggestions <- function(x) {
 
   if (nrow(suggestions) == 0) {
     cat("No suggestions.\n")
+    cat_help_hint()
     return(invisible(suggestions))
   }
 
