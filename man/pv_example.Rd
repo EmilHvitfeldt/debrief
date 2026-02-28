@@ -9,10 +9,10 @@ pv_example(type = c("default", "no_source", "recursive", "gc"))
 \arguments{
 \item{type}{Type of example data to create:
 \itemize{
-\item \code{"default"}: A typical profile with multiple functions and source refs
-\item \code{"no_source"}: A profile without source references
-\item \code{"recursive"}: A profile with recursive function calls
-\item \code{"gc"}: A profile with garbage collection pressure
+\item \code{"default"}: A real profile captured from example code with source refs
+\item \code{"no_source"}: A synthetic profile without source references
+\item \code{"recursive"}: A synthetic profile with recursive function calls
+\item \code{"gc"}: A synthetic profile with garbage collection pressure
 }}
 }
 \value{

@@ -4,10 +4,10 @@
 #' This avoids the need to run actual profiling code in examples.
 #'
 #' @param type Type of example data to create:
-#'   - `"default"`: A typical profile with multiple functions and source refs
-#'   - `"no_source"`: A profile without source references
-#'   - `"recursive"`: A profile with recursive function calls
-#'   - `"gc"`: A profile with garbage collection pressure
+#'   - `"default"`: A real profile captured from example code with source refs
+#'   - `"no_source"`: A synthetic profile without source references
+#'   - `"recursive"`: A synthetic profile with recursive function calls
+#'   - `"gc"`: A synthetic profile with garbage collection pressure
 #'
 #' @return A profvis object that can be used with all debrief functions.
 #'
@@ -34,133 +34,7 @@ pv_example <- function(type = c("default", "no_source", "recursive", "gc")) {
 }
 
 example_default <- function() {
-  prof <- data.frame(
-    time = c(1L, 1L, 2L, 2L, 2L, 3L, 3L, 4L, 4L, 4L, 5L),
-    depth = c(1L, 2L, 1L, 2L, 3L, 1L, 2L, 1L, 2L, 3L, 1L),
-    label = c(
-      "outer",
-      "inner",
-      "outer",
-      "inner",
-      "deep",
-      "outer",
-      "helper",
-      "outer",
-      "inner",
-      "deep",
-      "outer"
-    ),
-    filename = c(
-      "R/main.R",
-      "R/main.R",
-      "R/main.R",
-      "R/main.R",
-      "R/utils.R",
-      "R/main.R",
-      "R/helper.R",
-      "R/main.R",
-      "R/main.R",
-      "R/utils.R",
-      "R/main.R"
-    ),
-    linenum = as.double(c(
-      10,
-      15,
-      10,
-      15,
-      5,
-      10,
-      20,
-      10,
-      15,
-      5,
-      10
-    )),
-    filenum = as.double(c(1, 1, 1, 1, 2, 1, 3, 1, 1, 2, 1)),
-    memalloc = c(100, 150, 150, 200, 250, 250, 300, 300, 350, 400, 400),
-    meminc = c(0, 50, 0, 50, 50, 0, 50, 0, 50, 50, 0),
-    stringsAsFactors = FALSE
-  )
-
-  files <- list(
-    list(
-      filename = "R/main.R",
-      content = paste(
-        "# Main file",
-        "outer <- function() {",
-        "
-  x <- 1",
-        "  y <- 2",
-        "  inner()",
-        "}",
-        "",
-        "inner <- function() {",
-        "  result <- deep()",
-        "  result",
-        "}",
-        "",
-        "",
-        "",
-        "  z <- heavy_computation()",
-        sep = "\n"
-      ),
-      normpath = "R/main.R"
-    ),
-    list(
-      filename = "R/utils.R",
-      content = paste(
-        "# Utils",
-        "deep <- function() {",
-        "  Sys.sleep(0.01)",
-        "  42",
-        "  x <- rnorm(1000)",
-        "}",
-        sep = "\n"
-      ),
-      normpath = "R/utils.R"
-    ),
-    list(
-      filename = "R/helper.R",
-      content = paste(
-        "# Helper functions",
-        "helper <- function() {",
-        "
-  paste('hello', 'world')",
-        "}",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "  do_work()",
-        sep = "\n"
-      ),
-      normpath = "R/helper.R"
-    )
-  )
-
-  structure(
-    list(
-      x = list(
-        message = list(
-          prof = prof,
-          interval = 10,
-          files = files
-        )
-      )
-    ),
-    class = "profvis"
-  )
+  readRDS(system.file("extdata/example_profile.rds", package = "debrief"))
 }
 
 example_no_source <- function() {
