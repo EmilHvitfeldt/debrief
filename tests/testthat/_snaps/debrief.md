@@ -1,7 +1,7 @@
-# pv_summary snapshot
+# pv_print_debrief snapshot
 
     Code
-      pv_summary(p)
+      pv_print_debrief(p)
     Output
       ## PROFILING SUMMARY
       
@@ -63,10 +63,10 @@
          50.00 MB R/helper.R:20
                   do_work()
 
-# pv_summary handles no source refs
+# pv_print_debrief handles no source refs
 
     Code
-      pv_summary(p)
+      pv_print_debrief(p)
     Output
       ## PROFILING SUMMARY
       

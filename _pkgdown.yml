@@ -6,7 +6,8 @@ reference:
   - title: Summary and suggestions
     desc: Overview and optimization recommendations
     contents:
-      - pv_summary
+      - pv_debrief
+      - pv_print_debrief
       - pv_suggestions
       - pv_print_suggestions
 
@@ -43,6 +44,7 @@ reference:
     contents:
       - pv_hot_lines
       - pv_print_hot_lines
+      - pv_worst_line
       - pv_hot_paths
       - pv_print_hot_paths
 

@@ -148,3 +148,72 @@ pv_print_hot_lines <- function(x, n = 5, context = 3) {
 
   invisible(hot_lines)
 }
+
+#' Get the single hottest line
+#'
+#' Returns the hottest source line with full context. Useful for quickly
+#' identifying the #1 optimization target.
+#'
+#' @param x A profvis object.
+#' @param context Number of source lines to include before and after.
+#'
+#' @return A list with:
+#'   - `location`: File path and line number (e.g., "R/foo.R:42")
+#'   - `label`: Function name
+#'   - `filename`: Source file path
+#'   - `linenum`: Line number
+#'   - `time_ms`: Time in milliseconds
+#'   - `pct`: Percentage of total time
+#'   - `code`: The source line
+#'   - `context`: Vector of surrounding source lines
+#'   - `callers`: Data frame of functions that call this location
+#'
+#'   Returns `NULL` if no source references are available.
+#'
+#' @examples
+#' p <- pv_example()
+#' pv_worst_line(p)
+#' @export
+pv_worst_line <- function(x, context = 5) {
+  check_profvis(x)
+  check_empty_profile(x)
+
+  hot_lines <- pv_hot_lines(x, n = 1)
+
+  if (nrow(hot_lines) == 0) {
+    return(NULL)
+  }
+
+  row <- hot_lines[1, ]
+  files <- extract_files(x)
+  file_contents <- build_file_contents(files)
+
+  # Get source line
+  code <- get_source_line(row$filename, row$linenum, file_contents)
+  if (is.null(code)) {
+    code <- NA_character_
+  }
+
+  # Get context lines
+  start <- max(1L, row$linenum - context)
+  end <- row$linenum + context
+  context_lines <- get_source_lines(row$filename, start, end, file_contents)
+  if (is.null(context_lines)) {
+    context_lines <- character()
+  }
+
+  # Get callers for this function
+  callers <- pv_callers(x, row$label)
+
+  list(
+    location = row$location,
+    label = row$label,
+    filename = row$filename,
+    linenum = row$linenum,
+    time_ms = row$time_ms,
+    pct = row$pct,
+    code = code,
+    context = context_lines,
+    callers = callers
+  )
+}

@@ -24,7 +24,9 @@ empty_prof <- structure(
 test_that("empty profile errors with helpful message", {
   expect_snapshot(pv_self_time(empty_prof), error = TRUE)
   expect_snapshot(pv_total_time(empty_prof), error = TRUE)
-  expect_snapshot(pv_summary(empty_prof), error = TRUE)
+  expect_snapshot(pv_debrief(empty_prof), error = TRUE)
+  expect_snapshot(pv_print_debrief(empty_prof), error = TRUE)
+  expect_snapshot(pv_worst_line(empty_prof), error = TRUE)
   expect_snapshot(pv_hot_lines(empty_prof), error = TRUE)
   expect_snapshot(pv_hot_paths(empty_prof), error = TRUE)
   expect_snapshot(pv_flame(empty_prof), error = TRUE)

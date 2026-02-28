@@ -23,7 +23,29 @@
 ---
 
     Code
-      pv_summary(empty_prof)
+      pv_debrief(empty_prof)
+    Condition
+      Error:
+      ! Profile contains no samples.
+      Your code ran too fast to capture any profiling data.
+      Try wrapping your code in a loop: for (i in 1:10) { ... }
+      Increase the iteration count until samples appear.
+
+---
+
+    Code
+      pv_print_debrief(empty_prof)
+    Condition
+      Error:
+      ! Profile contains no samples.
+      Your code ran too fast to capture any profiling data.
+      Try wrapping your code in a loop: for (i in 1:10) { ... }
+      Increase the iteration count until samples appear.
+
+---
+
+    Code
+      pv_worst_line(empty_prof)
     Condition
       Error:
       ! Profile contains no samples.

@@ -1,6 +1,61 @@
-#' Text-based summary of profvis output
+#' Comprehensive profiling data
 #'
-#' Produces a comprehensive text summary of profiling data suitable for
+#' Returns all profiling analysis in a single list for programmatic access.
+#' This is the primary function for AI agents and scripts that need
+#' comprehensive profiling data without printed output.
+#'
+#' @param x A profvis object from [profvis::profvis()].
+#' @param n Maximum number of items to include in each category (default 10).
+#'
+#' @return A list containing:
+#'   - `total_time_ms`: Total profiling time in milliseconds
+#'   - `total_samples`: Number of profiling samples
+#'   - `interval_ms`: Sampling interval in milliseconds
+#'   - `has_source`: Whether source references are available
+#'   - `self_time`: Data frame of functions by self-time
+#'   - `total_time`: Data frame of functions by total time
+#'   - `hot_lines`: Data frame of hot source lines (or NULL if no source refs)
+#'   - `hot_paths`: Data frame of hot call paths
+#'   - `suggestions`: Data frame of optimization suggestions
+#'   - `gc_pressure`: Data frame of GC pressure analysis
+#'   - `memory`: Data frame of memory allocation by function
+#'   - `memory_lines`: Data frame of memory allocation by line (or NULL)
+#'
+#' @examples
+#' p <- pv_example()
+#' d <- pv_debrief(p)
+#' names(d)
+#' d$self_time
+#' @export
+pv_debrief <- function(x, n = 10) {
+  check_profvis(x)
+  check_empty_profile(x)
+
+  interval_ms <- extract_interval(x)
+  total_samples <- extract_total_samples(x)
+  total_time_ms <- total_samples * interval_ms
+
+  has_source <- has_source_refs(x)
+
+  list(
+    total_time_ms = total_time_ms,
+    total_samples = total_samples,
+    interval_ms = interval_ms,
+    has_source = has_source,
+    self_time = pv_self_time(x, n = n),
+    total_time = pv_total_time(x, n = n),
+    hot_lines = if (has_source) pv_hot_lines(x, n = n) else NULL,
+    hot_paths = pv_hot_paths(x, n = n),
+    suggestions = pv_suggestions(x),
+    gc_pressure = pv_gc_pressure(x),
+    memory = pv_memory(x, n = n),
+    memory_lines = if (has_source) pv_memory_lines(x, n = n) else NULL
+  )
+}
+
+#' Print profiling summary
+#'
+#' Prints a comprehensive text summary of profiling data suitable for
 #' terminal output or AI agent consumption.
 #'
 #' @param x A profvis object from [profvis::profvis()].
@@ -9,13 +64,13 @@
 #' @param n_paths Number of hot paths to show (default 5).
 #' @param n_memory Number of memory hotspots to show (default 5).
 #'
-#' @return Invisibly returns a list containing all computed summaries.
+#' @return Invisibly returns the result of [pv_debrief()].
 #'
 #' @examples
 #' p <- pv_example()
-#' pv_summary(p)
+#' pv_print_debrief(p)
 #' @export
-pv_summary <- function(
+pv_print_debrief <- function(
   x,
   n_functions = 10,
   n_lines = 10,
@@ -79,21 +134,10 @@ pv_summary <- function(
     print_memory_lines_df(head(memory_lines, n_memory), file_contents)
   }
 
-  invisible(list(
-    total_time_ms = total_time_ms,
-    total_samples = total_samples,
-    interval_ms = interval_ms,
-    has_source = has_source,
-    self_time = self_time,
-    total_time = total_time,
-    hot_lines = hot_lines,
-    hot_paths = hot_paths,
-    memory_funcs = memory_funcs,
-    memory_lines = memory_lines
-  ))
+  invisible(pv_debrief(x, n = max(n_functions, n_lines, n_paths, n_memory)))
 }
 
-# Print helpers for summary
+# Print helpers for debrief
 print_time_df <- function(df) {
   if (is.null(df) || nrow(df) == 0) {
     cat("No data.\n")

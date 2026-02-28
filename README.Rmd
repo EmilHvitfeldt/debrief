@@ -86,10 +86,10 @@ unlink("analysis.R")
 
 ### Quick Summary
 
-Get a comprehensive overview with `pv_summary()`:
+Get a comprehensive overview with `pv_print_debrief()`:
 
 ```{r summary}
-pv_summary(p)
+pv_print_debrief(p)
 ```
 
 ### Time Analysis
@@ -233,9 +233,9 @@ results$self_time
 
 | Category | Functions |
 |----------|-----------|
-| Overview | `pv_summary()`, `pv_example()` |
+| Overview | `pv_debrief()`, `pv_print_debrief()`, `pv_example()` |
 | Time Analysis | `pv_self_time()`, `pv_total_time()` |
-| Hot Spots | `pv_hot_lines()`, `pv_hot_paths()`, `pv_print_hot_lines()`, `pv_print_hot_paths()` |
+| Hot Spots | `pv_hot_lines()`, `pv_hot_paths()`, `pv_worst_line()`, `pv_print_hot_lines()`, `pv_print_hot_paths()` |
 | Memory | `pv_memory()`, `pv_memory_lines()`, `pv_print_memory()` |
 | Call Analysis | `pv_callers()`, `pv_callees()`, `pv_call_depth()`, `pv_call_stats()` |
 | Function Analysis | `pv_focus()`, `pv_recursive()` |
