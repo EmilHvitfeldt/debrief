@@ -35,13 +35,15 @@ pak::pak("emilhvitfeldt/debrief")
 
 ## Example
 
-First, create a profvis profile of some code:
+First, create a profvis profile of some code. To get source references in the
+profile, write your code to a file and source it with `keep.source = TRUE`:
 
 ```{r example}
 library(profvis)
 library(debrief)
 
-# Define some functions to profile
+# Write functions to a temp file for source references
+example_code <- '
 process_data <- function(n) {
   raw <- generate_data(n)
   cleaned <- clean_data(raw)
@@ -51,7 +53,6 @@ process_data <- function(n) {
 generate_data <- function(n) {
   x <- rnorm(n)
   y <- runif(n)
-
   data.frame(x = x, y = y, z = x * y)
 }
 
@@ -70,11 +71,17 @@ summarize_data <- function(df) {
     text = paste(round(df$x, 2), collapse = ", ")
   )
 }
+'
+
+writeLines(example_code, "analysis.R")
+source("analysis.R", keep.source = TRUE)
 
 # Profile the data pipeline
 p <- profvis({
   results <- lapply(1:5, function(i) process_data(1e5))
 })
+
+unlink("analysis.R")
 ```
 
 ### Quick Summary
