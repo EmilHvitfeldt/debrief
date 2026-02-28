@@ -154,45 +154,56 @@
 <span><span class="co">#&gt; ## PROFILING SUMMARY</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Total time: 190 ms (19 samples @ 10 ms interval)</span></span>
+<span><span class="co">#&gt; Total time: 180 ms (18 samples @ 10 ms interval)</span></span>
 <span><span class="co">#&gt; Source references: available</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ### TOP FUNCTIONS BY SELF-TIME</span></span>
-<span><span class="co">#&gt;    120 ms ( 63.2%)  paste</span></span>
-<span><span class="co">#&gt;     20 ms ( 10.5%)  .bincode</span></span>
-<span><span class="co">#&gt;     10 ms (  5.3%)  &lt;GC&gt;</span></span>
-<span><span class="co">#&gt;     10 ms (  5.3%)  aperm.default</span></span>
-<span><span class="co">#&gt;     10 ms (  5.3%)  apply</span></span>
-<span><span class="co">#&gt;     10 ms (  5.3%)  complete.cases</span></span>
-<span><span class="co">#&gt;     10 ms (  5.3%)  constantFoldCall</span></span>
+<span><span class="co">#&gt;    110 ms ( 61.1%)  paste</span></span>
+<span><span class="co">#&gt;     10 ms (  5.6%)  .bincode</span></span>
+<span><span class="co">#&gt;     10 ms (  5.6%)  anyDuplicated.default</span></span>
+<span><span class="co">#&gt;     10 ms (  5.6%)  apply</span></span>
+<span><span class="co">#&gt;     10 ms (  5.6%)  factor</span></span>
+<span><span class="co">#&gt;     10 ms (  5.6%)  match.arg</span></span>
+<span><span class="co">#&gt;     10 ms (  5.6%)  runif</span></span>
+<span><span class="co">#&gt;     10 ms (  5.6%)  unlist</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ### TOP FUNCTIONS BY TOTAL TIME</span></span>
-<span><span class="co">#&gt;    180 ms ( 94.7%)  FUN</span></span>
-<span><span class="co">#&gt;    180 ms ( 94.7%)  lapply</span></span>
-<span><span class="co">#&gt;    180 ms ( 94.7%)  process_data</span></span>
-<span><span class="co">#&gt;    130 ms ( 68.4%)  summarize_data</span></span>
-<span><span class="co">#&gt;    120 ms ( 63.2%)  paste</span></span>
-<span><span class="co">#&gt;     50 ms ( 26.3%)  clean_data</span></span>
-<span><span class="co">#&gt;     20 ms ( 10.5%)  .bincode</span></span>
-<span><span class="co">#&gt;     20 ms ( 10.5%)  apply</span></span>
-<span><span class="co">#&gt;     20 ms ( 10.5%)  cut.default</span></span>
-<span><span class="co">#&gt;     20 ms ( 10.5%)  scale.default</span></span>
+<span><span class="co">#&gt;    180 ms (100.0%)  FUN</span></span>
+<span><span class="co">#&gt;    180 ms (100.0%)  lapply</span></span>
+<span><span class="co">#&gt;    180 ms (100.0%)  process_data</span></span>
+<span><span class="co">#&gt;    130 ms ( 72.2%)  summarize_data</span></span>
+<span><span class="co">#&gt;    110 ms ( 61.1%)  paste</span></span>
+<span><span class="co">#&gt;     30 ms ( 16.7%)  clean_data</span></span>
+<span><span class="co">#&gt;     20 ms ( 11.1%)  cut.default</span></span>
+<span><span class="co">#&gt;     20 ms ( 11.1%)  generate_data</span></span>
+<span><span class="co">#&gt;     10 ms (  5.6%)  .bincode</span></span>
+<span><span class="co">#&gt;     10 ms (  5.6%)  [.data.frame</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ### HOT LINES (by self-time)</span></span>
-<span><span class="co">#&gt;    130 ms ( 68.4%)  analysis.R:22</span></span>
+<span><span class="co">#&gt;    120 ms ( 66.7%)  analysis.R:22</span></span>
 <span><span class="co">#&gt;                    list(</span></span>
+<span><span class="co">#&gt;     10 ms (  5.6%)  analysis.R:10</span></span>
+<span><span class="co">#&gt;                    y &lt;- runif(n)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ### HOT CALL PATHS</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 120 ms (63.2%) - 12 samples:</span></span>
+<span><span class="co">#&gt; 110 ms (61.1%) - 11 samples:</span></span>
 <span><span class="co">#&gt;     lapply</span></span>
 <span><span class="co">#&gt;   -&gt; FUN</span></span>
 <span><span class="co">#&gt;   -&gt; process_data</span></span>
 <span><span class="co">#&gt;   -&gt; summarize_data (analysis.R:5)</span></span>
 <span><span class="co">#&gt;   -&gt; paste (analysis.R:22)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 20 ms (10.5%) - 2 samples:</span></span>
+<span><span class="co">#&gt; 10 ms (5.6%) - 1 samples:</span></span>
+<span><span class="co">#&gt;     lapply</span></span>
+<span><span class="co">#&gt;   -&gt; FUN</span></span>
+<span><span class="co">#&gt;   -&gt; process_data</span></span>
+<span><span class="co">#&gt;   -&gt; clean_data (analysis.R:4)</span></span>
+<span><span class="co">#&gt;   -&gt; [.data.frame (analysis.R:15)</span></span>
+<span><span class="co">#&gt;   -&gt; anyDuplicated.default</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; 10 ms (5.6%) - 1 samples:</span></span>
 <span><span class="co">#&gt;     lapply</span></span>
 <span><span class="co">#&gt;   -&gt; FUN</span></span>
 <span><span class="co">#&gt;   -&gt; process_data</span></span>
@@ -200,56 +211,42 @@
 <span><span class="co">#&gt;   -&gt; cut.default</span></span>
 <span><span class="co">#&gt;   -&gt; .bincode</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 10 ms (5.3%) - 1 samples:</span></span>
-<span><span class="co">#&gt;     base::tryCatch</span></span>
-<span><span class="co">#&gt;   -&gt; compiler:::tryCmpfun (analysis.R:3)</span></span>
-<span><span class="co">#&gt;   -&gt; cmpfun</span></span>
-<span><span class="co">#&gt;   -&gt; genCode</span></span>
-<span><span class="co">#&gt;   -&gt; cmp</span></span>
-<span><span class="co">#&gt;   -&gt; cmpCall</span></span>
-<span><span class="co">#&gt;   -&gt; tryInline</span></span>
-<span><span class="co">#&gt;   -&gt; h</span></span>
-<span><span class="co">#&gt;   -&gt; cmp</span></span>
-<span><span class="co">#&gt;   -&gt; cmpCall</span></span>
-<span><span class="co">#&gt;   -&gt; cmpCallSymFun</span></span>
-<span><span class="co">#&gt;   -&gt; cmpCallArgs</span></span>
-<span><span class="co">#&gt;   -&gt; genCode</span></span>
-<span><span class="co">#&gt;   -&gt; cmp</span></span>
-<span><span class="co">#&gt;   -&gt; constantFold</span></span>
-<span><span class="co">#&gt;   -&gt; constantFoldCall</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 10 ms (5.3%) - 1 samples:</span></span>
+<span><span class="co">#&gt; 10 ms (5.6%) - 1 samples:</span></span>
 <span><span class="co">#&gt;     lapply</span></span>
 <span><span class="co">#&gt;   -&gt; FUN</span></span>
 <span><span class="co">#&gt;   -&gt; process_data</span></span>
 <span><span class="co">#&gt;   -&gt; clean_data (analysis.R:4)</span></span>
-<span><span class="co">#&gt;   -&gt; complete.cases</span></span>
+<span><span class="co">#&gt;   -&gt; cut.default</span></span>
+<span><span class="co">#&gt;   -&gt; factor</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 10 ms (5.3%) - 1 samples:</span></span>
+<span><span class="co">#&gt; 10 ms (5.6%) - 1 samples:</span></span>
 <span><span class="co">#&gt;     lapply</span></span>
 <span><span class="co">#&gt;   -&gt; FUN</span></span>
 <span><span class="co">#&gt;   -&gt; process_data</span></span>
-<span><span class="co">#&gt;   -&gt; clean_data (analysis.R:4)</span></span>
-<span><span class="co">#&gt;   -&gt; scale.default</span></span>
-<span><span class="co">#&gt;   -&gt; apply</span></span>
-<span><span class="co">#&gt;   -&gt; FUN</span></span>
-<span><span class="co">#&gt;   -&gt; &lt;GC&gt;</span></span>
+<span><span class="co">#&gt;   -&gt; generate_data (analysis.R:3)</span></span>
+<span><span class="co">#&gt;   -&gt; data.frame (analysis.R:11)</span></span>
+<span><span class="co">#&gt;   -&gt; make.names</span></span>
+<span><span class="co">#&gt;   -&gt; order</span></span>
+<span><span class="co">#&gt;   -&gt; match.arg</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ### MEMORY ALLOCATION (by function)</span></span>
-<span><span class="co">#&gt;    35.97 MB paste</span></span>
-<span><span class="co">#&gt;    18.78 MB aperm.default</span></span>
-<span><span class="co">#&gt;    10.87 MB &lt;GC&gt;</span></span>
-<span><span class="co">#&gt;     3.43 MB apply</span></span>
-<span><span class="co">#&gt;     3.28 MB complete.cases</span></span>
+<span><span class="co">#&gt;    41.03 MB paste</span></span>
+<span><span class="co">#&gt;    10.01 MB anyDuplicated.default</span></span>
+<span><span class="co">#&gt;     2.90 MB match.arg</span></span>
+<span><span class="co">#&gt;     2.38 MB runif</span></span>
+<span><span class="co">#&gt;     0.61 MB unlist</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ### MEMORY ALLOCATION (by line)</span></span>
-<span><span class="co">#&gt;    39.40 MB analysis.R:22</span></span>
+<span><span class="co">#&gt;    41.03 MB analysis.R:22</span></span>
 <span><span class="co">#&gt;             list(</span></span>
+<span><span class="co">#&gt;     2.38 MB analysis.R:10</span></span>
+<span><span class="co">#&gt;             y &lt;- runif(n)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ### Next steps</span></span>
 <span><span class="co">#&gt; pv_focus(p, "paste")</span></span>
 <span><span class="co">#&gt; pv_source_context(p, "analysis.R")</span></span>
-<span><span class="co">#&gt; pv_suggestions(p)</span></span></code></pre></div>
+<span><span class="co">#&gt; pv_suggestions(p)</span></span>
+<span><span class="co">#&gt; pv_help()</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="time-analysis">Time Analysis<a class="anchor" aria-label="anchor" href="#time-analysis"></a>
@@ -258,55 +255,52 @@
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Self-time: time spent directly in each function</span></span>
 <span><span class="fu"><a href="reference/pv_self_time.html">pv_self_time</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
-<span><span class="co">#&gt;              label samples time_ms  pct</span></span>
-<span><span class="co">#&gt; 1            paste      12     120 63.2</span></span>
-<span><span class="co">#&gt; 2         .bincode       2      20 10.5</span></span>
-<span><span class="co">#&gt; 3             &lt;GC&gt;       1      10  5.3</span></span>
-<span><span class="co">#&gt; 4    aperm.default       1      10  5.3</span></span>
-<span><span class="co">#&gt; 5            apply       1      10  5.3</span></span>
-<span><span class="co">#&gt; 6   complete.cases       1      10  5.3</span></span>
-<span><span class="co">#&gt; 7 constantFoldCall       1      10  5.3</span></span>
+<span><span class="co">#&gt;                   label samples time_ms  pct</span></span>
+<span><span class="co">#&gt; 1                 paste      11     110 61.1</span></span>
+<span><span class="co">#&gt; 2              .bincode       1      10  5.6</span></span>
+<span><span class="co">#&gt; 3 anyDuplicated.default       1      10  5.6</span></span>
+<span><span class="co">#&gt; 4                 apply       1      10  5.6</span></span>
+<span><span class="co">#&gt; 5                factor       1      10  5.6</span></span>
+<span><span class="co">#&gt; 6             match.arg       1      10  5.6</span></span>
+<span><span class="co">#&gt; 7                 runif       1      10  5.6</span></span>
+<span><span class="co">#&gt; 8                unlist       1      10  5.6</span></span>
 <span></span>
 <span><span class="co"># Total time: time spent in function + all its callees</span></span>
 <span><span class="fu"><a href="reference/pv_total_time.html">pv_total_time</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                   label samples time_ms  pct</span></span>
-<span><span class="co">#&gt; 1                   FUN      18     180 94.7</span></span>
-<span><span class="co">#&gt; 2                lapply      18     180 94.7</span></span>
-<span><span class="co">#&gt; 3          process_data      18     180 94.7</span></span>
-<span><span class="co">#&gt; 4        summarize_data      13     130 68.4</span></span>
-<span><span class="co">#&gt; 5                 paste      12     120 63.2</span></span>
-<span><span class="co">#&gt; 6            clean_data       5      50 26.3</span></span>
-<span><span class="co">#&gt; 7              .bincode       2      20 10.5</span></span>
-<span><span class="co">#&gt; 8                 apply       2      20 10.5</span></span>
-<span><span class="co">#&gt; 9           cut.default       2      20 10.5</span></span>
-<span><span class="co">#&gt; 10        scale.default       2      20 10.5</span></span>
-<span><span class="co">#&gt; 11                 &lt;GC&gt;       1      10  5.3</span></span>
-<span><span class="co">#&gt; 12        aperm.default       1      10  5.3</span></span>
-<span><span class="co">#&gt; 13       base::tryCatch       1      10  5.3</span></span>
-<span><span class="co">#&gt; 14                  cmp       1      10  5.3</span></span>
-<span><span class="co">#&gt; 15              cmpCall       1      10  5.3</span></span>
-<span><span class="co">#&gt; 16          cmpCallArgs       1      10  5.3</span></span>
-<span><span class="co">#&gt; 17        cmpCallSymFun       1      10  5.3</span></span>
-<span><span class="co">#&gt; 18               cmpfun       1      10  5.3</span></span>
-<span><span class="co">#&gt; 19 compiler:::tryCmpfun       1      10  5.3</span></span>
-<span><span class="co">#&gt; 20       complete.cases       1      10  5.3</span></span>
-<span><span class="co">#&gt; 21         constantFold       1      10  5.3</span></span>
-<span><span class="co">#&gt; 22     constantFoldCall       1      10  5.3</span></span>
-<span><span class="co">#&gt; 23              genCode       1      10  5.3</span></span>
-<span><span class="co">#&gt; 24                    h       1      10  5.3</span></span>
-<span><span class="co">#&gt; 25                sweep       1      10  5.3</span></span>
-<span><span class="co">#&gt; 26            tryInline       1      10  5.3</span></span>
+<span><span class="co">#&gt;                    label samples time_ms   pct</span></span>
+<span><span class="co">#&gt; 1                    FUN      18     180 100.0</span></span>
+<span><span class="co">#&gt; 2                 lapply      18     180 100.0</span></span>
+<span><span class="co">#&gt; 3           process_data      18     180 100.0</span></span>
+<span><span class="co">#&gt; 4         summarize_data      13     130  72.2</span></span>
+<span><span class="co">#&gt; 5                  paste      11     110  61.1</span></span>
+<span><span class="co">#&gt; 6             clean_data       3      30  16.7</span></span>
+<span><span class="co">#&gt; 7            cut.default       2      20  11.1</span></span>
+<span><span class="co">#&gt; 8          generate_data       2      20  11.1</span></span>
+<span><span class="co">#&gt; 9               .bincode       1      10   5.6</span></span>
+<span><span class="co">#&gt; 10          [.data.frame       1      10   5.6</span></span>
+<span><span class="co">#&gt; 11 anyDuplicated.default       1      10   5.6</span></span>
+<span><span class="co">#&gt; 12                 apply       1      10   5.6</span></span>
+<span><span class="co">#&gt; 13  as.matrix.data.frame       1      10   5.6</span></span>
+<span><span class="co">#&gt; 14              colMeans       1      10   5.6</span></span>
+<span><span class="co">#&gt; 15            data.frame       1      10   5.6</span></span>
+<span><span class="co">#&gt; 16                factor       1      10   5.6</span></span>
+<span><span class="co">#&gt; 17            make.names       1      10   5.6</span></span>
+<span><span class="co">#&gt; 18             match.arg       1      10   5.6</span></span>
+<span><span class="co">#&gt; 19                 order       1      10   5.6</span></span>
+<span><span class="co">#&gt; 20                 runif       1      10   5.6</span></span>
+<span><span class="co">#&gt; 21                unlist       1      10   5.6</span></span>
 <span></span>
 <span><span class="co"># Filter to significant functions only</span></span>
 <span><span class="fu"><a href="reference/pv_self_time.html">pv_self_time</a></span><span class="op">(</span><span class="va">p</span>, min_pct <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="co"># &gt;= 5% of time</span></span>
-<span><span class="co">#&gt;              label samples time_ms  pct</span></span>
-<span><span class="co">#&gt; 1            paste      12     120 63.2</span></span>
-<span><span class="co">#&gt; 2         .bincode       2      20 10.5</span></span>
-<span><span class="co">#&gt; 3             &lt;GC&gt;       1      10  5.3</span></span>
-<span><span class="co">#&gt; 4    aperm.default       1      10  5.3</span></span>
-<span><span class="co">#&gt; 5            apply       1      10  5.3</span></span>
-<span><span class="co">#&gt; 6   complete.cases       1      10  5.3</span></span>
-<span><span class="co">#&gt; 7 constantFoldCall       1      10  5.3</span></span></code></pre></div>
+<span><span class="co">#&gt;                   label samples time_ms  pct</span></span>
+<span><span class="co">#&gt; 1                 paste      11     110 61.1</span></span>
+<span><span class="co">#&gt; 2              .bincode       1      10  5.6</span></span>
+<span><span class="co">#&gt; 3 anyDuplicated.default       1      10  5.6</span></span>
+<span><span class="co">#&gt; 4                 apply       1      10  5.6</span></span>
+<span><span class="co">#&gt; 5                factor       1      10  5.6</span></span>
+<span><span class="co">#&gt; 6             match.arg       1      10  5.6</span></span>
+<span><span class="co">#&gt; 7                 runif       1      10  5.6</span></span>
+<span><span class="co">#&gt; 8                unlist       1      10  5.6</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="hot-spots">Hot Spots<a class="anchor" aria-label="anchor" href="#hot-spots"></a>
@@ -318,7 +312,7 @@
 <span><span class="co">#&gt; ## HOT SOURCE LINES</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Rank 1: analysis.R:22 (130 ms, 68.4%)</span></span>
+<span><span class="co">#&gt; Rank 1: analysis.R:22 (120 ms, 66.7%)</span></span>
 <span><span class="co">#&gt; Function: paste</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;        19: }</span></span>
@@ -328,6 +322,17 @@
 <span><span class="co">#&gt;        23:     means = colMeans(df[, c("x", "y", "z")]),</span></span>
 <span><span class="co">#&gt;        24:     sds = apply(df[, c("x", "y", "z")], 2, sd),</span></span>
 <span><span class="co">#&gt;        25:     counts = table(df$category),</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Rank 2: analysis.R:10 (10 ms, 5.6%)</span></span>
+<span><span class="co">#&gt; Function: runif</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;         7: </span></span>
+<span><span class="co">#&gt;         8: generate_data &lt;- function(n) {</span></span>
+<span><span class="co">#&gt;         9:   x &lt;- rnorm(n)</span></span>
+<span><span class="co">#&gt; &gt;      10:   y &lt;- runif(n)</span></span>
+<span><span class="co">#&gt;        11:   data.frame(x = x, y = y, z = x * y)</span></span>
+<span><span class="co">#&gt;        12: }</span></span>
+<span><span class="co">#&gt;        13: </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ### Next steps</span></span>
@@ -339,14 +344,22 @@
 <span><span class="co">#&gt; ## HOT CALL PATHS</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Rank 1: 120 ms (63.2%) - 12 samples</span></span>
+<span><span class="co">#&gt; Rank 1: 110 ms (61.1%) - 11 samples</span></span>
 <span><span class="co">#&gt;     lapply</span></span>
 <span><span class="co">#&gt;   -&gt; FUN</span></span>
 <span><span class="co">#&gt;   -&gt; process_data</span></span>
 <span><span class="co">#&gt;   -&gt; summarize_data (analysis.R:5)</span></span>
 <span><span class="co">#&gt;   -&gt; paste (analysis.R:22)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Rank 2: 20 ms (10.5%) - 2 samples</span></span>
+<span><span class="co">#&gt; Rank 2: 10 ms (5.6%) - 1 samples</span></span>
+<span><span class="co">#&gt;     lapply</span></span>
+<span><span class="co">#&gt;   -&gt; FUN</span></span>
+<span><span class="co">#&gt;   -&gt; process_data</span></span>
+<span><span class="co">#&gt;   -&gt; clean_data (analysis.R:4)</span></span>
+<span><span class="co">#&gt;   -&gt; [.data.frame (analysis.R:15)</span></span>
+<span><span class="co">#&gt;   -&gt; anyDuplicated.default</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Rank 3: 10 ms (5.6%) - 1 samples</span></span>
 <span><span class="co">#&gt;     lapply</span></span>
 <span><span class="co">#&gt;   -&gt; FUN</span></span>
 <span><span class="co">#&gt;   -&gt; process_data</span></span>
@@ -354,56 +367,46 @@
 <span><span class="co">#&gt;   -&gt; cut.default</span></span>
 <span><span class="co">#&gt;   -&gt; .bincode</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Rank 3: 10 ms (5.3%) - 1 samples</span></span>
-<span><span class="co">#&gt;     base::tryCatch</span></span>
-<span><span class="co">#&gt;   -&gt; compiler:::tryCmpfun (analysis.R:3)</span></span>
-<span><span class="co">#&gt;   -&gt; cmpfun</span></span>
-<span><span class="co">#&gt;   -&gt; genCode</span></span>
-<span><span class="co">#&gt;   -&gt; cmp</span></span>
-<span><span class="co">#&gt;   -&gt; cmpCall</span></span>
-<span><span class="co">#&gt;   -&gt; tryInline</span></span>
-<span><span class="co">#&gt;   -&gt; h</span></span>
-<span><span class="co">#&gt;   -&gt; cmp</span></span>
-<span><span class="co">#&gt;   -&gt; cmpCall</span></span>
-<span><span class="co">#&gt;   -&gt; cmpCallSymFun</span></span>
-<span><span class="co">#&gt;   -&gt; cmpCallArgs</span></span>
-<span><span class="co">#&gt;   -&gt; genCode</span></span>
-<span><span class="co">#&gt;   -&gt; cmp</span></span>
-<span><span class="co">#&gt;   -&gt; constantFold</span></span>
-<span><span class="co">#&gt;   -&gt; constantFoldCall</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Rank 4: 10 ms (5.3%) - 1 samples</span></span>
+<span><span class="co">#&gt; Rank 4: 10 ms (5.6%) - 1 samples</span></span>
 <span><span class="co">#&gt;     lapply</span></span>
 <span><span class="co">#&gt;   -&gt; FUN</span></span>
 <span><span class="co">#&gt;   -&gt; process_data</span></span>
 <span><span class="co">#&gt;   -&gt; clean_data (analysis.R:4)</span></span>
-<span><span class="co">#&gt;   -&gt; complete.cases</span></span>
+<span><span class="co">#&gt;   -&gt; cut.default</span></span>
+<span><span class="co">#&gt;   -&gt; factor</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Rank 5: 10 ms (5.3%) - 1 samples</span></span>
+<span><span class="co">#&gt; Rank 5: 10 ms (5.6%) - 1 samples</span></span>
 <span><span class="co">#&gt;     lapply</span></span>
 <span><span class="co">#&gt;   -&gt; FUN</span></span>
 <span><span class="co">#&gt;   -&gt; process_data</span></span>
-<span><span class="co">#&gt;   -&gt; clean_data (analysis.R:4)</span></span>
-<span><span class="co">#&gt;   -&gt; scale.default</span></span>
-<span><span class="co">#&gt;   -&gt; apply</span></span>
-<span><span class="co">#&gt;   -&gt; FUN</span></span>
-<span><span class="co">#&gt;   -&gt; &lt;GC&gt;</span></span>
+<span><span class="co">#&gt;   -&gt; generate_data (analysis.R:3)</span></span>
+<span><span class="co">#&gt;   -&gt; data.frame (analysis.R:11)</span></span>
+<span><span class="co">#&gt;   -&gt; make.names</span></span>
+<span><span class="co">#&gt;   -&gt; order</span></span>
+<span><span class="co">#&gt;   -&gt; match.arg</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Rank 6: 10 ms (5.3%) - 1 samples</span></span>
+<span><span class="co">#&gt; Rank 6: 10 ms (5.6%) - 1 samples</span></span>
 <span><span class="co">#&gt;     lapply</span></span>
 <span><span class="co">#&gt;   -&gt; FUN</span></span>
 <span><span class="co">#&gt;   -&gt; process_data</span></span>
-<span><span class="co">#&gt;   -&gt; clean_data (analysis.R:4)</span></span>
-<span><span class="co">#&gt;   -&gt; scale.default</span></span>
-<span><span class="co">#&gt;   -&gt; sweep</span></span>
-<span><span class="co">#&gt;   -&gt; aperm.default</span></span>
+<span><span class="co">#&gt;   -&gt; generate_data (analysis.R:3)</span></span>
+<span><span class="co">#&gt;   -&gt; runif (analysis.R:10)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Rank 7: 10 ms (5.3%) - 1 samples</span></span>
+<span><span class="co">#&gt; Rank 7: 10 ms (5.6%) - 1 samples</span></span>
 <span><span class="co">#&gt;     lapply</span></span>
 <span><span class="co">#&gt;   -&gt; FUN</span></span>
 <span><span class="co">#&gt;   -&gt; process_data</span></span>
 <span><span class="co">#&gt;   -&gt; summarize_data (analysis.R:5)</span></span>
 <span><span class="co">#&gt;   -&gt; apply (analysis.R:22)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Rank 8: 10 ms (5.6%) - 1 samples</span></span>
+<span><span class="co">#&gt;     lapply</span></span>
+<span><span class="co">#&gt;   -&gt; FUN</span></span>
+<span><span class="co">#&gt;   -&gt; process_data</span></span>
+<span><span class="co">#&gt;   -&gt; summarize_data (analysis.R:5)</span></span>
+<span><span class="co">#&gt;   -&gt; colMeans (analysis.R:22)</span></span>
+<span><span class="co">#&gt;   -&gt; as.matrix.data.frame</span></span>
+<span><span class="co">#&gt;   -&gt; unlist</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ### Next steps</span></span>
@@ -420,18 +423,17 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ### Time Analysis</span></span>
-<span><span class="co">#&gt;   Total time:       50 ms ( 26.3%)  - time on call stack</span></span>
+<span><span class="co">#&gt;   Total time:       30 ms ( 16.7%)  - time on call stack</span></span>
 <span><span class="co">#&gt;   Self time:         0 ms (  0.0%)  - time at top of stack</span></span>
-<span><span class="co">#&gt;   Child time:       50 ms ( 26.3%)  - time in callees</span></span>
-<span><span class="co">#&gt;   Appearances:       5 samples</span></span>
+<span><span class="co">#&gt;   Child time:       30 ms ( 16.7%)  - time in callees</span></span>
+<span><span class="co">#&gt;   Appearances:       3 samples</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ### Called By</span></span>
-<span><span class="co">#&gt;       5 calls (100.0%)  process_data</span></span>
+<span><span class="co">#&gt;       3 calls (100.0%)  process_data</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ### Calls To</span></span>
-<span><span class="co">#&gt;       2 calls ( 40.0%)  cut.default</span></span>
-<span><span class="co">#&gt;       2 calls ( 40.0%)  scale.default</span></span>
-<span><span class="co">#&gt;       1 calls ( 20.0%)  complete.cases</span></span>
+<span><span class="co">#&gt;       2 calls ( 66.7%)  cut.default</span></span>
+<span><span class="co">#&gt;       1 calls ( 33.3%)  [.data.frame</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ### Source Locations</span></span>
 <span><span class="co">#&gt;   No self-time with source info.</span></span>
@@ -449,28 +451,30 @@
 <code class="sourceCode R"><span><span class="co"># Who calls this function?</span></span>
 <span><span class="fu"><a href="reference/pv_callers.html">pv_callers</a></span><span class="op">(</span><span class="va">p</span>, <span class="st">"clean_data"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;          label samples pct</span></span>
-<span><span class="co">#&gt; 1 process_data       5 100</span></span>
+<span><span class="co">#&gt; 1 process_data       3 100</span></span>
 <span></span>
 <span><span class="co"># What does this function call?</span></span>
 <span><span class="fu"><a href="reference/pv_callees.html">pv_callees</a></span><span class="op">(</span><span class="va">p</span>, <span class="st">"process_data"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;            label samples  pct</span></span>
 <span><span class="co">#&gt; 1 summarize_data      13 72.2</span></span>
-<span><span class="co">#&gt; 2     clean_data       5 27.8</span></span>
+<span><span class="co">#&gt; 2     clean_data       3 16.7</span></span>
+<span><span class="co">#&gt; 3  generate_data       2 11.1</span></span>
 <span></span>
 <span><span class="co"># Full caller/callee analysis</span></span>
 <span><span class="fu"><a href="reference/pv_print_callers_callees.html">pv_print_callers_callees</a></span><span class="op">(</span><span class="va">p</span>, <span class="st">"summarize_data"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; ## FUNCTION ANALYSIS: summarize_data</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Total time: 130 ms (68.4% of profile)</span></span>
+<span><span class="co">#&gt; Total time: 130 ms (72.2% of profile)</span></span>
 <span><span class="co">#&gt; Appearances: 13 samples</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ### Called by</span></span>
 <span><span class="co">#&gt;      13 samples (100.0%)  process_data</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ### Calls to</span></span>
-<span><span class="co">#&gt;      12 samples ( 92.3%)  paste</span></span>
+<span><span class="co">#&gt;      11 samples ( 84.6%)  paste</span></span>
 <span><span class="co">#&gt;       1 samples (  7.7%)  apply</span></span>
+<span><span class="co">#&gt;       1 samples (  7.7%)  colMeans</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ### Next steps</span></span>
 <span><span class="co">#&gt; pv_focus(p, "summarize_data")</span></span>
@@ -487,12 +491,11 @@
 <span><span class="co">#&gt; ## MEMORY ALLOCATION BY FUNCTION</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;    35.97 MB paste</span></span>
-<span><span class="co">#&gt;    18.78 MB aperm.default</span></span>
-<span><span class="co">#&gt;    10.87 MB &lt;GC&gt;</span></span>
-<span><span class="co">#&gt;     3.43 MB apply</span></span>
-<span><span class="co">#&gt;     3.28 MB complete.cases</span></span>
-<span><span class="co">#&gt;     0.82 MB constantFoldCall</span></span>
+<span><span class="co">#&gt;    41.03 MB paste</span></span>
+<span><span class="co">#&gt;    10.01 MB anyDuplicated.default</span></span>
+<span><span class="co">#&gt;     2.90 MB match.arg</span></span>
+<span><span class="co">#&gt;     2.38 MB runif</span></span>
+<span><span class="co">#&gt;     0.61 MB unlist</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ### Next steps</span></span>
 <span><span class="co">#&gt; pv_focus(p, "paste")</span></span>
@@ -503,8 +506,10 @@
 <span><span class="co">#&gt; ## MEMORY ALLOCATION BY LINE</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;    39.40 MB analysis.R:22</span></span>
+<span><span class="co">#&gt;    41.03 MB analysis.R:22</span></span>
 <span><span class="co">#&gt;             list(</span></span>
+<span><span class="co">#&gt;     2.38 MB analysis.R:10</span></span>
+<span><span class="co">#&gt;             y &lt;- runif(n)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ### Next steps</span></span>
 <span><span class="co">#&gt; pv_focus(p, "paste")</span></span>
@@ -519,40 +524,30 @@
 <span><span class="co">#&gt; ## FLAME GRAPH (text)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Total time: 190 ms | Width: 70 chars | Min: 2%</span></span>
+<span><span class="co">#&gt; Total time: 180 ms | Width: 70 chars | Min: 2%</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [======================================================================] (root) 100%</span></span>
-<span><span class="co">#&gt; [==================================================================    ]   lapply (94.7%)</span></span>
-<span><span class="co">#&gt; [====                                                                  ]   base::tryCatch (5.3%)</span></span>
-<span><span class="co">#&gt; [==================================================================    ]     FUN (94.7%)</span></span>
-<span><span class="co">#&gt; [====                                                                  ]     compiler:::tryCmpfun (5.3%)</span></span>
-<span><span class="co">#&gt; [==================================================================    ]       process_data (94.7%)</span></span>
-<span><span class="co">#&gt; [====                                                                  ]       cmpfun (5.3%)</span></span>
-<span><span class="co">#&gt; [================================================                      ]         summarize_data (68.4%)</span></span>
-<span><span class="co">#&gt; [==================                                                    ]         clean_data (26.3%)</span></span>
-<span><span class="co">#&gt; [====                                                                  ]         genCode (5.3%)</span></span>
-<span><span class="co">#&gt; [============================================                          ]           paste (63.2%)</span></span>
-<span><span class="co">#&gt; [=======                                                               ]           cut.default (10.5%)</span></span>
-<span><span class="co">#&gt; [=======                                                               ]           scale.default (10.5%)</span></span>
-<span><span class="co">#&gt; [====                                                                  ]           cmp (5.3%)</span></span>
-<span><span class="co">#&gt; [====                                                                  ]           complete.cases (5.3%)</span></span>
-<span><span class="co">#&gt; [====                                                                  ]           apply (5.3%)</span></span>
-<span><span class="co">#&gt; [=======                                                               ]             .bincode (10.5%)</span></span>
-<span><span class="co">#&gt; [====                                                                  ]             cmpCall (5.3%)</span></span>
-<span><span class="co">#&gt; [====                                                                  ]             apply (5.3%)</span></span>
-<span><span class="co">#&gt; [====                                                                  ]             sweep (5.3%)</span></span>
-<span><span class="co">#&gt; [====                                                                  ]               tryInline (5.3%)</span></span>
-<span><span class="co">#&gt; [====                                                                  ]               FUN (5.3%)</span></span>
-<span><span class="co">#&gt; [====                                                                  ]               aperm.default (5.3%)</span></span>
-<span><span class="co">#&gt; [====                                                                  ]                 h (5.3%)</span></span>
-<span><span class="co">#&gt; [====                                                                  ]                 &lt;GC&gt; (5.3%)</span></span>
-<span><span class="co">#&gt; [====                                                                  ]                   cmp (5.3%)</span></span>
-<span><span class="co">#&gt; [====                                                                  ]                     cmpCall (5.3%)</span></span>
-<span><span class="co">#&gt; [====                                                                  ]                       cmpCallSymFun (5.3%)</span></span>
-<span><span class="co">#&gt; [====                                                                  ]                         cmpCallArgs (5.3%)</span></span>
-<span><span class="co">#&gt; [====                                                                  ]                           genCode (5.3%)</span></span>
-<span><span class="co">#&gt; [====                                                                  ]                             cmp (5.3%)</span></span>
-<span><span class="co">#&gt; [====                                                                  ]                               constantFold (5.3%)</span></span>
+<span><span class="co">#&gt; [======================================================================]   lapply (100.0%)</span></span>
+<span><span class="co">#&gt; [======================================================================]     FUN (100.0%)</span></span>
+<span><span class="co">#&gt; [======================================================================]       process_data (100.0%)</span></span>
+<span><span class="co">#&gt; [===================================================                   ]         summarize_data (72.2%)</span></span>
+<span><span class="co">#&gt; [============                                                          ]         clean_data (16.7%)</span></span>
+<span><span class="co">#&gt; [========                                                              ]         generate_data (11.1%)</span></span>
+<span><span class="co">#&gt; [===========================================                           ]           paste (61.1%)</span></span>
+<span><span class="co">#&gt; [========                                                              ]           cut.default (11.1%)</span></span>
+<span><span class="co">#&gt; [====                                                                  ]           runif (5.6%)</span></span>
+<span><span class="co">#&gt; [====                                                                  ]           data.frame (5.6%)</span></span>
+<span><span class="co">#&gt; [====                                                                  ]           apply (5.6%)</span></span>
+<span><span class="co">#&gt; [====                                                                  ]           [.data.frame (5.6%)</span></span>
+<span><span class="co">#&gt; [====                                                                  ]           colMeans (5.6%)</span></span>
+<span><span class="co">#&gt; [====                                                                  ]             factor (5.6%)</span></span>
+<span><span class="co">#&gt; [====                                                                  ]             .bincode (5.6%)</span></span>
+<span><span class="co">#&gt; [====                                                                  ]             make.names (5.6%)</span></span>
+<span><span class="co">#&gt; [====                                                                  ]             anyDuplicated.default (5.6%)</span></span>
+<span><span class="co">#&gt; [====                                                                  ]             as.matrix.data.frame (5.6%)</span></span>
+<span><span class="co">#&gt; [====                                                                  ]               order (5.6%)</span></span>
+<span><span class="co">#&gt; [====                                                                  ]               unlist (5.6%)</span></span>
+<span><span class="co">#&gt; [====                                                                  ]                 match.arg (5.6%)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Legend: [====] = time spent, width proportional to time</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -587,23 +582,25 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ### Overall</span></span>
-<span><span class="co">#&gt; before_ms: 300</span></span>
-<span><span class="co">#&gt; after_ms: 210</span></span>
-<span><span class="co">#&gt; diff_ms: -90</span></span>
-<span><span class="co">#&gt; speedup: 1.43x</span></span>
+<span><span class="co">#&gt; before_ms: 270</span></span>
+<span><span class="co">#&gt; after_ms: 200</span></span>
+<span><span class="co">#&gt; diff_ms: -70</span></span>
+<span><span class="co">#&gt; speedup: 1.35x</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ### Biggest Changes</span></span>
 <span><span class="co">#&gt; Function                           Before      After       Diff   Change</span></span>
-<span><span class="co">#&gt; c                                     260          0       -260    -100%</span></span>
-<span><span class="co">#&gt; head                                    0        100       +100      new</span></span>
+<span><span class="co">#&gt; c                                     220          0       -220    -100%</span></span>
+<span><span class="co">#&gt; head                                    0         90        +90      new</span></span>
 <span><span class="co">#&gt; rnorm                                   0         60        +60      new</span></span>
+<span><span class="co">#&gt; &lt;GC&gt;                                   50         40        -10     -20%</span></span>
 <span><span class="co">#&gt; paste                                   0         10        +10      new</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ### Top Improvements</span></span>
-<span><span class="co">#&gt;   c: 260 -&gt; 0 (-260 ms)</span></span>
+<span><span class="co">#&gt;   c: 220 -&gt; 0 (-220 ms)</span></span>
+<span><span class="co">#&gt;   &lt;GC&gt;: 50 -&gt; 40 (-10 ms)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ### Regressions</span></span>
-<span><span class="co">#&gt;   head: 0 -&gt; 100 (+100 ms)</span></span>
+<span><span class="co">#&gt;   head: 0 -&gt; 90 (+90 ms)</span></span>
 <span><span class="co">#&gt;   rnorm: 0 -&gt; 60 (+60 ms)</span></span>
 <span><span class="co">#&gt;   paste: 0 -&gt; 10 (+10 ms)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -632,9 +629,9 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Rank  Profile                    Time (ms)  Samples vs Fastest</span></span>
-<span><span class="co">#&gt;   1*  dataframe_ops                    140       14    fastest</span></span>
-<span><span class="co">#&gt;   2   vectorized                       210       21      1.50x</span></span>
-<span><span class="co">#&gt;   3   growing_vector                   300       30      2.14x</span></span>
+<span><span class="co">#&gt;   1*  dataframe_ops                    130       13    fastest</span></span>
+<span><span class="co">#&gt;   2   vectorized                       200       20      1.54x</span></span>
+<span><span class="co">#&gt;   3   growing_vector                   270       27      2.08x</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; * = fastest</span></span></code></pre></div>
 </div>
@@ -649,6 +646,7 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; No significant GC pressure detected (&lt;10% of time).</span></span>
+<span><span class="co">#&gt; Run pv_help() to see all available functions.</span></span>
 <span></span>
 <span><span class="co"># Get actionable optimization suggestions</span></span>
 <span><span class="fu"><a href="reference/pv_print_suggestions.html">pv_print_suggestions</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
@@ -659,26 +657,32 @@
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; category: hot line</span></span>
 <span><span class="co">#&gt; location: analysis.R:22</span></span>
-<span><span class="co">#&gt; action: Optimize hot line (68.4%)</span></span>
+<span><span class="co">#&gt; action: Optimize hot line (66.7%)</span></span>
 <span><span class="co">#&gt; pattern: paste</span></span>
-<span><span class="co">#&gt; potential_impact: 130 ms (68.4%)</span></span>
+<span><span class="co">#&gt; potential_impact: 120 ms (66.7%)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; category: hot line</span></span>
+<span><span class="co">#&gt; location: analysis.R:10</span></span>
+<span><span class="co">#&gt; action: Optimize hot line (5.6%)</span></span>
+<span><span class="co">#&gt; pattern: runif</span></span>
+<span><span class="co">#&gt; potential_impact: 10 ms (5.6%)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ### Priority 2</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; category: hot function</span></span>
 <span><span class="co">#&gt; location: paste</span></span>
-<span><span class="co">#&gt; action: Profile in isolation (63.2% self-time)</span></span>
+<span><span class="co">#&gt; action: Profile in isolation (61.1% self-time)</span></span>
 <span><span class="co">#&gt; pattern: paste</span></span>
-<span><span class="co">#&gt; potential_impact: 120 ms (63.2%)</span></span>
+<span><span class="co">#&gt; potential_impact: 110 ms (61.1%)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ### Priority 3</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; category: string operations</span></span>
 <span><span class="co">#&gt; location: paste</span></span>
-<span><span class="co">#&gt; action: Optimize string operations (63.2%)</span></span>
+<span><span class="co">#&gt; action: Optimize string operations (61.1%)</span></span>
 <span><span class="co">#&gt; pattern: string ops in loops, regex without fixed=TRUE</span></span>
 <span><span class="co">#&gt; replacement: pre-compute, fixed=TRUE, stringi package</span></span>
-<span><span class="co">#&gt; potential_impact: Up to 60 ms (32%)</span></span>
+<span><span class="co">#&gt; potential_impact: Up to 55 ms (31%)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ### Next steps</span></span>
@@ -698,14 +702,15 @@
 <span></span>
 <span><span class="co"># Data frame of functions by self-time</span></span>
 <span><span class="va">results</span><span class="op">$</span><span class="va">self_time</span></span>
-<span><span class="co">#&gt;              label samples time_ms  pct</span></span>
-<span><span class="co">#&gt; 1            paste      12     120 63.2</span></span>
-<span><span class="co">#&gt; 2         .bincode       2      20 10.5</span></span>
-<span><span class="co">#&gt; 3             &lt;GC&gt;       1      10  5.3</span></span>
-<span><span class="co">#&gt; 4    aperm.default       1      10  5.3</span></span>
-<span><span class="co">#&gt; 5            apply       1      10  5.3</span></span>
-<span><span class="co">#&gt; 6   complete.cases       1      10  5.3</span></span>
-<span><span class="co">#&gt; 7 constantFoldCall       1      10  5.3</span></span></code></pre></div>
+<span><span class="co">#&gt;                   label samples time_ms  pct</span></span>
+<span><span class="co">#&gt; 1                 paste      11     110 61.1</span></span>
+<span><span class="co">#&gt; 2              .bincode       1      10  5.6</span></span>
+<span><span class="co">#&gt; 3 anyDuplicated.default       1      10  5.6</span></span>
+<span><span class="co">#&gt; 4                 apply       1      10  5.6</span></span>
+<span><span class="co">#&gt; 5                factor       1      10  5.6</span></span>
+<span><span class="co">#&gt; 6             match.arg       1      10  5.6</span></span>
+<span><span class="co">#&gt; 7                 runif       1      10  5.6</span></span>
+<span><span class="co">#&gt; 8                unlist       1      10  5.6</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
