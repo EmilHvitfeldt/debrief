@@ -74,7 +74,6 @@ pv_print_call_depth <- function(x) {
   cat_header("CALL DEPTH BREAKDOWN")
   cat("\n")
   cat("Depth  Time (ms)   Pct   Top functions\n")
-  cat(strrep("-", 70), "\n")
 
   for (i in seq_len(nrow(depth_df))) {
     row <- depth_df[i, ]

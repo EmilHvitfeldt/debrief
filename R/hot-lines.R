@@ -137,7 +137,7 @@ pv_print_hot_lines <- function(x, n = 5, context = 3) {
       actual_start <- max(1L, start)
       for (j in seq_along(lines)) {
         ln <- actual_start + j - 1
-        marker <- if (ln == row$linenum) " >>> " else "     "
+        marker <- if (ln == row$linenum) ">    " else "     "
         cat(sprintf("%s%4d: %s\n", marker, ln, lines[j]))
       }
     } else {

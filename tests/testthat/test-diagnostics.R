@@ -5,7 +5,10 @@ test_that("pv_gc_pressure returns correct structure", {
   result <- pv_gc_pressure(p)
 
   expect_s3_class(result, "data.frame")
-  expect_named(result, c("severity", "pct", "time_ms", "description"))
+  expect_named(
+    result,
+    c("severity", "pct", "time_ms", "issue", "cause", "actions")
+  )
 })
 
 test_that("pv_gc_pressure detects high GC", {
@@ -64,7 +67,15 @@ test_that("pv_suggestions returns correct structure", {
   expect_s3_class(result, "data.frame")
   expect_named(
     result,
-    c("priority", "category", "suggestion", "location", "potential_impact")
+    c(
+      "priority",
+      "category",
+      "location",
+      "action",
+      "pattern",
+      "replacement",
+      "potential_impact"
+    )
   )
 })
 

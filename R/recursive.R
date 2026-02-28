@@ -124,9 +124,6 @@ pv_print_recursive <- function(x) {
 
   cat_header("RECURSIVE FUNCTIONS")
   cat("\n")
-  cat("Functions that appear multiple times in the same call stack.\n")
-  cat("High recursion depth + high time = optimization opportunity.\n\n")
-
   cat(sprintf(
     "%-30s %8s %8s %10s %8s\n",
     "Function",
@@ -135,7 +132,6 @@ pv_print_recursive <- function(x) {
     "Total ms",
     "Pct"
   ))
-  cat(strrep("-", 70), "\n")
 
   for (i in seq_len(nrow(recursive))) {
     row <- recursive[i, ]
@@ -149,9 +145,6 @@ pv_print_recursive <- function(x) {
       row$pct_time
     ))
   }
-
-  cat("\n")
-  cat("Note: MaxDepth = max times function appears in single stack\n")
 
   invisible(recursive)
 }

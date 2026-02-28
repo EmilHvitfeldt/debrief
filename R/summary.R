@@ -79,8 +79,6 @@ pv_summary <- function(
     print_memory_lines_df(head(memory_lines, n_memory), file_contents)
   }
 
-  cat(strrep("-", 70), "\n")
-
   invisible(list(
     total_time_ms = total_time_ms,
     total_samples = total_samples,

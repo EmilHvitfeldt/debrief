@@ -14,8 +14,10 @@ A data frame with columns:
 \itemize{
 \item \code{priority}: 1 (highest) to 5 (lowest)
 \item \code{category}: Type of optimization (e.g., "data structure", "algorithm")
-\item \code{suggestion}: The optimization suggestion
 \item \code{location}: Where to apply the optimization
+\item \code{action}: What to do
+\item \code{pattern}: Code pattern to look for (or NA)
+\item \code{replacement}: Suggested replacement (or NA)
 \item \code{potential_impact}: Estimated time that could be saved
 }
 }

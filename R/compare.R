@@ -126,33 +126,19 @@ pv_print_compare <- function(before, after, n = 15) {
   cat("\n")
 
   # Summary
-  cat("--- Overall ", strrep("-", 58), "\n", sep = "")
+  cat_section("Overall")
   before_time <- comp$summary$before[1]
   after_time <- comp$summary$after[1]
   speedup <- comp$summary$after[3]
+  diff_time <- after_time - before_time
 
-  if (after_time < before_time) {
-    cat(sprintf(
-      "IMPROVED: %.0f ms -> %.0f ms (%.1fx faster, saved %.0f ms)\n\n",
-      before_time,
-      after_time,
-      speedup,
-      before_time - after_time
-    ))
-  } else if (after_time > before_time) {
-    cat(sprintf(
-      "REGRESSED: %.0f ms -> %.0f ms (%.1fx slower, added %.0f ms)\n\n",
-      before_time,
-      after_time,
-      1 / speedup,
-      after_time - before_time
-    ))
-  } else {
-    cat(sprintf("NO CHANGE: %.0f ms\n\n", before_time))
-  }
+  cat(sprintf("before_ms: %.0f\n", before_time))
+  cat(sprintf("after_ms: %.0f\n", after_time))
+  cat(sprintf("diff_ms: %+.0f\n", diff_time))
+  cat(sprintf("speedup: %.2fx\n", speedup))
 
   # Top changes
-  cat("--- Biggest Changes ", strrep("-", 50), "\n", sep = "")
+  cat_section("Biggest Changes")
   cat(sprintf(
     "%-30s %10s %10s %10s %8s\n",
     "Function",
@@ -161,7 +147,6 @@ pv_print_compare <- function(before, after, n = 15) {
     "Diff",
     "Change"
   ))
-  cat(strrep("-", 72), "\n")
 
   for (i in seq_len(min(n, nrow(comp$by_function)))) {
     row <- comp$by_function[i, ]
@@ -188,26 +173,26 @@ pv_print_compare <- function(before, after, n = 15) {
 
   # Improved functions
   if (nrow(comp$improved) > 0) {
-    cat("\n--- Top Improvements ", strrep("-", 48), "\n", sep = "")
+    cat_section("Top Improvements")
     for (i in seq_len(min(5, nrow(comp$improved)))) {
       row <- comp$improved[i, ]
       cat(sprintf(
-        "  %s: %.0f ms -> %.0f ms (saved %.0f ms)\n",
+        "  %s: %.0f -> %.0f (%+.0f ms)\n",
         truncate_string(row$label, 35),
         row$before_ms,
         row$after_ms,
-        -row$diff_ms
+        row$diff_ms
       ))
     }
   }
 
   # Regressed functions
   if (nrow(comp$regressed) > 0) {
-    cat("\n--- Regressions ", strrep("-", 53), "\n", sep = "")
+    cat_section("Regressions")
     for (i in seq_len(min(5, nrow(comp$regressed)))) {
       row <- comp$regressed[i, ]
       cat(sprintf(
-        "  %s: %.0f ms -> %.0f ms (added %.0f ms)\n",
+        "  %s: %.0f -> %.0f (%+.0f ms)\n",
         truncate_string(row$label, 35),
         row$before_ms,
         row$after_ms,
@@ -331,7 +316,6 @@ pv_print_compare_many <- function(...) {
     "Samples",
     "vs Fastest"
   ))
-  cat(strrep("-", 62), "\n")
 
   for (i in seq_len(nrow(result))) {
     row <- result[i, ]

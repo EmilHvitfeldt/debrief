@@ -8,8 +8,10 @@
 #' @return A data frame with columns:
 #'   - `priority`: 1 (highest) to 5 (lowest)
 #'   - `category`: Type of optimization (e.g., "data structure", "algorithm")
-#'   - `suggestion`: The optimization suggestion
 #'   - `location`: Where to apply the optimization
+#'   - `action`: What to do
+#'   - `pattern`: Code pattern to look for (or NA)
+#'   - `replacement`: Suggested replacement (or NA)
 #'   - `potential_impact`: Estimated time that could be saved
 #'
 #' @examples
@@ -75,8 +77,10 @@ pv_suggestions <- function(x) {
     return(data.frame(
       priority = integer(),
       category = character(),
-      suggestion = character(),
       location = character(),
+      action = character(),
+      pattern = character(),
+      replacement = character(),
       potential_impact = character(),
       stringsAsFactors = FALSE
     ))
@@ -87,7 +91,7 @@ pv_suggestions <- function(x) {
   rownames(result) <- NULL
 
   # Remove duplicates
-  result <- result[!duplicated(result$suggestion), ]
+  result <- result[!duplicated(paste(result$action, result$location)), ]
 
   result
 }
@@ -108,8 +112,10 @@ suggest_df_vectorization <- function(
     list(data.frame(
       priority = 1L,
       category = "data structure",
-      suggestion = "Replace data frame row subsetting with vector indexing. Instead of `df[i, ]$col`, use `df$col[i]` or pre-extract columns as vectors before loops/recursion.",
       location = "[.data.frame / [[.data.frame",
+      action = "Replace row subsetting with vector indexing",
+      pattern = "df[i, ]$col",
+      replacement = "df$col[i]",
       potential_impact = sprintf(
         "Up to %.0f ms (%.0f%%)",
         df_time * 0.8,
@@ -153,11 +159,10 @@ suggest_recursion_optimization <- function(
       suggestions[[length(suggestions) + 1]] <- data.frame(
         priority = 2L,
         category = "algorithm",
-        suggestion = sprintf(
-          "Consider converting recursive function '%s' to iterative. Use a stack/queue data structure instead of call stack. This reduces function call overhead and enables better optimization.",
-          func
-        ),
         location = func,
+        action = "Convert recursive to iterative",
+        pattern = sprintf("recursive %s()", func),
+        replacement = "stack/queue data structure",
         potential_impact = sprintf(
           "Potentially %.0f ms (%.0f%%)",
           func_time * 0.3,
@@ -180,8 +185,10 @@ suggest_gc_reduction <- function(prof, interval_ms, total_samples, total_time) {
     list(data.frame(
       priority = 2L,
       category = "memory",
-      suggestion = "High GC overhead detected. Pre-allocate vectors/lists to final size instead of growing them. Avoid creating unnecessary intermediate objects. Consider reusing objects where possible.",
       location = "memory allocation hotspots",
+      action = "Reduce memory allocation",
+      pattern = "c(x, new), rbind(), growing vectors",
+      replacement = "pre-allocate to final size",
       potential_impact = sprintf(
         "Up to %.0f ms (%.0f%%)",
         gc_time * 0.5,
@@ -233,11 +240,10 @@ suggest_string_optimization <- function(
     list(data.frame(
       priority = 3L,
       category = "string operations",
-      suggestion = sprintf(
-        "String operations are significant (%.1f%%). Consider: (1) pre-computing strings outside loops, (2) using fixed=TRUE in grep/gsub when not using regex, (3) using stringi package for heavy string processing.",
-        string_pct
-      ),
       location = hot_string_func,
+      action = sprintf("Optimize string operations (%.1f%%)", string_pct),
+      pattern = "string ops in loops, regex without fixed=TRUE",
+      replacement = "pre-compute, fixed=TRUE, stringi package",
       potential_impact = sprintf(
         "Up to %.0f ms (%.0f%%)",
         total_string_time * 0.5,
@@ -269,13 +275,10 @@ suggest_hotline_optimization <- function(
       suggestions[[length(suggestions) + 1]] <- data.frame(
         priority = 1L,
         category = "hot line",
-        suggestion = sprintf(
-          "Line '%s' at %s consumes %.1f%% of time. Focus optimization efforts here first.",
-          truncate_string(row$label, 30),
-          row$location,
-          row$pct
-        ),
         location = row$location,
+        action = sprintf("Optimize hot line (%.1f%%)", row$pct),
+        pattern = truncate_string(row$label, 50),
+        replacement = NA_character_,
         potential_impact = sprintf("%.0f ms (%.1f%%)", row$time_ms, row$pct),
         stringsAsFactors = FALSE
       )
@@ -304,12 +307,10 @@ suggest_top_function_optimization <- function(
     list(data.frame(
       priority = 2L,
       category = "hot function",
-      suggestion = sprintf(
-        "Function '%s' has highest self-time (%.1f%%). Profile this function in isolation to find micro-optimization opportunities.",
-        top_func,
-        top_pct
-      ),
       location = top_func,
+      action = sprintf("Profile in isolation (%.1f%% self-time)", top_pct),
+      pattern = top_func,
+      replacement = NA_character_,
       potential_impact = sprintf("%.0f ms (%.1f%%)", top_time, top_pct),
       stringsAsFactors = FALSE
     ))
@@ -339,14 +340,9 @@ pv_print_suggestions <- function(x) {
   cat("\n")
 
   if (nrow(suggestions) == 0) {
-    cat(
-      "No specific optimization suggestions. The code may already be well-optimized,\n"
-    )
-    cat("or the profile is too short to identify patterns.\n")
+    cat("No suggestions.\n")
     return(invisible(suggestions))
   }
-
-  cat("Suggestions are ordered by priority (1 = highest impact).\n\n")
 
   current_priority <- 0
   for (i in seq_len(nrow(suggestions))) {
@@ -354,12 +350,19 @@ pv_print_suggestions <- function(x) {
 
     if (row$priority != current_priority) {
       current_priority <- row$priority
-      cat(sprintf("=== Priority %d ===\n\n", current_priority))
+      cat(sprintf("### Priority %d\n\n", current_priority))
     }
 
-    cat(sprintf("[%s] %s\n", row$category, row$location))
-    cat(sprintf("    %s\n", row$suggestion))
-    cat(sprintf("    Potential impact: %s\n\n", row$potential_impact))
+    cat(sprintf("category: %s\n", row$category))
+    cat(sprintf("location: %s\n", row$location))
+    cat(sprintf("action: %s\n", row$action))
+    if (!is.na(row$pattern)) {
+      cat(sprintf("pattern: %s\n", row$pattern))
+    }
+    if (!is.na(row$replacement)) {
+      cat(sprintf("replacement: %s\n", row$replacement))
+    }
+    cat(sprintf("potential_impact: %s\n\n", row$potential_impact))
   }
 
   invisible(suggestions)

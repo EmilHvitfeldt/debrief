@@ -12,7 +12,7 @@
               2: deep <- function() {
               3:   Sys.sleep(0.01)
               4:   42
-       >>>    5:   x <- rnorm(1000)
+      >       5:   x <- rnorm(1000)
               6: }
       
       Rank 2: R/helper.R:20 (10 ms, 20.0%)
@@ -21,7 +21,7 @@
              17: 
              18: 
              19: 
-       >>>   20:   do_work()
+      >      20:   do_work()
       
       Rank 3: R/main.R:10 (10 ms, 20.0%)
       Function: outer
@@ -29,7 +29,7 @@
               7: 
               8: inner <- function() {
               9:   result <- deep()
-       >>>   10:   result
+      >      10:   result
              11: }
              12: 
              13: 

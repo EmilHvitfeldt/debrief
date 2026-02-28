@@ -196,9 +196,9 @@ pv_print_callers_callees <- function(x, func, n = 10) {
   ))
   cat(sprintf("Appearances: %d samples\n\n", length(func_times)))
 
-  cat("--- Called by ", strrep("-", 50), "\n", sep = "")
+  cat("### Called by\n")
   if (nrow(callers) == 0) {
-    cat("  (no callers found - may be entry point)\n")
+    cat("  Callers: none\n")
   } else {
     for (i in seq_len(min(n, nrow(callers)))) {
       cat(sprintf(
@@ -210,9 +210,9 @@ pv_print_callers_callees <- function(x, func, n = 10) {
     }
   }
 
-  cat("\n--- Calls to ", strrep("-", 51), "\n", sep = "")
+  cat("\n### Calls to\n")
   if (nrow(callees) == 0) {
-    cat("  (no callees - all time is self-time)\n")
+    cat("  Callees: none\n")
   } else {
     for (i in seq_len(min(n, nrow(callees)))) {
       cat(sprintf(

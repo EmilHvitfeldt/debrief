@@ -92,7 +92,6 @@ pv_source_context <- function(x, filename, linenum = NULL, context = 10) {
     linenum
   ))
   cat("  Time   Mem   Line  Source\n")
-  cat(strrep("-", 70), "\n")
 
   for (i in seq_along(source_lines)) {
     ln <- start_line + i - 1
@@ -106,7 +105,7 @@ pv_source_context <- function(x, filename, linenum = NULL, context = 10) {
       mem_str <- "    -"
     }
 
-    marker <- if (ln == linenum) ">>>" else "   "
+    marker <- if (ln == linenum) ">" else " "
     cat(sprintf(
       "%s %s %s %4d: %s\n",
       marker,
@@ -116,9 +115,6 @@ pv_source_context <- function(x, filename, linenum = NULL, context = 10) {
       source_lines[i]
     ))
   }
-
-  cat(strrep("-", 70), "\n")
-  cat("Time in ms, Memory in MB\n")
 
   invisible(line_data)
 }

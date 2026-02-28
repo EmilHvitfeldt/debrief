@@ -11,7 +11,9 @@
 #'   - `severity`: "high" (>25%), "medium" (>15%), or "low" (>threshold%)
 #'   - `pct`: Percentage of total time spent in GC
 #'   - `time_ms`: Time spent in garbage collection
-#'   - `description`: Explanation of the issue
+#'   - `issue`: Short description of the problem
+#'   - `cause`: What typically causes this issue
+#'   - `actions`: Comma-separated list of things to look for
 #'
 #' Returns an empty data frame (0 rows) if GC is below the threshold.
 #'
@@ -69,10 +71,9 @@ pv_gc_pressure <- function(x, threshold = 10) {
     severity = severity,
     pct = pct,
     time_ms = time_ms,
-    description = sprintf(
-      "High garbage collection overhead (%.1f%% of time). Indicates excessive memory allocation. Look for growing vectors, repeated data frame operations, or unnecessary copies.",
-      pct
-    ),
+    issue = sprintf("High GC overhead (%.1f%%)", pct),
+    cause = "Excessive memory allocation",
+    actions = "growing vectors, repeated data frame ops, unnecessary copies",
     stringsAsFactors = FALSE
   )
 }
@@ -82,7 +83,9 @@ empty_gc_pressure_df <- function() {
     severity = character(),
     pct = numeric(),
     time_ms = numeric(),
-    description = character(),
+    issue = character(),
+    cause = character(),
+    actions = character(),
     stringsAsFactors = FALSE
   )
 }
@@ -117,20 +120,12 @@ pv_print_gc_pressure <- function(x, threshold = 10) {
   }
 
   row <- gc_data[1, ]
-  severity_icon <- switch(
-    row$severity,
-    high = "[!!!]",
-    medium = "[!!]",
-    low = "[!]"
-  )
-
-  cat(sprintf(
-    "%s GC consuming %.1f%% of time (%.0f ms)\n\n",
-    severity_icon,
-    row$pct,
-    row$time_ms
-  ))
-  cat(row$description, "\n")
+  cat(sprintf("severity: %s\n", row$severity))
+  cat(sprintf("pct: %.1f\n", row$pct))
+  cat(sprintf("time_ms: %.0f\n", row$time_ms))
+  cat(sprintf("issue: %s\n", row$issue))
+  cat(sprintf("cause: %s\n", row$cause))
+  cat(sprintf("actions: %s\n", row$actions))
 
   invisible(gc_data)
 }

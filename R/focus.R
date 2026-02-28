@@ -58,7 +58,7 @@ pv_focus <- function(x, func, context = 5) {
   cat_header(sprintf("FOCUS: %s", func))
   cat("\n")
 
-  cat("--- Time Analysis ", strrep("-", 51), "\n", sep = "")
+  cat("### Time Analysis\n")
   cat(sprintf(
     "  Total time:   %6.0f ms (%5.1f%%)  - time on call stack\n",
     func_total_time,
@@ -76,9 +76,9 @@ pv_focus <- function(x, func, context = 5) {
   ))
   cat(sprintf("  Appearances:  %6d samples\n\n", length(func_times)))
 
-  cat("--- Called By ", strrep("-", 55), "\n", sep = "")
+  cat("### Called By\n")
   if (nrow(callers) == 0) {
-    cat("  (no callers found - may be entry point)\n")
+    cat("  Callers: none\n")
   } else {
     for (i in seq_len(min(5, nrow(callers)))) {
       cat(sprintf(
@@ -94,9 +94,9 @@ pv_focus <- function(x, func, context = 5) {
   }
   cat("\n")
 
-  cat("--- Calls To ", strrep("-", 56), "\n", sep = "")
+  cat("### Calls To\n")
   if (nrow(callees) == 0) {
-    cat("  (no callees - all time is self-time)\n")
+    cat("  Callees: none\n")
   } else {
     for (i in seq_len(min(5, nrow(callees)))) {
       cat(sprintf(
@@ -114,7 +114,7 @@ pv_focus <- function(x, func, context = 5) {
 
   # Show source locations if available
   if (has_source) {
-    cat("--- Source Locations ", strrep("-", 48), "\n", sep = "")
+    cat("### Source Locations\n")
 
     # Get hottest lines for this function
     func_with_source$location <- paste0(
@@ -166,8 +166,7 @@ pv_focus <- function(x, func, context = 5) {
       fn <- paste(parts[-length(parts)], collapse = ":")
       ln <- as.integer(parts[length(parts)])
 
-      cat(sprintf("\n--- Source Context: %s ", fn))
-      cat(strrep("-", max(0, 70 - nchar(fn) - 21)), "\n", sep = "")
+      cat(sprintf("\n### Source Context: %s\n", fn))
 
       start_line <- max(1L, ln - context)
       end_line <- ln + context
@@ -176,18 +175,18 @@ pv_focus <- function(x, func, context = 5) {
       if (!is.null(source_lines)) {
         for (j in seq_along(source_lines)) {
           line_num <- start_line + j - 1
-          marker <- if (line_num == ln) " >>> " else "     "
+          marker <- if (line_num == ln) ">    " else "     "
           cat(sprintf("%s%4d: %s\n", marker, line_num, source_lines[j]))
         }
       }
     }
   } else {
-    cat("--- Source Locations ", strrep("-", 48), "\n", sep = "")
+    cat("### Source Locations\n")
     cat("  Source references not available.\n")
     cat("  Use devtools::load_all() to enable.\n")
   }
 
-  cat("\n", strrep("-", 70), "\n", sep = "")
+  cat("\n")
 
   invisible(list(
     func = func,

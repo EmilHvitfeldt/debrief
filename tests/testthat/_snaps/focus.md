@@ -6,32 +6,31 @@
       ## FOCUS: inner
       
       
-      --- Time Analysis ---------------------------------------------------
+      ### Time Analysis
         Total time:       30 ms ( 60.0%)  - time on call stack
         Self time:        10 ms ( 20.0%)  - time at top of stack
         Child time:       20 ms ( 40.0%)  - time in callees
         Appearances:       3 samples
       
-      --- Called By -------------------------------------------------------
+      ### Called By
             3 calls (100.0%)  outer
       
-      --- Calls To --------------------------------------------------------
+      ### Calls To
             2 calls ( 66.7%)  deep
       
-      --- Source Locations ------------------------------------------------
+      ### Source Locations
       Hot lines (by self-time):
            10 ms (20.0%)  R/main.R:15
                          z <- heavy_computation()
       
-      --- Source Context: R/main.R -----------------------------------------
+      ### Source Context: R/main.R
              10:   result
              11: }
              12: 
              13: 
              14: 
-       >>>   15:   z <- heavy_computation()
+      >      15:   z <- heavy_computation()
       
-      ----------------------------------------------------------------------
 
 # pv_focus handles non-existent function
 
@@ -54,22 +53,21 @@
       ## FOCUS: foo
       
       
-      --- Time Analysis ---------------------------------------------------
+      ### Time Analysis
         Total time:       30 ms (100.0%)  - time on call stack
         Self time:        10 ms ( 33.3%)  - time at top of stack
         Child time:       20 ms ( 66.7%)  - time in callees
         Appearances:       3 samples
       
-      --- Called By -------------------------------------------------------
+      ### Called By
             3 calls (100.0%)  (top-level)
       
-      --- Calls To --------------------------------------------------------
+      ### Calls To
             1 calls ( 33.3%)  bar
             1 calls ( 33.3%)  baz
       
-      --- Source Locations ------------------------------------------------
+      ### Source Locations
         Source references not available.
         Use devtools::load_all() to enable.
       
-      ----------------------------------------------------------------------
 

@@ -11,24 +11,21 @@
       Lines 1-15 (centered on 10)
       
         Time   Mem   Line  Source
-      ---------------------------------------------------------------------- 
-              -     -    1: # Main file
-              -     -    2: outer <- function() {
-              -     -    3:   x <- 1
-              -     -    4:   y <- 2
-              -     -    5:   inner()
-              -     -    6: }
-              -     -    7: 
-              -     -    8: inner <- function() {
-              -     -    9:   result <- deep()
-      >>>    50   0.0   10:   result
-              -     -   11: }
-              -     -   12: 
-              -     -   13: 
-              -     -   14: 
-             30 150.0   15:   z <- heavy_computation()
-      ---------------------------------------------------------------------- 
-      Time in ms, Memory in MB
+            -     -    1: # Main file
+            -     -    2: outer <- function() {
+            -     -    3:   x <- 1
+            -     -    4:   y <- 2
+            -     -    5:   inner()
+            -     -    6: }
+            -     -    7: 
+            -     -    8: inner <- function() {
+            -     -    9:   result <- deep()
+      >    50   0.0   10:   result
+            -     -   11: }
+            -     -   12: 
+            -     -   13: 
+            -     -   14: 
+           30 150.0   15:   z <- heavy_computation()
 
 # pv_source_context handles non-existent file
 
@@ -54,24 +51,21 @@
       Lines 1-15 (centered on 10)
       
         Time   Mem   Line  Source
-      ---------------------------------------------------------------------- 
-              -     -    1: # Main file
-              -     -    2: outer <- function() {
-              -     -    3:   x <- 1
-              -     -    4:   y <- 2
-              -     -    5:   inner()
-              -     -    6: }
-              -     -    7: 
-              -     -    8: inner <- function() {
-              -     -    9:   result <- deep()
-      >>>    50   0.0   10:   result
-              -     -   11: }
-              -     -   12: 
-              -     -   13: 
-              -     -   14: 
-             30 150.0   15:   z <- heavy_computation()
-      ---------------------------------------------------------------------- 
-      Time in ms, Memory in MB
+            -     -    1: # Main file
+            -     -    2: outer <- function() {
+            -     -    3:   x <- 1
+            -     -    4:   y <- 2
+            -     -    5:   inner()
+            -     -    6: }
+            -     -    7: 
+            -     -    8: inner <- function() {
+            -     -    9:   result <- deep()
+      >    50   0.0   10:   result
+            -     -   11: }
+            -     -   12: 
+            -     -   13: 
+            -     -   14: 
+           30 150.0   15:   z <- heavy_computation()
 
 # pv_source_context respects linenum parameter
 
@@ -84,24 +78,21 @@
       Lines 1-15 (centered on 5)
       
         Time   Mem   Line  Source
-      ---------------------------------------------------------------------- 
-              -     -    1: # Main file
-              -     -    2: outer <- function() {
-              -     -    3:   x <- 1
-              -     -    4:   y <- 2
-      >>>     -     -    5:   inner()
-              -     -    6: }
-              -     -    7: 
-              -     -    8: inner <- function() {
-              -     -    9:   result <- deep()
-             50   0.0   10:   result
-              -     -   11: }
-              -     -   12: 
-              -     -   13: 
-              -     -   14: 
-             30 150.0   15:   z <- heavy_computation()
-      ---------------------------------------------------------------------- 
-      Time in ms, Memory in MB
+            -     -    1: # Main file
+            -     -    2: outer <- function() {
+            -     -    3:   x <- 1
+            -     -    4:   y <- 2
+      >     -     -    5:   inner()
+            -     -    6: }
+            -     -    7: 
+            -     -    8: inner <- function() {
+            -     -    9:   result <- deep()
+           50   0.0   10:   result
+            -     -   11: }
+            -     -   12: 
+            -     -   13: 
+            -     -   14: 
+           30 150.0   15:   z <- heavy_computation()
 
 # pv_print_file_summary snapshot
 

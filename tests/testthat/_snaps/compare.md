@@ -6,11 +6,14 @@
       ## PROFILE COMPARISON
       
       
-      --- Overall ----------------------------------------------------------
-      NO CHANGE: 50 ms
       
-      --- Biggest Changes --------------------------------------------------
+      ### Overall
+      before_ms: 50
+      after_ms: 50
+      diff_ms: +0
+      speedup: 1.00x
+      
+      ### Biggest Changes
       Function                           Before      After       Diff   Change
-      ------------------------------------------------------------------------ 
       
 

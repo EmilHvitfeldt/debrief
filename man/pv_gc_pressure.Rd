@@ -18,7 +18,9 @@ A data frame with columns:
 \item \code{severity}: "high" (>25\%), "medium" (>15\%), or "low" (>threshold\%)
 \item \code{pct}: Percentage of total time spent in GC
 \item \code{time_ms}: Time spent in garbage collection
-\item \code{description}: Explanation of the issue
+\item \code{issue}: Short description of the problem
+\item \code{cause}: What typically causes this issue
+\item \code{actions}: Comma-separated list of things to look for
 }
 
 Returns an empty data frame (0 rows) if GC is below the threshold.

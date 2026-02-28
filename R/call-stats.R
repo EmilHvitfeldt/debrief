@@ -155,7 +155,6 @@ pv_print_call_stats <- function(x, n = 20) {
     "ms/call",
     "Pct"
   ))
-  cat(strrep("-", 85), "\n")
 
   for (i in seq_len(nrow(stats))) {
     row <- stats[i, ]
