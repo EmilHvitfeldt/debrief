@@ -86,5 +86,23 @@ pv_print_call_depth <- function(x) {
     ))
   }
 
+  # Next steps - suggest focusing on a function at the deepest hot depth
+  if (nrow(depth_df) > 0) {
+    # Find the depth with most time
+    hot_depth <- depth_df$depth[which.max(depth_df$time_ms)]
+    hot_row <- depth_df[depth_df$depth == hot_depth, ]
+    first_func <- strsplit(hot_row$top_funcs, ", ")[[1]][1]
+    if (
+      !is.na(first_func) &&
+        nchar(first_func) > 0 &&
+        !grepl("^[(<\\[]", first_func)
+    ) {
+      cat_next_steps(c(
+        sprintf("pv_focus(p, \"%s\")", first_func),
+        "pv_flame(p)"
+      ))
+    }
+  }
+
   invisible(depth_df)
 }

@@ -122,3 +122,15 @@ truncate_string <- function(s, max_len = 60) {
     s
   }
 }
+
+# Print "Next steps" suggestions for AI agents
+# suggestions should be a character vector of R expressions
+cat_next_steps <- function(suggestions) {
+  if (length(suggestions) == 0) {
+    return(invisible())
+  }
+  cat("\n### Next steps\n")
+  for (s in suggestions) {
+    cat(s, "\n", sep = "")
+  }
+}

@@ -201,7 +201,21 @@ pv_print_compare <- function(before, after, n = 15) {
     }
   }
 
-  cat("\n")
+  # Next steps - suggest drilling into the profile with most change
+  suggestions <- character()
+  if (nrow(comp$by_function) > 0) {
+    top_func <- comp$by_function$label[1]
+    if (!grepl("^[(<\\[]", top_func)) {
+      suggestions <- c(
+        suggestions,
+        sprintf("pv_focus(p_before, \"%s\")", top_func),
+        sprintf("pv_focus(p_after, \"%s\")", top_func)
+      )
+    }
+  }
+  if (length(suggestions) > 0) {
+    cat_next_steps(suggestions)
+  }
 
   invisible(comp)
 }

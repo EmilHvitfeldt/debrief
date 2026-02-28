@@ -40,6 +40,17 @@ pv_flame <- function(x, width = 70, min_pct = 2, max_depth = 15) {
 
   cat("\nLegend: [====] = time spent, width proportional to time\n")
 
+  # Next steps - find the top function from level 1
+  if (length(tree) >= 1 && length(tree[[1]]) > 0) {
+    items <- tree[[1]][order(-sapply(tree[[1]], function(x) x$samples))]
+    top_func <- items[[1]]$name
+    suggestions <- "pv_hot_paths(p)"
+    if (!grepl("^[(<\\[]", top_func)) {
+      suggestions <- c(sprintf("pv_focus(p, \"%s\")", top_func), suggestions)
+    }
+    cat_next_steps(suggestions)
+  }
+
   invisible(tree)
 }
 
@@ -180,6 +191,17 @@ pv_flame_condense <- function(x, n = 10, width = 50) {
       indent <- strrep("  ", j - 1)
       cat(sprintf("%s-> %s\n", indent, parts[j]))
     }
+  }
+
+  # Next steps - suggest focusing on the leaf of the hottest path
+  if (nrow(paths_df) > 0) {
+    parts <- strsplit(paths_df$path[1], " > ")[[1]]
+    leaf_func <- parts[length(parts)]
+    suggestions <- "pv_hot_lines(p)"
+    if (!grepl("^[(<\\[]", leaf_func)) {
+      suggestions <- c(sprintf("pv_focus(p, \"%s\")", leaf_func), suggestions)
+    }
+    cat_next_steps(suggestions)
   }
 
   invisible(paths_df)

@@ -116,6 +116,19 @@ pv_source_context <- function(x, filename, linenum = NULL, context = 10) {
     ))
   }
 
+  # Next steps - suggest focusing on the function at the hot line
+  if (nrow(file_prof) > 0) {
+    hot_line_prof <- file_prof[file_prof$linenum == linenum, ]
+    if (nrow(hot_line_prof) > 0) {
+      func <- hot_line_prof$label[1]
+      suggestions <- "pv_hot_lines(p)"
+      if (!grepl("^[(<\\[]", func)) {
+        suggestions <- c(sprintf("pv_focus(p, \"%s\")", func), suggestions)
+      }
+      cat_next_steps(suggestions)
+    }
+  }
+
   invisible(line_data)
 }
 

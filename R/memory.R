@@ -168,5 +168,28 @@ pv_print_memory <- function(x, n = 10, by = c("function", "line")) {
     }
   }
 
+  # Next steps suggestions
+  if (nrow(mem_df) > 0) {
+    suggestions <- character()
+    if (by == "function") {
+      top_func <- mem_df$label[1]
+      if (!grepl("^[(<\\[]", top_func)) {
+        suggestions <- c(suggestions, sprintf("pv_focus(p, \"%s\")", top_func))
+      }
+      suggestions <- c(suggestions, "pv_gc_pressure(p)")
+    } else {
+      top_func <- mem_df$label[1]
+      top_file <- mem_df$filename[1]
+      if (!grepl("^[(<\\[]", top_func)) {
+        suggestions <- c(suggestions, sprintf("pv_focus(p, \"%s\")", top_func))
+      }
+      suggestions <- c(
+        suggestions,
+        sprintf("pv_source_context(p, \"%s\")", top_file)
+      )
+    }
+    cat_next_steps(suggestions)
+  }
+
   invisible(mem_df)
 }

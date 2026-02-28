@@ -365,5 +365,23 @@ pv_print_suggestions <- function(x) {
     cat(sprintf("potential_impact: %s\n\n", row$potential_impact))
   }
 
+  # Next steps suggestions based on top suggestion
+  if (nrow(suggestions) > 0) {
+    top_loc <- suggestions$location[1]
+    # Check if location looks like a function name (not a file:line or internal)
+    if (
+      !grepl(":", top_loc) &&
+        !grepl(" ", top_loc) &&
+        !grepl("^[(<\\[]", top_loc)
+    ) {
+      cat_next_steps(c(
+        sprintf("pv_focus(p, \"%s\")", top_loc),
+        "pv_gc_pressure(p)"
+      ))
+    } else {
+      cat_next_steps(c("pv_hot_lines(p)", "pv_gc_pressure(p)"))
+    }
+  }
+
   invisible(suggestions)
 }

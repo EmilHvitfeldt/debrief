@@ -127,5 +127,12 @@ pv_print_gc_pressure <- function(x, threshold = 10) {
   cat(sprintf("cause: %s\n", row$cause))
   cat(sprintf("actions: %s\n", row$actions))
 
+  # Next steps
+  cat_next_steps(c(
+    "pv_print_memory(p, by = \"function\")",
+    "pv_print_memory(p, by = \"line\")",
+    "pv_suggestions(p)"
+  ))
+
   invisible(gc_data)
 }

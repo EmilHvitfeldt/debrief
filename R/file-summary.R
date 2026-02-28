@@ -87,5 +87,14 @@ pv_print_file_summary <- function(x) {
     ))
   }
 
+  # Next steps
+  if (nrow(summary_df) > 0) {
+    top_file <- summary_df$filename[1]
+    cat_next_steps(c(
+      sprintf("pv_source_context(p, \"%s\")", top_file),
+      "pv_hot_lines(p)"
+    ))
+  }
+
   invisible(summary_df)
 }

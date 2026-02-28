@@ -134,6 +134,24 @@ pv_print_debrief <- function(
     print_memory_lines_df(head(memory_lines, n_memory), file_contents)
   }
 
+  # Next steps suggestions
+  suggestions <- character()
+  if (nrow(self_time) > 0) {
+    top_func <- self_time$label[1]
+    if (!grepl("^[(<\\[]", top_func)) {
+      suggestions <- c(suggestions, sprintf("pv_focus(p, \"%s\")", top_func))
+    }
+  }
+  if (has_source && !is.null(hot_lines) && nrow(hot_lines) > 0) {
+    top_file <- hot_lines$filename[1]
+    suggestions <- c(
+      suggestions,
+      sprintf("pv_source_context(p, \"%s\")", top_file)
+    )
+  }
+  suggestions <- c(suggestions, "pv_suggestions(p)")
+  cat_next_steps(suggestions)
+
   invisible(pv_debrief(x, n = max(n_functions, n_lines, n_paths, n_memory)))
 }
 

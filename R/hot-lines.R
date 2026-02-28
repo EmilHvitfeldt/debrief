@@ -146,6 +146,21 @@ pv_print_hot_lines <- function(x, n = 5, context = 3) {
     cat("\n")
   }
 
+  # Next steps suggestions
+  if (nrow(hot_lines) > 0) {
+    suggestions <- character()
+    top_func <- hot_lines$label[1]
+    top_file <- hot_lines$filename[1]
+    if (!grepl("^[(<\\[]", top_func)) {
+      suggestions <- c(suggestions, sprintf("pv_focus(p, \"%s\")", top_func))
+    }
+    suggestions <- c(
+      suggestions,
+      sprintf("pv_source_context(p, \"%s\")", top_file)
+    )
+    cat_next_steps(suggestions)
+  }
+
   invisible(hot_lines)
 }
 

@@ -170,5 +170,16 @@ pv_print_call_stats <- function(x, n = 20) {
     ))
   }
 
+  # Next steps
+  if (nrow(stats) > 0) {
+    top_func <- stats$label[1]
+    if (!grepl("^[(<\\[]", top_func)) {
+      cat_next_steps(c(
+        sprintf("pv_focus(p, \"%s\")", top_func),
+        sprintf("pv_callers(p, \"%s\")", top_func)
+      ))
+    }
+  }
+
   invisible(stats)
 }

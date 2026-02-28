@@ -119,5 +119,18 @@ pv_print_hot_paths <- function(x, n = 10, include_source = TRUE) {
     cat("    ", paste(parts, collapse = "\n  -> "), "\n\n", sep = "")
   }
 
+  # Next steps suggestions
+  if (nrow(paths) > 0) {
+    # Extract the leaf function from the hottest path (last in the chain)
+    parts <- strsplit(paths$stack[1], " -> ")[[1]]
+    # Remove source info if present: "func (file:line)" -> "func"
+    leaf_func <- sub(" \\(.*\\)$", "", parts[length(parts)])
+    suggestions <- "pv_flame(p)"
+    if (!grepl("^[(<\\[]", leaf_func)) {
+      suggestions <- c(sprintf("pv_focus(p, \"%s\")", leaf_func), suggestions)
+    }
+    cat_next_steps(suggestions)
+  }
+
   invisible(paths)
 }

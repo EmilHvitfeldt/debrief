@@ -62,6 +62,11 @@
                   x <- rnorm(1000)
          50.00 MB R/helper.R:20
                   do_work()
+      
+      ### Next steps
+      pv_focus(p, "deep")
+      pv_source_context(p, "R/utils.R")
+      pv_suggestions(p)
 
 # pv_print_debrief handles no source refs
 
@@ -101,4 +106,8 @@
       ### MEMORY ALLOCATION (by function)
          50.00 MB bar
          50.00 MB baz
+      
+      ### Next steps
+      pv_focus(p, "bar")
+      pv_suggestions(p)
 

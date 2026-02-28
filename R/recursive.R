@@ -146,5 +146,15 @@ pv_print_recursive <- function(x) {
     ))
   }
 
+  # Next steps
+  if (nrow(recursive) > 0) {
+    top_func <- recursive$label[1]
+    suggestions <- "pv_suggestions(p)"
+    if (!grepl("^[(<\\[]", top_func)) {
+      suggestions <- c(sprintf("pv_focus(p, \"%s\")", top_func), suggestions)
+    }
+    cat_next_steps(suggestions)
+  }
+
   invisible(recursive)
 }

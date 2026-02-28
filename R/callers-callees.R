@@ -223,7 +223,22 @@ pv_print_callers_callees <- function(x, func, n = 10) {
       ))
     }
   }
-  cat("\n")
+
+  # Next steps suggestions
+  suggestions <- c(sprintf("pv_focus(p, \"%s\")", func))
+  if (nrow(callers) > 0 && !grepl("^[(<\\[]", callers$label[1])) {
+    suggestions <- c(
+      suggestions,
+      sprintf("pv_focus(p, \"%s\")", callers$label[1])
+    )
+  }
+  if (nrow(callees) > 0 && !grepl("^[(<\\[]", callees$label[1])) {
+    suggestions <- c(
+      suggestions,
+      sprintf("pv_focus(p, \"%s\")", callees$label[1])
+    )
+  }
+  cat_next_steps(suggestions)
 
   invisible(list(callers = callers, callees = callees))
 }

@@ -9,6 +9,10 @@
         150.00 MB inner
         100.00 MB deep
          50.00 MB helper
+      
+      ### Next steps
+      pv_focus(p, "inner")
+      pv_gc_pressure(p)
 
 # pv_print_memory by line snapshot
 
@@ -24,6 +28,10 @@
                   x <- rnorm(1000)
          50.00 MB R/helper.R:20
                   do_work()
+      
+      ### Next steps
+      pv_focus(p, "inner")
+      pv_source_context(p, "R/main.R")
 
 # pv_print_memory handles no source refs for line mode
 

@@ -186,7 +186,28 @@ pv_focus <- function(x, func, context = 5) {
     cat("  Use devtools::load_all() to enable.\n")
   }
 
-  cat("\n")
+  # Next steps suggestions
+  suggestions <- character()
+  if (nrow(callees) > 0) {
+    top_callee <- callees$label[1]
+    suggestions <- c(suggestions, sprintf("pv_focus(p, \"%s\")", top_callee))
+  }
+  if (nrow(callers) > 0) {
+    suggestions <- c(suggestions, sprintf("pv_callers(p, \"%s\")", func))
+    top_caller <- callers$label[1]
+    # Don't suggest focusing on pseudo-functions like (top-level)
+    if (!grepl("^\\(", top_caller)) {
+      suggestions <- c(suggestions, sprintf("pv_focus(p, \"%s\")", top_caller))
+    }
+  }
+  if (has_source && nrow(func_top_of_stack) > 0) {
+    line_counts <- sort(table(func_top_of_stack$location), decreasing = TRUE)
+    hottest <- names(line_counts)[1]
+    parts <- strsplit(hottest, ":")[[1]]
+    fn <- paste(parts[-length(parts)], collapse = ":")
+    suggestions <- c(suggestions, sprintf("pv_source_context(p, \"%s\")", fn))
+  }
+  cat_next_steps(suggestions)
 
   invisible(list(
     func = func,

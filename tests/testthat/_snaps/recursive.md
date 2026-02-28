@@ -8,6 +8,10 @@
       
       Function                       MaxDepth AvgDepth   Total ms      Pct
       recurse                               5      4.0         30   100.0%
+      
+      ### Next steps
+      pv_focus(p, "recurse")
+      pv_suggestions(p)
 
 # pv_print_recursive handles non-recursive profile
 

@@ -34,6 +34,10 @@
              12: 
              13: 
       
+      
+      ### Next steps
+      pv_focus(p, "deep")
+      pv_source_context(p, "R/utils.R")
 
 # pv_print_hot_lines handles no source refs
 
@@ -63,4 +67,8 @@
           outer (R/main.R:10)
         -> helper (R/helper.R:20)
       
+      
+      ### Next steps
+      pv_focus(p, "deep")
+      pv_flame(p)
 

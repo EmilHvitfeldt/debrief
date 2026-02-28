@@ -10,6 +10,10 @@
           1        50  100.0%  outer
           2        40   80.0%  inner, helper
           3        20   40.0%  deep
+      
+      ### Next steps
+      pv_focus(p, "outer")
+      pv_flame(p)
 
 # pv_print_callers_callees snapshot
 
@@ -28,6 +32,10 @@
       ### Calls to
             2 samples ( 66.7%)  deep
       
+      ### Next steps
+      pv_focus(p, "inner")
+      pv_focus(p, "outer")
+      pv_focus(p, "deep")
 
 # pv_print_call_stats snapshot
 
@@ -42,4 +50,8 @@
       inner                                      2         30         10      15.00  60.0%
       deep                                       2         20         20      10.00  40.0%
       helper                                     1         10         10      10.00  20.0%
+      
+      ### Next steps
+      pv_focus(p, "outer")
+      pv_callers(p, "outer")
 

@@ -26,6 +26,10 @@
             -     -   13: 
             -     -   14: 
            30 150.0   15:   z <- heavy_computation()
+      
+      ### Next steps
+      pv_focus(p, "outer")
+      pv_hot_lines(p)
 
 # pv_source_context handles non-existent file
 
@@ -66,6 +70,10 @@
             -     -   13: 
             -     -   14: 
            30 150.0   15:   z <- heavy_computation()
+      
+      ### Next steps
+      pv_focus(p, "outer")
+      pv_hot_lines(p)
 
 # pv_source_context respects linenum parameter
 
@@ -105,6 +113,10 @@
           50 ms (100.0%)  R/main.R
           20 ms ( 40.0%)  R/utils.R
           10 ms ( 20.0%)  R/helper.R
+      
+      ### Next steps
+      pv_source_context(p, "R/main.R")
+      pv_hot_lines(p)
 
 # pv_print_file_summary handles no source refs
 

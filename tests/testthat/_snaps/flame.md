@@ -15,6 +15,10 @@
       [============================                                          ]       deep (40.0%)
       
       Legend: [====] = time spent, width proportional to time
+      
+      ### Next steps
+      pv_focus(p, "outer")
+      pv_hot_paths(p)
 
 # pv_flame respects width parameter
 
@@ -33,6 +37,10 @@
       [================                        ]       deep (40.0%)
       
       Legend: [====] = time spent, width proportional to time
+      
+      ### Next steps
+      pv_focus(p, "outer")
+      pv_hot_paths(p)
 
 # pv_flame respects min_pct parameter
 
@@ -50,6 +58,10 @@
       [============================                                          ]       deep (40.0%)
       
       Legend: [====] = time spent, width proportional to time
+      
+      ### Next steps
+      pv_focus(p, "outer")
+      pv_hot_paths(p)
 
 # pv_flame_condense snapshot
 
@@ -72,6 +84,10 @@
       ########## 20.0% (1 samples)
       -> outer
         -> helper
+      
+      ### Next steps
+      pv_focus(p, "deep")
+      pv_hot_lines(p)
 
 # pv_flame_condense respects width parameter
 
@@ -90,4 +106,8 @@
       ###### 20.0% (1 samples)
       -> outer
         -> inner
+      
+      ### Next steps
+      pv_focus(p, "deep")
+      pv_hot_lines(p)
 

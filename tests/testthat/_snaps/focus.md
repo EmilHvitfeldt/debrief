@@ -31,6 +31,11 @@
              14: 
       >      15:   z <- heavy_computation()
       
+      ### Next steps
+      pv_focus(p, "deep")
+      pv_callers(p, "inner")
+      pv_focus(p, "outer")
+      pv_source_context(p, "R/main.R")
 
 # pv_focus handles non-existent function
 
@@ -70,4 +75,7 @@
         Source references not available.
         Use devtools::load_all() to enable.
       
+      ### Next steps
+      pv_focus(p, "bar")
+      pv_callers(p, "foo")
 
