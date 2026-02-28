@@ -3,9 +3,8 @@
     Code
       pv_print_call_depth(p)
     Output
-      ====================================================================== 
-                               CALL DEPTH BREAKDOWN
-      ====================================================================== 
+      ## CALL DEPTH BREAKDOWN
+      
       
       Depth  Time (ms)   Pct   Top functions
       ---------------------------------------------------------------------- 
@@ -18,9 +17,8 @@
     Code
       pv_print_callers_callees(p, "inner")
     Output
-      ====================================================================== 
-                             FUNCTION ANALYSIS: inner
-      ====================================================================== 
+      ## FUNCTION ANALYSIS: inner
+      
       
       Total time: 30 ms (60.0% of profile)
       Appearances: 3 samples
@@ -37,9 +35,8 @@
     Code
       pv_print_call_stats(p)
     Output
-      ====================================================================== 
-                                 CALL STATISTICS
-      ====================================================================== 
+      ## CALL STATISTICS
+      
       
       Function                               Calls   Total ms    Self ms    ms/call    Pct
       ------------------------------------------------------------------------------------- 

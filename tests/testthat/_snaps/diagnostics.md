@@ -3,9 +3,8 @@
     Code
       pv_print_gc_pressure(p)
     Output
-      ====================================================================== 
-                                   GC PRESSURE
-      ====================================================================== 
+      ## GC PRESSURE
+      
       
       [!!!] GC consuming 40.0% of time (40 ms)
       
@@ -16,9 +15,8 @@
     Code
       pv_print_gc_pressure(p)
     Output
-      ====================================================================== 
-                                   GC PRESSURE
-      ====================================================================== 
+      ## GC PRESSURE
+      
       
       No significant GC pressure detected (<10% of time).
 
@@ -27,9 +25,8 @@
     Code
       pv_print_suggestions(p)
     Output
-      ====================================================================== 
-                             OPTIMIZATION SUGGESTIONS
-      ====================================================================== 
+      ## OPTIMIZATION SUGGESTIONS
+      
       
       Suggestions are ordered by priority (1 = highest impact).
       
@@ -55,9 +52,8 @@
     Code
       pv_print_suggestions(p)
     Output
-      ====================================================================== 
-                             OPTIMIZATION SUGGESTIONS
-      ====================================================================== 
+      ## OPTIMIZATION SUGGESTIONS
+      
       
       Suggestions are ordered by priority (1 = highest impact).
       

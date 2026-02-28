@@ -93,16 +93,12 @@ get_source_lines <- function(filename, start, end, file_contents) {
 }
 
 # Formatting helpers
-cat_header <- function(text, width = 70) {
-  cat(strrep("=", width), "\n")
-  padding <- (width - nchar(text)) %/% 2
-  cat(strrep(" ", padding), text, "\n", sep = "")
-  cat(strrep("=", width), "\n")
+cat_header <- function(text) {
+  cat("## ", text, "\n\n", sep = "")
 }
 
-cat_section <- function(text, width = 70) {
-  dashes <- max(0, width - nchar(text) - 5)
-  cat("\n--- ", text, " ", strrep("-", dashes), "\n", sep = "")
+cat_section <- function(text) {
+  cat("\n### ", text, "\n", sep = "")
 }
 
 # Format time with percentage - used throughout package for consistent output

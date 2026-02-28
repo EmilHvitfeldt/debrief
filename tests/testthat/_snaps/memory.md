@@ -3,9 +3,8 @@
     Code
       pv_print_memory(p, by = "function")
     Output
-      ====================================================================== 
-                          MEMORY ALLOCATION BY FUNCTION
-      ====================================================================== 
+      ## MEMORY ALLOCATION BY FUNCTION
+      
       
         150.00 MB inner
         100.00 MB deep
@@ -16,9 +15,8 @@
     Code
       pv_print_memory(p, by = "line")
     Output
-      ====================================================================== 
-                            MEMORY ALLOCATION BY LINE
-      ====================================================================== 
+      ## MEMORY ALLOCATION BY LINE
+      
       
         150.00 MB R/main.R:15
                   z <- heavy_computation()

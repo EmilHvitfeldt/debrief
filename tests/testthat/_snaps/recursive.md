@@ -3,9 +3,8 @@
     Code
       pv_print_recursive(p)
     Output
-      ====================================================================== 
-                               RECURSIVE FUNCTIONS
-      ====================================================================== 
+      ## RECURSIVE FUNCTIONS
+      
       
       Functions that appear multiple times in the same call stack.
       High recursion depth + high time = optimization opportunity.
