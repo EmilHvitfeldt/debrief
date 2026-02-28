@@ -27,4 +27,8 @@ pv_print_file_summary(p)
 #> 
 #> 
 #>     70 ms (100.0%)  example_code.R
+#> 
+#> ### Next steps
+#> pv_source_context(p, "example_code.R")
+#> pv_hot_lines(p)
 ```

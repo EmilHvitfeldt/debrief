@@ -4,6 +4,8 @@
 
 Overview and optimization recommendations
 
+- [`pv_help()`](https://emilhvitfeldt.github.io/debrief/reference/pv_help.md)
+  : List available debrief functions
 - [`pv_debrief()`](https://emilhvitfeldt.github.io/debrief/reference/pv_debrief.md)
   : Comprehensive profiling data
 - [`pv_print_debrief()`](https://emilhvitfeldt.github.io/debrief/reference/pv_print_debrief.md)

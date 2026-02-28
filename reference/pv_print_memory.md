@@ -38,6 +38,10 @@ pv_print_memory(p, by = "function")
 #>     1.26 MB x[i] <- rnorm(1)
 #>     0.56 MB generate_data
 #>     0.36 MB result[i] <- sqrt(abs(x[i])) * 2
+#> 
+#> ### Next steps
+#> pv_focus(p, "rnorm")
+#> pv_gc_pressure(p)
 pv_print_memory(p, by = "line")
 #> ## MEMORY ALLOCATION BY LINE
 #> 
@@ -48,4 +52,8 @@ pv_print_memory(p, by = "line")
 #>             data <- generate_data(n)
 #>     0.36 MB example_code.R:21
 #>             result[i] <- sqrt(abs(x[i])) * 2
+#> 
+#> ### Next steps
+#> pv_focus(p, "rnorm")
+#> pv_source_context(p, "example_code.R")
 ```

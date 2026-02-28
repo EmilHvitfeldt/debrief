@@ -30,4 +30,8 @@ pv_print_call_depth(p)
 #>     1        70  100.0%  process_data
 #>     2        70  100.0%  generate_data, transform_data
 #>     3        55   78.6%  rnorm, x[i] <- rnorm(1), result[i] <- sqrt...
+#> 
+#> ### Next steps
+#> pv_focus(p, "process_data")
+#> pv_flame(p)
 ```

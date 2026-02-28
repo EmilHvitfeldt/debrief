@@ -49,4 +49,8 @@ pv_print_suggestions(p)
 #> pattern: work
 #> potential_impact: 60 ms (60.0%)
 #> 
+#> 
+#> ### Next steps
+#> pv_hot_lines(p)
+#> pv_gc_pressure(p)
 ```

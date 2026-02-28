@@ -37,4 +37,8 @@ pv_print_call_stats(p)
 #> x[i] <- rnorm(1)                           4         20         20       5.00  28.6%
 #> result[i] <- sqrt(abs(x[i])) * 2           1          5          5       5.00   7.1%
 #> transform_data                             1          5          0       5.00   7.1%
+#> 
+#> ### Next steps
+#> pv_focus(p, "process_data")
+#> pv_callers(p, "process_data")
 ```

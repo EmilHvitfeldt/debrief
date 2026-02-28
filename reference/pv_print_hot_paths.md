@@ -48,4 +48,8 @@ pv_print_hot_paths(p, n = 3)
 #>     process_data
 #>   -> generate_data (example_code.R:5)
 #> 
+#> 
+#> ### Next steps
+#> pv_focus(p, "rnorm")
+#> pv_flame(p)
 ```

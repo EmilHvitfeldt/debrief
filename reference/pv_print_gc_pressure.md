@@ -36,4 +36,9 @@ pv_print_gc_pressure(p)
 #> issue: High GC overhead (40.0%)
 #> cause: Excessive memory allocation
 #> actions: growing vectors, repeated data frame ops, unnecessary copies
+#> 
+#> ### Next steps
+#> pv_print_memory(p, by = "function")
+#> pv_print_memory(p, by = "line")
+#> pv_suggestions(p)
 ```

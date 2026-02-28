@@ -46,4 +46,6 @@ pv_print_callers_callees(p, "inner")
 #> ### Calls to
 #>   Callees: none
 #> 
+#> ### Next steps
+#> pv_focus(p, "inner")
 ```

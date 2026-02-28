@@ -105,4 +105,10 @@ pv_print_debrief(p)
 #>             data <- generate_data(n)
 #>     0.36 MB example_code.R:21
 #>             result[i] <- sqrt(abs(x[i])) * 2
+#> 
+#> ### Next steps
+#> pv_focus(p, "rnorm")
+#> pv_source_context(p, "example_code.R")
+#> pv_suggestions(p)
+#> pv_help()
 ```

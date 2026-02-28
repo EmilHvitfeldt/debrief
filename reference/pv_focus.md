@@ -41,4 +41,6 @@ pv_focus(p, "inner")
 #>   x[i] <- rnorm(1)
 #>   result[i] <- sqrt(abs(x[i])) * 2
 #>   transform_data
+#> 
+#> Run pv_help() to see all available functions.
 ```

@@ -67,4 +67,8 @@ pv_print_hot_lines(p, n = 5, context = 3)
 #>        23:   result
 #>        24: }
 #> 
+#> 
+#> ### Next steps
+#> pv_focus(p, "rnorm")
+#> pv_source_context(p, "example_code.R")
 ```

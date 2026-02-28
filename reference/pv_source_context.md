@@ -40,4 +40,6 @@ pv_source_context(p, "R/main.R", linenum = 10)
 #> File not found in profiling data.
 #> Available files:
 #>    example_code.R 
+#> 
+#> Run pv_help() to see all available functions.
 ```

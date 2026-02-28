@@ -50,4 +50,8 @@ pv_flame(p)
 #> [=====                                                                 ]       result[i] <- sqrt(abs(x[i])) * 2 (7.1%)
 #> 
 #> Legend: [====] = time spent, width proportional to time
+#> 
+#> ### Next steps
+#> pv_focus(p, "process_data")
+#> pv_hot_paths(p)
 ```

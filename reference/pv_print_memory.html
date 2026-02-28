@@ -73,6 +73,10 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>     1.26 MB x[i] &lt;- rnorm(1)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     0.56 MB generate_data</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     0.36 MB result[i] &lt;- sqrt(abs(x[i])) * 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ### Next steps</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pv_focus(p, "rnorm")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pv_gc_pressure(p)</span>
 <span class="r-in"><span><span class="fu">pv_print_memory</span><span class="op">(</span><span class="va">p</span>, by <span class="op">=</span> <span class="st">"line"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ## MEMORY ALLOCATION BY LINE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -83,6 +87,10 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>             data &lt;- generate_data(n)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     0.36 MB example_code.R:21</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             result[i] &lt;- sqrt(abs(x[i])) * 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ### Next steps</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pv_focus(p, "rnorm")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pv_source_context(p, "example_code.R")</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

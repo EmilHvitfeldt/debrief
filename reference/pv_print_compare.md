@@ -45,4 +45,7 @@ pv_print_compare(p1, p2)
 #> ### Biggest Changes
 #> Function                           Before      After       Diff   Change
 #> 
+#> ### Next steps
+#> pv_focus(p_before, "rnorm")
+#> pv_focus(p_after, "rnorm")
 ```
