@@ -2,3 +2,78 @@ url: https://emilhvitfeldt.github.io/debrief/
 template:
   bootstrap: 5
 
+reference:
+  - title: Summary and suggestions
+    desc: Overview and optimization recommendations
+    contents:
+      - pv_summary
+      - pv_suggestions
+      - pv_print_suggestions
+
+  - title: Time analysis
+    desc: Function timing breakdowns
+    contents:
+      - pv_self_time
+      - pv_total_time
+      - pv_call_stats
+      - pv_print_call_stats
+
+  - title: Memory analysis
+    desc: Memory allocation and garbage collection
+    contents:
+      - pv_memory
+      - pv_memory_lines
+      - pv_print_memory
+      - pv_gc_pressure
+      - pv_print_gc_pressure
+
+  - title: Call graph analysis
+    desc: Function relationships and call patterns
+    contents:
+      - pv_callers
+      - pv_callees
+      - pv_print_callers_callees
+      - pv_recursive
+      - pv_print_recursive
+      - pv_call_depth
+      - pv_print_call_depth
+
+  - title: Hot spots
+    desc: Find where time is spent
+    contents:
+      - pv_hot_lines
+      - pv_print_hot_lines
+      - pv_hot_paths
+      - pv_print_hot_paths
+
+  - title: Visualization
+    desc: Text-based flame graphs
+    contents:
+      - pv_flame
+      - pv_flame_condense
+
+  - title: Source context
+    desc: Source code and file analysis
+    contents:
+      - pv_source_context
+      - pv_file_summary
+      - pv_print_file_summary
+      - pv_focus
+
+  - title: Comparison
+    desc: Compare profiling runs
+    contents:
+      - pv_compare
+      - pv_print_compare
+      - pv_compare_many
+      - pv_print_compare_many
+
+  - title: Export
+    desc: Export results for external tools
+    contents:
+      - pv_to_json
+      - pv_to_list
+
+  - title: Example data
+    contents:
+      - pv_example
