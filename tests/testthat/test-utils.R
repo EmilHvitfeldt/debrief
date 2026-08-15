@@ -71,3 +71,14 @@ test_that("get_source_lines returns NULL when start > end after clamping", {
   result <- debrief:::get_source_lines("R/main.R", 10, 2, contents)
   expect_null(result)
 })
+
+test_that("strip_location keeps labels containing ' ('", {
+  expect_equal(strip_location("paste (analysis.R:22)"), "paste")
+  expect_equal(strip_location("if (x > 1) (file.R:3)"), "if (x > 1)")
+  expect_equal(
+    strip_location("data.frame(x = x, y = y) (analysis.R:11)"),
+    "data.frame(x = x, y = y)"
+  )
+  expect_equal(strip_location("plain_label"), "plain_label")
+  expect_equal(strip_location("f(a) (b)"), "f(a) (b)")
+})

@@ -118,7 +118,9 @@ pv_print_hot_paths <- function(x, n = 10, include_source = TRUE) {
     # Extract the leaf function from the hottest path (last in the chain)
     parts <- strsplit(paths$stack[1], " -> ")[[1]]
     # Remove source info if present: "func (file:line)" -> "func"
-    leaf_func <- sub(" \\(.*\\)$", "", parts[length(parts)])
+    # Anchor on the file:line shape rather than ".*", so labels that themselves
+    # contain " (" (e.g. "if (x > 1)") keep their parenthesised part.
+    leaf_func <- strip_location(parts[length(parts)])
     suggestions <- "pv_flame(p)"
     if (is_user_function(leaf_func)) {
       suggestions <- c(sprintf("pv_focus(p, \"%s\")", leaf_func), suggestions)

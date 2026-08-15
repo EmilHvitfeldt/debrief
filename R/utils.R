@@ -140,6 +140,14 @@ cat_help_hint <- function() {
   cat("Run pv_help() to see all available functions.\n")
 }
 
+# Strip a trailing " (file:line)" suffix from a stack entry, leaving the label.
+# The location never contains spaces or parens and always ends in ":<digits>",
+# so anchoring on that shape is safe even when the label itself contains " (",
+# as in "if (x > 1) (file.R:3)". A greedy " \\(.*\\)$" would eat both parts.
+strip_location <- function(entry) {
+  sub(" \\([^ ()]+:[0-9]+\\)$", "", entry)
+}
+
 # Check if a function name is a user function (not internal R machinery)
 # Internal functions start with: ( like (top-level), < like <GC>, [ like [.data.frame
 is_user_function <- function(func_name) {
