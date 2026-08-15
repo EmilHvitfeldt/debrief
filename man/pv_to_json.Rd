@@ -23,7 +23,7 @@ JSON string.}
 
 \item{include}{Character vector specifying which analyses to include.
 Options: "summary", "self_time", "total_time", "hot_lines", "memory",
-"callers", "gc_pressure", "suggestions", "recursive". Default includes all.}
+"gc_pressure", "suggestions", "recursive". Default includes all.}
 
 \item{system_info}{If \code{TRUE}, includes R version and platform info in
 metadata. Useful for reproducibility.}

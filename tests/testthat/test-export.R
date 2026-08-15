@@ -34,6 +34,31 @@ test_that("pv_to_json respects include parameter", {
   expect_false(grepl("\"total_time\":", json_limited))
 })
 
+test_that("every documented include option is accepted", {
+  p <- pv_example()
+  opts <- eval(formals(pv_to_json)$include)
+
+  expect_equal(
+    opts,
+    c(
+      "summary",
+      "self_time",
+      "total_time",
+      "hot_lines",
+      "memory",
+      "gc_pressure",
+      "suggestions",
+      "recursive"
+    )
+  )
+  expect_equal(eval(formals(pv_to_list)$include), opts)
+
+  for (opt in opts) {
+    expect_no_error(pv_to_json(p, include = opt))
+    expect_no_error(pv_to_list(p, include = opt))
+  }
+})
+
 test_that("pv_to_json pretty parameter works", {
   p <- pv_example()
 
